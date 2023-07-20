@@ -41,9 +41,13 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/resetPwdPost', 'resetPwdPost')->name('resetPwdPost');
     });
     Route::get('/home', 'index')->name('home')->middleware(['auth', 'check_user']);
+    Route::post('/contactPost','contact')->name('contact.post');
 
 });
 
 Route::get('test',function(){
     return view('test');
+});
+Route::get('test2',function(){
+    return view('factureP');
 });

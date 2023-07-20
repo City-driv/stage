@@ -154,4 +154,21 @@ class UserController extends Controller
         DB::table('password_reset_tokens')->where(['token' => $request->token])->delete();
         return to_route('connexion')->with('success', 'Le mot de passe a été changé avec succès');
     }
+
+    public function contact(Request $request){
+        $data=[
+            'nom'=>$request->nom,
+            'telephone'=>$request->telephone,
+            'message'=>$request->message
+        ];
+        // dump($data);
+        // dd($request->post());
+        Mail::send('emails.contact',['data'=>$data],function($message) use ($request){
+            $message->from($request->email);
+            $message->to("contact@worfac.com");
+            $message->subject($request->subject);
+        });
+        return to_route('contact')->with('success','Message envoye');
+    }
+
 }

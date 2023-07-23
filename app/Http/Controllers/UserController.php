@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -19,7 +20,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('main.home');
+        $id=Auth::user()->id;
+        $artDis=Article::where('user_id',$id)->get();
+        $artAlert=Article::where('user_id',$id)->
+                         where('quantite','<',10)->get();
+        $artEpuise=Article::where('user_id',$id)->
+                         where('quantite','=',0)->get();
+        $nba=Article::count();
+        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba]);
     }
 
     /**
@@ -84,7 +92,7 @@ class UserController extends Controller
         $credencials = ['email' => $request->email, 'password' => $request->password];
         if (Auth::attempt($credencials)) {
             $request->session()->regenerate();
-            if(Auth::user()->status){
+            if(Auth::user()->status==='test'){
                 return to_route('payement');
             }else{
                 return to_route('home');

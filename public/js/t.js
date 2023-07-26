@@ -157,6 +157,7 @@ function EventPrix(operation,Prix,id)
     }
        chargerProduits()
 }
+
 function EventTva(operation,TVA,id)
 {
     for (let index = 0; index < Produits.length; index++) {
@@ -180,7 +181,7 @@ function suprimer(des){
 //modifier Quantite
 function ModifierQte(val,id){
     for (let index = 0; index < Produits.length; index++) {
-        if(Produits[index].Id==id)
+        if(Produits[index].id==id)
             Produits[index].Qtee=val
         
     }

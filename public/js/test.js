@@ -91,10 +91,10 @@ function chargerArticles(){
       <td class=''>${Produits[index].description}</td>
       <td>
       <select id='unite' onblur="uniteModif(${Produits[index].id})" name='SaleDelivery[lines][0][product][unit]' class='form-control valid' style='width:100px;' data-validation='required' data-validation-error-msg='Ce champ est obligatoire.' original=''>
-      <optgroup label='UnitÃ©'><option value='Douzaine'>Douzaine(s)</option><option value=''>UnitÃ©(s)</option></optgroup>
+      <optgroup label='Unité'><option value='Douzaine'>Douzaine(s)</option><option value=''>UnitÃ©(s)</option></optgroup>
       <optgroup label='Poids'><option value='t'>t</option><option value='kg'>kg</option><option value='g'>g</option></optgroup>
       <optgroup label='Temps de travail'><option value='Jour'>Jour(s)</option><option value='Heure'>Heure(s)</option></optgroup>
-      <optgroup label='PÃ©riode'><option value='mois'>mois</option><option value='ans'>ans</option></optgroup>
+      <optgroup label='Période'><option value='mois'>mois</option><option value='ans'>ans</option></optgroup>
 
       <optgroup label='Longueur/distance'><option value='km'>km</option><option value='m'>m</option><option value='cm'>cm</option></optgroup>
       <optgroup label='Volume'><option value='Litre'>Litre(s)</option></optgroup>
@@ -102,7 +102,7 @@ function chargerArticles(){
       <td>
       <div class='row'>
       <button style='font-size: 20px;padding:2px;border:0;background: none; margin-right:2px;' class='col-12 col-md-2  mt-1' onfocus='EventQte("+",${Produits[index].Qtee},${Produits[index].id})' onclick='EventQte("+",${Produits[index].Qtee},${Produits[index].id})'><i style="color:green" class="fa-xs fas fa-arrow-circle-up"></i></button> 
-      <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierQte(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="100" min="1" class="" text="${Produits[index].id}" value=${Produits[index].Qtee}>
+      <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierQte(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="${Produits[index].quantite}" min="1" class="" text="${Produits[index].id}" value=${Produits[index].Qtee}>
       <button style='font-size: 20px;padding:0;border:0;background: none;margin: 0;' class='col-12 col-md-2  mt-1' onclick='EventQte("-",${Produits[index].Qtee},${Produits[index].id})'><i style="color:red" class="fa-xs fas fa-arrow-circle-down"></i></button> 
       </div>
       </td>
@@ -136,7 +136,60 @@ function chargerArticles(){
     // }
     }
     // Calculer()
-
 }
 
+//suprimmer
+function suprimer(des){
+    for (let index = 0; index < Produits.length; index++) 
+        if(Produits[index].id==des)
+         Produits.splice(index, 1);         
+         chargerArticles();
+}  
 
+//modifier Quantite
+function ModifierQte(val,id){
+    for (let index = 0; index < Produits.length; index++) {
+        if(Produits[index].id==id)
+            Produits[index].Qtee=val
+        
+    }
+    chargerArticles()
+}
+
+//modifier Tva
+function ModifierTva(val,id){
+    for (let index = 0; index < Produits.length; index++) {
+        if(Produits[index].id==id)
+            Produits[index].tva=val
+    }
+    chargerArticles()
+}
+
+//Event Qte
+function EventQte(operation,Qte,id)
+{
+    for (let index = 0; index < Produits.length; index++) {
+        if(Produits[index].id==id){
+            if(operation=="+")
+            Produits[index].Qtee=parseInt(Qte+1)
+            else
+            if(Qte!=0)
+            Produits[index].Qtee=parseInt(Qte-1)
+        }
+    }
+    chargerArticles()
+}
+//Event Tva
+function EventTva(operation,TVA,id)
+{
+    for (let index = 0; index < Produits.length; index++) {
+        if(Produits[index].id==id){
+            if(operation=="+")
+            Produits[index].tva=parseFloat(TVA+1)
+            else
+            if(TVA!=0)
+            Produits[index].tva=parseFloat(TVA-1)
+        }
+    }
+    chargerArticles();
+}

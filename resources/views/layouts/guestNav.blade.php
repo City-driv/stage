@@ -5,9 +5,8 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>@yield('title')</title>
-     {{-- <link rel="stylesheet" href="style.css?t=777444448"> --}}
-{{-- <link rel="icon" href="logo.png" /> --}}
-<script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
+     <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
+    <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
       
      @vite(['resources/css/app.css','resources/js/app.js'])
@@ -45,7 +44,7 @@
         </div>
        </header>    
         @if (session()->has('success'))
-                        <div class="alert alert-success">{{session('success')}}</div>
+            <div class="alert alert-success">{{session('success')}}</div>
         @endif    
     @endguest
 
@@ -66,18 +65,18 @@
     <div class="col-md-3 col-12 pt-5 footer ">
         <div class="row">
              <div class="col-12 h3"style=""><a>Accès rapide</a></div>
-             <a style="    font-weight: bolder;font-family: cursive;" href="/" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i> Acceuil</a>
-             <a style="    font-weight: bolder;font-family: cursive;" href="{{route('factureGratuit')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i> Facture en Ligne Gratuit</a> 
-             <a style="    font-weight: bolder;font-family: cursive;" href="/#fonc" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  Comment ça marche ?</a>
-             <a style="    font-weight: bolder;font-family: cursive;" href="{{route('inscription')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  S'inscrire</a>
-             <a style="    font-weight: bolder;font-family: cursive;" href="{{route('connexion')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  Se connecter</a>
+             <a style="font-weight: bolder;font-family: cursive;" href="/" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i> Acceuil</a>
+             <a style="font-weight: bolder;font-family: cursive;" href="{{route('factureGratuit')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i> Facture en Ligne Gratuit</a> 
+             <a style="font-weight: bolder;font-family: cursive;" href="/#fonc" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  Comment ça marche ?</a>
+             <a style="font-weight: bolder;font-family: cursive;" href="{{route('inscription')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  S'inscrire</a>
+             <a style="font-weight: bolder;font-family: cursive;" href="{{route('connexion')}}" class="col-12"><i class="fas fa-chevron-right" style="background-color: #1F3EA3;"></i>  Se connecter</a>
         </div>              
     </div>
     <div class="col-md-3 col-12 pt-5 footer">
         <div class="col-12 h2" style="">
             Notre Bureau
         </div>
-        <div style="    font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-map-marker" style="background-color: #1F3EA3;"></i> <a>59 Boulevard Zerktouni Résidence Les Fleurs 7eme étage App N° 20 CASABLANCA.</a>  </div>            <div style="    font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-envelope-open" style="background-color: #1F3EA3;"></i> <a href="mailto:support@worfac.com"> support@worfac.com</a>  </div>            <div style="    font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-phone-square-alt fa-lg"  style="background-color: #1F3EA3;"></i> <a href="tel:0606098827">+212606098827</a></div>
+        <div style="font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-map-marker" style="background-color: #1F3EA3;"></i> <a>59 Boulevard Zerktouni Résidence Les Fleurs 7eme étage App N° 20 CASABLANCA.</a>  </div>            <div style="    font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-envelope-open" style="background-color: #1F3EA3;"></i> <a href="mailto:support@worfac.com"> support@worfac.com</a>  </div>            <div style="    font-weight: bolder;font-family: cursive;" class="col-12"><i class="fas fa-phone-square-alt fa-lg"  style="background-color: #1F3EA3;"></i> <a href="tel:0606098827">+212606098827</a></div>
     </div>
     <div class="col-md-3 col-12 pt-5 footer">
         <div style="font-size: 30px;" class="col-12 h2">

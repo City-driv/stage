@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('factures', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('ref');
-            $table->enum('type_fact', ['facture','bon','bon_livraison','bon_cmd','facture_d_avoir','facture_proforma']);
-            $table->date('date_facture')->nullable();
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->string('name');
+            $table->string('adresse');
+            $table->string('telephone');
+            $table->string('ice')->nullable;
+            $table->string('if')->nullable;
+            $table->string('ville');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('factures');
+        Schema::dropIfExists('clients');
     }
 };

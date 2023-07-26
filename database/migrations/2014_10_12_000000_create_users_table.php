@@ -23,6 +23,15 @@ return new class extends Migration
             $table->string('ice');
             $table->enum('pack',['perso','starter','performance','demo']);
             $table->enum('status',['active','inactive','test'])->default('test');
+            $table->string('fj')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('site_web')->nullable();
+            $table->string('if')->nullable();
+            $table->string('num_pattente')->nullable();
+            $table->string('num_rc')->nullable();
+            $table->string('cnss')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

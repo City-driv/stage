@@ -5,7 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>@yield('title')</title>
-   <link rel="icon" href="logo.png" />
+   <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
    <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
    
@@ -196,9 +196,9 @@ body{
                </div>
                <div><i class="fas fa-address-card"></i> Contacts <i class="fas fa-angle-double-down"></i>
                      <ul>
-                         <li><a href="NoClient.php"><i class="fas fa-plus-square"></i> Nouveau Client</a></li>
-                         <li><a href="Clients.php"><i class="fas fa-tasks"></i> Gestion  des Clients</a></li>
-                         <li><a href="excelClient.php"><i class="fas fa-file-excel"></i> Import Clients</a></li>
+                         <li><a href="{{route('clients.create')}}"><i class="fas fa-plus-square"></i> Nouveau Client</a></li>
+                         <li><a href="{{route('clients.index')}}"><i class="fas fa-tasks"></i> Gestion  des Clients</a></li>
+                         <li><a href="{{route('clients.index')}}"><i class="fas fa-file-excel"></i> Import Clients</a></li>
                          <li><a href="{{route('fournisseur.create')}}"><i class="fas fa-plus-square"></i> Nouveau Fournisseur</a></li>
                          <li><a href="{{route('fournisseur.index')}}"><i class="fas fa-th-list"></i> Gestion des fournisseurs</a></li>
                          <li><a href="{{route('fournisseur.liste')}}"><i class="fas fa-list-ul"></i> Liste des fournisseurs</a></li>
@@ -215,7 +215,7 @@ body{
                </div>
                <div><i class="fas fa-calendar-check"></i> Ventes <i class="fas fa-angle-double-down"></i>
                 <ul>
-                    <li><a href="FacturesTypes.php"><i class="fas fa-plus-square"></i> Nouveau Facture</a></li>
+                    <li><a href="{{route('facture.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture</a></li>
                     <li><a href="allFactures.php?type=FACTURE"><i class="fas fa-stream"></i> Liste des factures</a></li>
                     <li><a href="Livraison.php"><i class="fas fa-plus-square"></i> Nouveau bon Livraison</a></li>
                     <li><a href="allFactures.php?type=BON LIVRAISON"><i class="fas fa-stream"></i> Liste des Bons Livraison</a></li>
@@ -263,7 +263,10 @@ body{
                </div>
                <div><i class="fas fa-cog"></i> Paramètres <i class="fas fa-angle-double-down"></i>
             <ul>
-                <li><a href="Parametres.php"><i class="fas fa-business-time"></i> Société et Compte</a></li>
+                @php
+                    $id= Auth::id();
+                @endphp
+                <li><a href="{{route('parametres',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
                 <li><a href="numeration.php"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
             </ul>
             </div>

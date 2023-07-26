@@ -76,7 +76,7 @@ font-family:system-ui;overflow-x:hidden;">
                     <option value="Auto-entrepreneur">Auto-entrepreneur</option>
                     <option value="SARL A ASSOCIE UNIQUE">SARL A ASSOCIE UNIQUE</option>
                     <option value="Personne physique">Personne physique</option>
-                    <option value="L’entreprise individuelle">L’entreprise individuelle</option>
+                    <option value="L'entreprise individuelle">L'entreprise individuelle</option>
                     <option value="La Societe à Responsabilite Limitee (SARL)">La Societe à Responsabilite Limitee (SARL)</option>
                     <option value="La Societe en Nom Collectif">La Societe en Nom Collectif</option>
                     <option value="La Societe en commandite simple">La Societe en commandite simple</option>
@@ -84,7 +84,7 @@ font-family:system-ui;overflow-x:hidden;">
                     <option value="La Societe en commandite par actions">La Societe en commandite par actions</option>
                     <option value="La Societe anonyme">La Societe anonyme</option>
                     <option value="La Societe en participation">La Societe en participation</option>
-                    <option value="Le groupement d’interêt economique">Le groupement d’interêt economique</option>
+                    <option value="Le groupement d'interêt economique">Le groupement d'interêt economique</option>
                     <option value="Succursale">Succursale</option>
                 </select></select>
              </div>
@@ -102,7 +102,7 @@ font-family:system-ui;overflow-x:hidden;">
                      Saisissez la désignation du produit ou service :
                  </div>
                  <div class="col-12 col-md-4"><input class='form-control' type="text" style='width:100%' placeholder="Désignation" name="" id="des"></div>
-                 <div class="col-12 col-md-1"><input class='form-control' min="0" type="number" placeholder="TVA" name="" id="tva"></div>
+                 <div class="col-12 col-md-1"><input class='form-control' min="0" type="number" placeholder="TVA" value="0" name="" id="tva"></div>
                  <div class="col-12 col-md-2"><input class='form-control' min="0" type="number" placeholder="Quantité" name="" id="qte"></div>
                  <div class="col-12 col-md-2"><input class='form-control' min="0" type="number" placeholder="Prix unitaire" name="" id="prix"></div>
                  <div class="col-12 col-md-1">

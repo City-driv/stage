@@ -16,8 +16,7 @@
       <label for="" class="col-12 fs-1">Choisier votre Facture preferé:</label>
        <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
              <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a 
-             href="facture.php?type=Facture&Example=3" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="facture.php?type=Facture&Example=3" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a target="_blank" href="{{asset('imgs/facts/e11f.PNG')}}" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -26,7 +25,7 @@
              <a href="facture.php?type=Facture&Example=11" ><img src="{{asset('imgs/facts/e11f.PNG')}}" class="img-fluid rounded-start" alt="..."></a>
       </div>
       <div 
-      style="display:none;"      class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
+      style="display:none;" class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
              <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
              <a 
               style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>

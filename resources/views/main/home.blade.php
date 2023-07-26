@@ -157,16 +157,15 @@
        </div>
    <div class="row ml-3 mt-5">
        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center">
-           <a href="Clients.php" class="notification">
+           <a href="{{route('clients.index')}}" class="notification">
                <span><i class="fa-6x fas fa-users"></i><br>
                 <h3 class="text-center">Contacts</h3>
            </span>
-               <span class="badge">
-                 8               </span>
+               <span class="badge">{{$nbc}}</span>
              </a>
        </div>
        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center">
-           <a href="articles.php" class="notification">
+           <a href="{{route('article.index')}}" class="notification">
                <span><i class="fa-6x fab fa-product-hunt"></i><br>
                 <h3 class="text-center">Articles</h3></span>
                <span class="badge">{{$nba}}</span>

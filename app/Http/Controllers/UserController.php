@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\Article;
 use App\Models\User;
+use App\Models\Client;  
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,8 @@ class UserController extends Controller
         $artEpuise=Article::where('user_id',$id)->
                          where('quantite','=',0)->get();
         $nba=Article::count();
-        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba]);
+        $nbc=Client::count();
+        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba,'nbc'=>$nbc]);
     }
 
     /**
@@ -35,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -59,15 +61,34 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // $user=Auth::user();
+        if ($id == Auth::id()) {
+            $user=User::find($id);
+            return view('auth.editUser',compact('user'));
+        }else{
+            return back();
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,string $id)
     {
-        //
+        // some errors to handle here !!!!!!!!!!!!!!!!!!!error
+        // dump($request->post());
+        if ($id == Auth::id()) {    
+            // dd($request->post());
+            if ($request->hasFile('img')) {
+                $img = time() . '-' . $request->file('img')->getClientOriginalName();
+                $request['img'] = $img;
+                $request->file('img')->move(\public_path('profiles'), $img);
+            }
+            $user=User::where('id',Auth::id())->first();
+            $user->fill($request->post());
+
+            return view('auth.editUser')->with('success','modified successfully');
+        }
     }
 
     /**

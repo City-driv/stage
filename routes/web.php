@@ -64,6 +64,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/etat_stock',[ArticleController::class,'stock'])->name('etat.stock');
 
     Route::resource('facture',FactureController::class);
+    Route::post('/facrture/store',[FactureController::class,'store']);
     Route::get('facture-type',[FactureController::class,'forme'])->name('facture.type');
 
     Route::resource('clients',ClientController::class);

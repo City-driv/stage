@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('facture_id')->references('id')->on('factures');
             $table->foreignId('article_id')->references('id')->on('articles');
             $table->integer('quantite');
+            // to add this to DB
+            $table->integer('remise');
+            $table->integer('tva')->default('20');
             $table->timestamps();
         });
     }

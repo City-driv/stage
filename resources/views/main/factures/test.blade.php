@@ -142,7 +142,7 @@ public function index()
             <option value="{{ $produit }}">{{ $produit->description }}</option>
         @endforeach
     </select>
-    <input type="number" hidden value="1" id="quantiteInput" placeholder="Quantité">
+    <input  type="number" hidden value="1" id="quantiteInput" placeholder="Quantité">
     <button onclick="ajouterProduit()">Ajouter</button>
 
     <h2>Produits ajoutés :</h2>

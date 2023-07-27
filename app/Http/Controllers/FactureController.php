@@ -34,6 +34,7 @@ class FactureController extends Controller
         // dd($clients);
         if (isset($_GET['fact_type'])) {
             dump($_GET['fact_type']);
+            $ftype=$_GET['fact_type'];
             dd($_GET['ex']);
         }
         return view('main.factures.create',['clients'=>$clients,'articles'=>$articles]);
@@ -44,7 +45,7 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->post());
     }
 
     /**

@@ -63,7 +63,7 @@ chargerProduits=()=>{
       <td class=''>${Produits[index].Libelle}</td>
       <td>
       <select id='unite' onblur="uniteModif(${Produits[index].Id})" name='SaleDelivery[lines][0][product][unit]' class='form-control valid' style='width:100px;' data-validation='required' data-validation-error-msg='Ce champ est obligatoire.' original=''>
-      <optgroup label='UnitÃ©'><option value='Douzaine'>Douzaine(s)</option><option value=''>UnitÃ©(s)</option></optgroup>
+      <optgroup label='Unité'><option value=''>Unité(s)</option><option value='Douzaine'>Douzaine(s)</option></optgroup>
       <optgroup label='Poids'><option value='t'>t</option><option value='kg'>kg</option><option value='g'>g</option></optgroup>
       <optgroup label='Temps de travail'><option value='Jour'>Jour(s)</option><option value='Heure'>Heure(s)</option></optgroup>
       <optgroup label='PÃ©riode'><option value='mois'>mois</option><option value='ans'>ans</option></optgroup>
@@ -259,14 +259,11 @@ function Valider(){
             xhr2.send("idClient="+selectClient.value+"&idProduit="+Produits[index].Id+"&Qte="+Produits[index].Qtee+"&PUHT="+Produits[index].PUHT+"&TVA="+Produits[index].Tva+"&TTVA="+Produits[index].MontantTva+"&Total="+Produits[index].TTc+"&Type="+Typee+"&unite="+Produits[index].unite+"&remise="+Produits[index].remise);
         }  
         }
-       
         ValiderVar=true
         }else
         alert("selectionner une Produit")
-        
     }else
     alert("La commande d'eja Valide svp vider commande")
-   
 }
 //Imprimer
 let NumCmde;
@@ -400,3 +397,64 @@ function clientsss(){
             selectClient.innerHTML+="<option value="+Clients[index].Id+">"+Clients[index].NomC+"</option>"
       }
  }
+
+
+
+
+
+
+
+
+//  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// web.php or api.php
+Route::post('/insert-products', 'ProductController@insertProducts');
+
+php artisan make:controller ProductController
+// app/Http/Controllers/ProductController.php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Product; // Assuming you have a Product model for the database table.
+
+class ProductController extends Controller
+{
+    public function insertProducts(Request $request)
+    {
+        $products = $request->input('products');
+
+        // Assuming your products array is an array of associative arrays, each containing product details.
+        // Loop through the products and insert them into the database.
+        foreach ($products as $productData) {
+            Product::create($productData);
+        }
+
+        return response()->json(['message' => 'Products inserted successfully']);
+    }
+}
+// <!-- Include the jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  // Sample array of products (modify this based on your data structure)
+  const products = [
+    { name: 'Product 1', price: 10.99 },
+    { name: 'Product 2', price: 20.99 },
+    // Add more products as needed...
+  ];
+
+  // Make an AJAX POST request to the Laravel controller
+  $.ajax({
+    url: '/insert-products',
+    type: 'POST',
+    dataType: 'json',
+    data: { products: products },
+    success: function (response) {
+      // Handle the success response (if needed)
+      console.log(response.message);
+    },
+    error: function (xhr, status, error) {
+      // Handle errors (if any)
+      console.error(error);
+    }
+  });

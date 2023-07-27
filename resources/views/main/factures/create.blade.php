@@ -1,7 +1,20 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: facture create')
+@section('headInfo')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="csrf-token" content="{{csrf_token()}}">
+@endsection
 @section('content')
-<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script> --}}
+
+<style>
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+</style>
 
 <div class="DepotFacture">
     <div class="row mt2" style="">
@@ -33,7 +46,7 @@
      </div>
     </div>
     <div class="col-md-1 col-5 mt-3">
-       <button type="button" class="btn btn-primary " id="ajouteProduit" ><i class="fas fa-user-plus"></i>Client </button>
+       <button type="button" class="btn btn-primary " onclick="Ajoute()" ><i class="fas fa-user-plus"></i>Client </button>
     </div>
     <br>
     <div class="col-md-4 col-10 mt-3 ms-1">
@@ -100,53 +113,39 @@
     </div>
     <div class="col-3">
     <button type="button" class="btn btn-success col-md-9 col-12  " onclick="Valider()"><i class="far fa-check-circle"></i> Valider</button>
-    <a href="fpdf/Facture.php" onclick="Imprimer()" ><button type="button" value="
-    " class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
-    
+    <a href="fpdf/Facture.php" onclick="Imprimer()" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
       <button type="button"onclick="whtsp()"  data-action="share/whatsapp/share"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
       Whatsapp</button>
      <button style="border:1px solid #075e54; " type="button" class="btn btn-light col-md-9 col-12 mt-2" onclick="Vider()">Vider</button>
     </div>
-  <div class="AjouteClient" style="
-  background-color: rgb(248, 248, 248);
-padding-left: 10%;
-border-radius: 5px;
-box-shadow: rgb(231 231 231) 5px 10px 20px inset;
-padding-bottom: 2%;
-width: 70%;
-border: 1px solid rgb(147 147 147);
-transform: scale(0);
-margin: 10% auto auto;
-position: absolute;
-padding: 17px;
-top: 0px;
-left: 0px;
-right: 0px;
-  "
-            >
+  <div class="AjouteClient" style="background-color: rgb(248, 248, 248);padding-left: 10%;border-radius: 5px;box-shadow: rgb(231 231 231) 5px 10px 20px inset;
+padding-bottom: 2%;width: 70%;border: 1px solid rgb(147 147 147);transform: scale(0);margin: 10% auto auto;position: absolute;padding: 17px;top: 0px;left: 0px;right: 0px;">
  <div class="row"></div>
+ <form action="{{route('clients.store')}}" method="post">
+  @csrf
   <div class="mb-3">
-     <label for="formGroupExampleInput" class="form-label">Nom entreprise ou Nom Complet :</label>
-     <input type="text" style="width:50%" class="form-control col-8" id="formGroupExampleInput" placeholder="">
+     <label for="name" class="form-label">Nom entreprise ou Nom Complet :</label>
+     <input name="name" type="text" style="width:50%" class="form-control col-8" placeholder="" />
    </div>
    <div class="mb-3">
-     <label for="formGroupExampleInput2"  class="form-label">Adresse:</label>
-     <input type="text" style="width:50%" class="form-control col-8" id="formGroupExampleInput2" placeholder="">
+     <label for="adresse"  class="form-label">Adresse:</label>
+     <input type="text" name="adresse" style="width:50%" class="form-control col-8" placeholder="" />
    </div>
    <div class="mb-3">
-     <label for="formGroupExampleInput2"  class="form-label">Telephone:</label>
-     <input type="text" style="width:50%" class="form-control col-8" id="formGroupExampleInput2" placeholder="+212631933957">
+     <label for="telephone"  class="form-label">Telephone:</label>
+     <input type="text" name="telephone" style="width:50%" class="form-control col-8" placeholder="+212631933957" />
    </div>
    <div class="mb-3">
-     <label for="formGroupExampleInput2"  class="form-label">ICE:</label>
-     <input type="text" style="width:50%" class="form-control col-8" id="formGroupExampleInput2" placeholder="">
+     <label for="ice"  class="form-label">ICE:</label>
+     <input type="text" name="ice" style="width:50%" class="form-control col-8" id="ice" placeholder="" />
    </div>
    <div class="mb-3">
-     <label for="formGroupExampleInput2"  class="form-label">Ville:</label>
-     <input type="text" style="width:50%" class="form-control col-8" id="formGroupExampleInput2" placeholder="">
+     <label for="ville"  class="form-label">Ville:</label>
+     <input type="text" name="ville" style="width:50%" class="form-control col-8" placeholder="" />
    </div>
-   <button type="button" class="btn btn-success ajouteClient"><i class="fas fa-plus-circle"></i> Ajouter Client</button>
-        <button type="button" id="annuler" class="btn btn-danger annuler2" >Annuler </button>
+   <button type="submit" class="btn btn-success "><i class="fas fa-plus-circle"></i> Ajouter Client</button>
+        <button type="button" id="annuler" class="btn btn-danger " >Annuler </button>
+      </form>
  </div>  
      </div>
    </div>

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('adresse');
             $table->string('telephone');
-            $table->string('ice')->nullable;
-            $table->string('if')->nullable;
+            $table->string('ice')->nullable();
+            $table->string('if')->nullable();
             $table->string('ville');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();

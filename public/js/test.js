@@ -46,24 +46,32 @@ searchInputArt.addEventListener("input", filterSelectArt);
 var add=document.getElementById('addArt');
 add.addEventListener('click',ajouterArt);
 
-let Produits=[]
+let Produits=[];
+let ValiderVar=false;
+
 
 function ajouterArt(){
-    // alert('clicked');
     var select = document.getElementById("articles");
     var produit = JSON.parse(select.value);
     console.log(produit);
-    var name=produit.description;
-    var prix=produit.price;
-    var tva=produit.tva;
+    var Pid=produit.id
+    var existP=false;
     produit['MontantTva']=0;
     produit['unite']='';
     produit['Qtee']=1;
     produit['remise']=0;
     produit['TTc']=0;
 
+    Produits.forEach(element => {
+      if (element.id==Pid) {
+         existP=true;
+         EventQte("+",element.Qtee,Pid);
+      }
+    });
+    if (existP==false) {
+        Produits.push(produit)
+    }
     console.log(produit);
-    Produits.push(produit)
     console.log(Produits);
     chargerArticles();
 }
@@ -80,7 +88,7 @@ function chargerArticles(){
     <td>TVA (%)</td>
     <td>Montant Tva</td>
     <td>MotTTC</td>
-    <td>Sel</td>
+    <td>Action</td>
     </thead>
     `;
     for (let index = 0; index < Produits.length; index++) {
@@ -102,16 +110,14 @@ function chargerArticles(){
       <td>
       <div class='row'>
       <button style='font-size: 20px;padding:2px;border:0;background: none; margin-right:2px;' class='col-12 col-md-2  mt-1' onfocus='EventQte("+",${Produits[index].Qtee},${Produits[index].id})' onclick='EventQte("+",${Produits[index].Qtee},${Produits[index].id})'><i style="color:green" class="fa-xs fas fa-arrow-circle-up"></i></button> 
-      <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierQte(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="${Produits[index].quantite}" min="1" class="" text="${Produits[index].id}" value=${Produits[index].Qtee}>
+      <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierQte(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="${Produits[index].quantite}" min="1" class="" text="${Produits[index].id}" value=${Produits[index].Qtee} />
       <button style='font-size: 20px;padding:0;border:0;background: none;margin: 0;' class='col-12 col-md-2  mt-1' onclick='EventQte("-",${Produits[index].Qtee},${Produits[index].id})'><i style="color:red" class="fa-xs fas fa-arrow-circle-down"></i></button> 
       </div>
       </td>
       <td>
       <div class='row'>
-      <button class='col-12 col-md-2   mt-1' onfocus='EventPrix("+",${Produits[index].price},${Produits[index].id})' onclick='EventPrix("+",${Produits[index].price},${Produits[index].id})' style='font-size: 20px;padding:2px;border:0;background: none; margin-right:2px;'><i style="color:green" class="fa-xs fas fa-arrow-circle-up"></i></button> 
-      <input  class="col-12 col-md-8 form-control Qte EPRIX" onblur='ModifierPrix(this.value,${Produits[index].id})' style='width:60px' type="number"  min="1" class="" text="${Produits[index].id}" value=${Produits[index].price}>
-      <button class='col-12 col-md-2   mt-1' onclick='EventPrix("-",${Produits[index].price},${Produits[index].id})' style='font-size: 20px;padding:2px;border:0;background: none; margin-right:2px;'><i style="color:red" class="fa-xs fas fa-arrow-circle-down"></i></button> 
-
+      
+      <span style='margin-top: 10%;'> ${Produits[index].price} </span>
       </td>
       <td>   
          <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierRemise(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="100" min="1" class="" text="${Produits[index].id}" value=${Produits[index].remise}>      </td>
@@ -135,7 +141,7 @@ function chargerArticles(){
     //     }
     // }
     }
-    // Calculer()
+    Calculer()
 }
 
 //suprimmer
@@ -166,12 +172,27 @@ function ModifierTva(val,id){
 }
 
 //Event Qte
+// function EventQte(operation,Qte,id)
+// {
+//     for (let index = 0; index < Produits.length; index++) {
+//         if(Produits[index].id==id){
+//             if(operation=="+")
+//             Produits[index].Qtee=parseInt(Qte+1)
+//             else
+//             if(Qte!=0)
+//             Produits[index].Qtee=parseInt(Qte-1)
+//         }
+//     }
+//     chargerArticles()
+// }
+
 function EventQte(operation,Qte,id)
 {
     for (let index = 0; index < Produits.length; index++) {
         if(Produits[index].id==id){
-            if(operation=="+")
-            Produits[index].Qtee=parseInt(Qte+1)
+            if(operation=="+" && Produits[index].quantite > Produits[index].Qtee ){
+              Produits[index].Qtee=parseInt(Qte+1)
+            }
             else
             if(Qte!=0)
             Produits[index].Qtee=parseInt(Qte-1)
@@ -179,6 +200,7 @@ function EventQte(operation,Qte,id)
     }
     chargerArticles()
 }
+
 //Event Tva
 function EventTva(operation,TVA,id)
 {
@@ -193,3 +215,74 @@ function EventTva(operation,TVA,id)
     }
     chargerArticles();
 }
+
+//Event Remise
+function ModifierRemise(Remise,id)
+{
+    for (let index = 0; index < Produits.length; index++) {
+        if(Produits[index].id==id){
+            Produits[index].remise=Remise
+            Calculer()
+        }
+            
+    }
+    chargerArticles();
+}
+
+// calcule function
+function Calculer() {
+  Ttva=0,Tmontan=0,TTC=0,remiseMon=0;brutHT=0;
+  for (let index = 0; index < Produits.length; index++) {
+      Ttva+=Produits[index].MontantTva
+      let monHT=parseFloat(Produits[index].price*Produits[index].Qtee) 
+      let monRemise=parseFloat(monHT*Produits[index].remise/100)
+      remiseMon+=monRemise
+      brutHT+=monHT
+      Tmontan+= parseFloat(monHT-monRemise)
+      TTC+=Produits[index].TTc
+  }
+  console.log(Produits)
+  document.querySelector(".ht").innerHTML="Montant Brut HT :"+parseFloat(brutHT).toFixed(2)+" DH"
+  document.querySelector(".tva").innerHTML="Montant TVA :"+parseFloat(Ttva).toFixed(2)+" DH"
+  document.querySelector(".remise").innerHTML="Remise :"+parseFloat(remiseMon).toFixed(2)+" DH"
+  document.querySelector(".Netht").innerHTML="Net HT :"+parseFloat(Tmontan).toFixed(2)+" DH"
+  document.querySelector(".ttc").innerHTML="Montant TTC :"+parseFloat(TTC).toFixed(2)+" DH"
+}
+//valider
+function Valider(){
+  if(ValiderVar==false){
+      if(Produits.length>0){
+        saveProductsToLaravel(Produits);
+
+      ValiderVar=true
+      }else
+      alert("selectionner une Produit")
+  }else
+  alert("La commande d'eja Valide svp vider commande")
+}
+
+function Ajoute(){
+  document.querySelector(".AjouteClient").style.transform="scale(1)"
+}
+
+document.getElementById('annuler').addEventListener('click',function(){
+  document.querySelector(".AjouteClient").style.transform="scale(0)"
+})
+
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+    // Fonction pour envoyer les données à Laravel
+    function saveProductsToLaravel(products) {
+        fetch('/facture/store', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Assurez-vous d'avoir la balise meta CSRF dans votre HTML.
+            },
+            body: JSON.stringify({ products: products })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data.message))
+        .catch(error => console.log('Une erreur s\'est produite :', error));
+    }

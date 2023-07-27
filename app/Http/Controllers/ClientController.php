@@ -47,18 +47,20 @@ class ClientController extends Controller
             'telephone'=>'required',
             'ville'=>'required'
         ]);
+        // $request['if']=212121;
+        $request['user_id']=Auth::id();
+        // dd($request->post());
+        Client::create($request->post());
 
-        
-
-        Client::create([
-            'name'=> $request->name,
-            'adresse'=>$request->adresse,
-            'telephone'=>$request->telephone,
-            'ice'=>$request->ice,
-            'if'=>$request->if,
-            'ville'=>$request->ville,
-            'user_id'=>'1'
-        ]);
+        // Client::create([
+        //     'name'=> $request->name,
+        //     'adresse'=>$request->adresse,
+        //     'telephone'=>$request->telephone,
+        //     'ice'=>$request->ice,
+        //     'if'=>$request->if,
+        //     'ville'=>$request->ville,
+        //     'user_id'=>'1'
+        // ]);
         return to_route('clients.index')->with('success','Nouveau client ajoutee');
     }
 

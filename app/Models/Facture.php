@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Facture extends Model
 {
     use HasFactory;
-    protected $fillable=['ref','type_fact','date_facture','client_id','user_id'];
+    protected $fillable=['ref','type_fact','date_facture','client_id','user_id','ttc','tht','ttva'];
 
     public function userFact(){
        return $this->belongsTo(User::class); //facture belongs to a single User .

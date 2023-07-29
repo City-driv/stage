@@ -14,53 +14,53 @@
            text-align: center;
        }
        body {
- font-family: Arial, Helvetica, sans-serif;
-}
-.notification {
- color: #907601;
- text-decoration: none;
- padding: 15px 26px;
- position: relative;
+            font-family: Arial, Helvetica, sans-serif;
+       }
+        .notification {
+        color: #907601;
+        text-decoration: none;
+        padding: 15px 26px;
+        position: relative;
 
- display: inline-block;
- border-radius: 2px;
-}
+        display: inline-block;
+        border-radius: 2px;
+        }
 
-.notification:hover {
-   color: #BD9B02;
-}
-a:hover{
-   color: black;
-}
+        .notification:hover {
+        color: #BD9B02;
+        }
+        a:hover{
+        color: black;
+        }
 
-.notification .badge {
- position: absolute;
- top: -10px;
- right: -10px;
- padding: 15px 20px;
- border-radius: 50%;
- background-color: #263137;
- color: white;
-}
-.etape button{
-     margin-bottom: 4px;
-     margin-left: 5px;
-     background-color: rgb(243, 238, 215);
-    border: 0;text-align: left;
-    width: auto;
-   }
-   .etape a{
-       text-decoration: none;
-       color: rgb(54, 54, 54);
-       
-   }
-   .e{
-       border: 2px solid rgb(181, 154, 65);  
-   }
-   .e .col-12{
-        background-color: rgb(181, 154, 65);
-        color: rgb(54, 54, 54);
-   }
+        .notification .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 15px 20px;
+        border-radius: 50%;
+        background-color: #263137;
+        color: white;
+        }
+        .etape button{
+            margin-bottom: 4px;
+            margin-left: 5px;
+            background-color: rgb(243, 238, 215);
+            border: 0;text-align: left;
+            width: auto;
+        }
+        .etape a{
+            text-decoration: none;
+            color: rgb(54, 54, 54);
+            
+        }
+        .e{
+            border: 2px solid rgb(181, 154, 65);  
+        }
+        .e .col-12{
+                background-color: rgb(181, 154, 65);
+                color: rgb(54, 54, 54);
+        }
 body{
     overflow-x:hidden;
 }
@@ -215,14 +215,14 @@ body{
                <div><i class="fas fa-calendar-check"></i> Ventes <i class="fas fa-angle-double-down"></i>
                 <ul>
                     <li><a href="{{route('facture.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture</a></li>
-                    <li><a href="allFactures.php?type=FACTURE"><i class="fas fa-stream"></i> Liste des factures</a></li>
-                    <li><a href="Livraison.php"><i class="fas fa-plus-square"></i> Nouveau bon Livraison</a></li>
+                    <li><a href="{{route('all.factures')}}"><i class="fas fa-stream"></i> Liste des factures</a></li>
+                    <li><a href="{{route('bon-liv.type')}}"><i class="fas fa-plus-square"></i> Nouveau bon Livraison</a></li>
                     <li><a href="allFactures.php?type=BON LIVRAISON"><i class="fas fa-stream"></i> Liste des Bons Livraison</a></li>
-                    <li><a href="bonsCmd.php"><i class="fas fa-plus-square"></i> Nouveau Bon de commande</a></li>
+                    <li><a href="{{route('bon.cmd.type')}}"><i class="fas fa-plus-square"></i> Nouveau Bon de commande</a></li>
                     <li><a href="allFactures.php?type=BON DE COMMANDE"><i class="fas fa-stream"></i> Liste des Bons de commandes</a></li>
-                    <li><a href="bons.php"><i class="fas fa-plus-square"></i> Nouveau Bon</a></li>
+                    <li><a href="{{route('bon.type')}}"><i class="fas fa-plus-square"></i> Nouveau Bon</a></li>
                     <li><a href="allFactures.php?type=BON"><i class="fas fa-stream"></i> Liste des Bons</a></li>
-                    <li><a href="avoir.php"><i class="fas fa-plus-square"></i> Nouveau Facture d'avoir</a></li>
+                    <li><a href="{{route('facture.avoir.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture d'avoir</a></li>
                     <li><a href="allFactures.php?type=FACTURE AVOIR"><i class="fas fa-stream"></i> Liste des Factures d'Avoirs</a></li>
                     <li><a href="Garantie.php"><i class="fas fa-plus-square"></i> Nouveau Garantie</a></li> 
                     <li><a href="listGaranties.php"><i class="fas fa-tasks"></i> Liste Garanties</a></li> 
@@ -282,5 +282,6 @@ body{
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    @yield('jsScript')
 </body>
 </html>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ligne_facture extends Model
 {
     use HasFactory;
-    protected $fillable=['facture_id','article_id','quantite'];
+    protected $fillable=['facture_id','article_id','quantite','remise','tva'];
 
     public function facture(){
         return $this->belongsTo(Facture::class);

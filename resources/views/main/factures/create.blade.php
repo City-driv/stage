@@ -27,8 +27,21 @@ input::-webkit-inner-spin-button {
     <div class="col-md-2 col-5 mt-3">
         <div class="form-floating">
           <select class="form-select" id="type">
-            <option selected value='7'>FACTURE</option>  
+                @if ($t=='F')
+                <option selected value='facture'> Facture </option>
+                @elseif ($t=='bl') 
+                <option selected value='bon_livraison'>  Bon Livraison </option>
+                @elseif ($t=='bc')
+                <option selected value='bon_cmd'>  Bon Commande </option>
+                @elseif ($t=='b')
+                <option selected value='bon'>  Bon </option>
+                @elseif ($t=='fv') 
+                <option selected value='facture_d_avoir'>  Facture d'avoir </option>
+                @else 
+                <option selected value='facture'>  Facture </option>
+                @endif 
           </select>
+          <input type="text" hidden value="{{$ex}}" id="exemple"/>
           <label for="type"  class='h5'>Type</label>
         </div>
     </div>
@@ -112,11 +125,14 @@ input::-webkit-inner-spin-button {
        </div>
     </div>
     <div class="col-3">
-    <button type="button" class="btn btn-success col-md-9 col-12  " onclick="Valider()"><i class="far fa-check-circle"></i> Valider</button>
-    <a href="fpdf/Facture.php" onclick="Imprimer()" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
-      <button type="button"onclick="whtsp()"  data-action="share/whatsapp/share"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
-      Whatsapp</button>
-     <button style="border:1px solid #075e54; " type="button" class="btn btn-light col-md-9 col-12 mt-2" onclick="Vider()">Vider</button>
+      <form action="{{route('facture.store')}}" method="post" id="FForm">
+        <button type="submit" class="btn btn-success col-md-9 col-12" ><i class="far fa-check-circle"></i> Valider</button>
+        {{-- <button type="button" class="btn btn-success col-md-9 col-12  " onclick="Valider()"><i class="far fa-check-circle"></i> Valider</button> --}}
+      </form>
+        <a href="fpdf/Facture.php" onclick="Imprimer()" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
+        <button type="button"onclick="whtsp()"  data-action="share/whatsapp/share"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
+        Whatsapp</button>
+        <button style="border:1px solid #075e54; " type="button" class="btn btn-light col-md-9 col-12 mt-2" id="vider">Vider</button>
     </div>
   <div class="AjouteClient" style="background-color: rgb(248, 248, 248);padding-left: 10%;border-radius: 5px;box-shadow: rgb(231 231 231) 5px 10px 20px inset;
 padding-bottom: 2%;width: 70%;border: 1px solid rgb(147 147 147);transform: scale(0);margin: 10% auto auto;position: absolute;padding: 17px;top: 0px;left: 0px;right: 0px;">
@@ -149,7 +165,15 @@ padding-bottom: 2%;width: 70%;border: 1px solid rgb(147 147 147);transform: scal
  </div>  
      </div>
    </div>
+   @section('jsScript')
+   <script>
+      //  $('#FForm').on('submit',function(e){
+      //     e.preventDefault();
+      //     alert('submited');
+      //  })
 
+   </script>
+   @endsection
    <script src="{{asset('js/test.js')}}"></script>
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -64,8 +64,13 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/etat_stock',[ArticleController::class,'stock'])->name('etat.stock');
 
     Route::resource('facture',FactureController::class);
+    Route::get('/factures',[FactureController::class,'index'])->name('all.factures');
     Route::post('/facrture/store',[FactureController::class,'store']);
-    Route::get('facture-type',[FactureController::class,'forme'])->name('facture.type');
+    Route::get('/facture-type',[FactureController::class,'forme'])->name('facture.type');
+    Route::get('/bon-livraison-type',[FactureController::class,'forme_bl'])->name('bon-liv.type');
+    Route::get('/bon-type',[FactureController::class,'forme_b'])->name('bon.type');
+    Route::get('/bon-cmd-type',[FactureController::class,'forme_bc'])->name('bon.cmd.type');
+    Route::get('/facture-avoir-type',[FactureController::class,'forme_fv'])->name('facture.avoir.type');
 
     Route::resource('clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');

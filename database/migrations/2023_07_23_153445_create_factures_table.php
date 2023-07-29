@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('ref');
             $table->enum('type_fact', ['facture','bon','bon_livraison','bon_cmd','facture_d_avoir','facture_proforma']);
             $table->date('date_facture')->nullable();
+            $table->float('ttc');
+            $table->float('ttva');
+            $table->float('tht');
             $table->foreignId('client_id')->references('id')->on('clients');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -142,6 +142,7 @@ function chargerArticles(){
     // }
     }
     Calculer()
+    console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
 }
 
 //suprimmer
@@ -228,10 +229,11 @@ function ModifierRemise(Remise,id)
     }
     chargerArticles();
 }
-
+var Ttva=0;
+var Tmontan=0;var TTC=0;var remiseMon=0;var brutHT=0;
 // calcule function
 function Calculer() {
-  Ttva=0,Tmontan=0,TTC=0,remiseMon=0;brutHT=0;
+  // Ttva=0,Tmontan=0,TTC=0,remiseMon=0;brutHT=0;
   for (let index = 0; index < Produits.length; index++) {
       Ttva+=Produits[index].MontantTva
       let monHT=parseFloat(Produits[index].price*Produits[index].Qtee) 
@@ -269,20 +271,72 @@ document.getElementById('annuler').addEventListener('click',function(){
   document.querySelector(".AjouteClient").style.transform="scale(0)"
 })
 
+// function factInfo(){
+//   var numFact = $('#Ref').val();
+//   var client = $('#clients').val();
+//   var typeF = $('#type').val();
+//   console.log(numFact +'::'+ client + '::'+typeF);
+
+// }
 
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
     // Fonction pour envoyer les données à Laravel
-    function saveProductsToLaravel(products) {
-        fetch('/facture/store', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Assurez-vous d'avoir la balise meta CSRF dans votre HTML.
-            },
-            body: JSON.stringify({ products: products })
-        })
-        .then(response => response.json())
-        .then(data => console.log(data.message))
-        .catch(error => console.log('Une erreur s\'est produite :', error));
-    }
+    // function saveProductsToLaravel(products) {
+    //     fetch('/facture/store', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Assurez-vous d'avoir la balise meta CSRF dans votre HTML.
+    //         },
+    //         body: JSON.stringify({ products: products })
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => console.log(data.message))
+    //     .catch(error => console.log('Une erreur s\'est produite :', error));
+    // }
+// :::::::::::::::::::::
+
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+    })
+
+    $('#FForm').on('submit',function(e){
+      e.preventDefault();
+
+      if(ValiderVar==false){
+        if(Produits.length>0){
+              var numFact = $('#Ref').val();
+              var client = $('#clients').val();
+              var typeF = $('#type').val();
+              var example=$('#exemple').val();
+              var th=parseFloat(brutHT).toFixed(2);
+              var ttc=parseFloat(TTC).toFixed(2);
+              var tva=parseFloat(Ttva).toFixed(2)
+              var url=$(this).attr('action');
+              $.ajax({
+                type:'POST',
+                url : url,
+                data : {Produits : Produits,ref:numFact,client:client,type:typeF,ex:example,tht:th,ttva:tva,ttc : ttc},
+                dataType:'json',
+                success:function(){
+                  alert('submited successfully');
+                },
+                error: function (xhr, status, error) {
+                console.log(error);
+                }
+              })
+        ValiderVar=true
+        }else
+        alert("selectionner une Produit")
+    }else
+    alert("La commande d'eja Valide svp vider commande")
+      
+   })
+
+   //vider
+   $('#vider').on('click',function(){
+    location.reload();
+   })

@@ -2,7 +2,7 @@ $(document).ready( function () {
     $('#articles_table').DataTable({
         language: {
             lengthMenu: 'Afficher _MENU_ enregistrements par page',
-            zeroRecords: 'Aucun article disponible - désolé',
+            zeroRecords: 'Aucun enregistrement disponible - désolé',
             info: 'Afficher la page _PAGE_ de _PAGES_',
             infoEmpty: 'Aucun enregistrement disponible',
             infoFiltered: '(filtré à partir de _MAX_ enregistrements totaux)',

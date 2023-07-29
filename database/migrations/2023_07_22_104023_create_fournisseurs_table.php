@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('code_postale')->nullable();
             $table->string('pays')->nullable();
             $table->string('num_compte')->nullable();
-            $table->string('nom_banque');
+            $table->string('nom_banque')->nullable();
             $table->string('email');
             $table->string('site_internet')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');

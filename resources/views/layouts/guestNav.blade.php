@@ -91,7 +91,7 @@
     </div>
     <div class=" footer text-white col-12 text-center">
        <strong style="background-color:transparent;">
-           &copy;2023 WORFAC
+           &copy;{{date('Y')}} WORFAC
        </strong> 
     </div>
  </div>

@@ -31,7 +31,11 @@ class User extends Authenticatable
         'num_rc',
         'cnss',
         'img',
-        'site_web'
+        'site_web',
+        'adresse',
+        'mobile',
+        'site_web',
+        'if'
     ];
 
     /**

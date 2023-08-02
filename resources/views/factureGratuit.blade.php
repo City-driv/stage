@@ -129,17 +129,7 @@ font-family:system-ui;overflow-x:hidden;">
                          <td style='padding:5px;background-color:#f60;color:white'>Total</td>
                          <td style='padding:5px;background-color:#f60;color:white'>supp</td>
                      </tr>
-                     {{-- <tbody> --}}
-                     {{-- <tr>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                     </tr> --}}
-                    {{-- </tbody> --}}
+                    
                     <tfoot>
                      <tr style='background-color:#7c93df;color:white;font-size:20px;'>
                          <td  style="background:#7c93df;">total tva</td>

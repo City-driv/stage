@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -75,17 +76,25 @@ class UserController extends Controller
      */
     public function update(Request $request,string $id)
     {
+        // dd($request->post());
         // some errors to handle here !!!!!!!!!!!!!!!!!!!error
         // dump($request->post());
-        if ($id == Auth::id()) {    
+        $Uid=Auth::id();
+        $user=User::where('id',$Uid)->first();
+        // dump($user);
+        // dd($request->post());
+        if ($id == $Uid) {    
             // dd($request->post());
             if ($request->hasFile('img')) {
                 $img = time() . '-' . $request->file('img')->getClientOriginalName();
                 $request['img'] = $img;
                 $request->file('img')->move(\public_path('profiles'), $img);
+                if (File::exists('profiles/' . $user->img)) {
+                    File::delete('profiles/' . $user->img);
+                }
             }
-            $user=User::where('id',Auth::id())->first();
-            $user->fill($request->post());
+            
+            $user->fill($request->post())->save();
 
             return view('auth.editUser')->with('success','modified successfully');
         }
@@ -121,6 +130,19 @@ class UserController extends Controller
         } else {
             return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);
         };
+        // $user = User::where('email', $request->email)->where('password', $request->password)->first();
+        // if ($user) {
+        //     // $request->session()->regenerate();
+        //     Auth::login($user);
+        //     // dd(Auth::user());
+        //     if(Auth::user()->status==='test'){
+        //             return to_route('payement');
+        //         }else{
+        //             return to_route('home');
+        //         };
+        //     } else {
+        //         return back()->withErrors(['email' => 'Email ou mot de passe incorrect']);
+        //     };
     }
 
     public function logout()

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WORFAC 4</title>
+    <title>WORFAC 3</title>
     <link rel="icon" href="logo.png" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
 
@@ -141,25 +141,25 @@
      <div class='col-1'></div>
          <div class='col-3'>
          <div class='client'>
-           <label class='Bill'>    Facture à</label><br>
-              <label class='NomC'>HAMIID </label><br>
-            <label class='teleC'> 1 (184) 174-9605  </label><br>
-            <label class='adressC'> 1 (991) 201-9743</label>
-            <label class='adressC'>ICE: 1 (634) 256-2931</label><label class='adressC'>IF: 1 (592) 824-3534</label><br/>
-            <label class='adressC text-center'>SALE</label>
+           <label class='Bill'>Facture à</label><br>
+              <label class='NomC'>{{$facture->clientFact->name}}</label><br>
+            <label class='teleC'> {{$facture->clientFact->telephone}}</label><br>
+            <label class='adressC'>{{$facture->clientFact->adresse}}</label>
+            
+            <label class='adressC text-center'></label>
 
             </div>
          </div>
          <div class='col-4'>
            <div class='info'>
                 <label class='Bill Binfo'>Informations: </label><br>
-                <label class='Ncmd'>N° fac3</ </label><br>
-                <label class='dateC'>Date:2023/07/24</ </label>
+                <label class='Ncmd'>N° {{$facture->ref}}</label><br>
+                <label class='dateC'>Date:{{$facture->date_facture}} </label>
            </div>
          </div>
          <div class='col-4'>
            <div class='type'>
-           FACTURE
+            {{$facture->type_fact}}
            </div>
          </div>
      </div>
@@ -172,28 +172,36 @@
             <td class='Qte'  scope='col'>Qte</td>
             <td class='tva' style='display:'>Tva</td>
             <td style='padding-left:5px' class='Total'>Total</td>
-        </tr><tr>
-            <td style='padding-left:20px' class='libelle'>
-            DUCIMUS EAQUE NON A
-            </td>
-            <td class='PRHT'>57 DH</td>
-            <td class='Qte' style='text-align:center;'>0 %</td>
-            <td class='Qte'>30</td>
-            <td class='tva'  style='display:'>20%</td>
-            <td class='Total'>2052 DH</td>
-        </tr></table>
+        </tr>
+        @foreach ($Ligne_fact as $lf)
+            <tr>
+                <td style='padding-left:20px' class='libelle'>
+                  {{$lf->article->description}}
+                </td>
+                <td class='PRHT'>{{$lf->article->price}} DH</td>
+                <td class='Qte' style='text-align:center;'>{{$lf->article->remise}} %</td>
+                <td class='Qte'>{{$lf->article->quantite}}</td>
+                <td class='tva'  style='display:'>{{$lf->article->tva}}%</td>
+                <td class='Total'>{{($lf->ttc )}} DH</td>
+            </tr>           
+        @endforeach
+        
+      </table>
      </div>
      <div class='Payment'  style='margin-left:26%'>
       <div class='row'>
-      <div class='col-6' style=''></div><div style='' class='col-3 MT'>Montant Tva :</div><div style='' class='col-3 text-left TotTva'>342 DH</div>
-      <div class='col-6' style=''></div><div style='' class='col-3 MHT'>Montant HT:</div><div  style='' class='col-3 text-left TotHT'>1710 DH</div>
-      <div class='col-6'></div><div style='padding:10px;' class='col-3 TTC'>Total TTC :</div><div style='padding-top:10px;' class='col-3 text-left TotalTTC'>2052 DH</div>
+      <div class='col-6' style=''></div><div style='' class='col-3 MT'>Montant Tva :</div>
+      <div style='' class='col-3 text-left TotTva'>{{$facture->ttva}} DH</div>
+      <div class='col-6' style=''></div><div style='' class='col-3 MHT'>Montant HT:</div>
+      <div  style='' class='col-3 text-left TotHT'>{{$facture->tht}} DH</div>
+      <div class='col-6'></div><div style='padding:10px;' class='col-3 TTC'>Total TTC :</div>
+      <div style='padding-top:10px;' class='col-3 text-left TotalTTC'>{{$facture->ttc}} DH</div>
       
       </div>
-      
-  </div><div class='col-12 text-center h6'>DEUX MILLE CINQUANTE DEUX DIRHAMS MAROCAINS </div>
+  </div>
+  {{-- <div class='col-12 text-center h6'> CENT TROIS DIRHAMS MAROCAINS  ET SOIXANTE-DIX  CENTIMES</div> --}}
   <div class='col-8 ms-5 '> </div>
-  <div class='col-12 text-center h5' style='text-align:right;'></div> 
+  <div class='col-12 text-center h5' style='text-align:right;'>Mode Paiement:Carte bancaire</div> 
   <div class='signature'  style='display:none'>
             <div class='row'>
                   <div class='col-6'>
@@ -210,11 +218,11 @@
  </div>
  <div class='footer'>
    <div class='row'>
-     <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> 000000</i>
-         <i class='fas fa-envelope'> mr.bmd360@gmail.com</i></div>  
+     <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
+         <i class='fas fa-envelope'>{{Auth::user()->email}}</i></div>  
      <div class='col-4 mt-1 text-center'><i class='fas fa-map-marker-alt'></i></div>
      <div class='col-4 mt-1 text-center'>
-       /ICE:00000    </i>
+       <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}    </i>
      </div>
    </div>
  </div>

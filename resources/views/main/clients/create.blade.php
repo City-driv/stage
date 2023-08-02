@@ -12,7 +12,7 @@
        @error('name')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="name" required type="text"  style="width: 50%;" class="form-control" />
+       <input name="name" required type="text" value="{{old('name')}}" style="width: 50%;" class="form-control" />
        <label for="adresse" class="h2">
            Adresse:
        </label>
@@ -21,32 +21,32 @@
        @enderror
        
 
-       <input name="adresse" type="text" style="width: 50%;" class="form-control" />
+       <input name="adresse" type="text" value="{{old('adresse')}}" style="width: 50%;" class="form-control" />
        <label for="telephone" class="h2">
            Télephone:
        </label>
        @error('telephone')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="telephone" type="number" value="+212"  style="width: 50%;" class="form-control" placeholder="+212631933957" /><br>
+       <input name="telephone" type="number" value="{{old('telephone')}}"  style="width: 50%;" class="form-control" placeholder="+212631933957" /><br>
        <label for="ice" class="h2">
            ICE:
        </label>
        @error('ice')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="ice" type="text" value=""  style="width: 50%;" class="form-control" placeholder="" /><br>
+       <input name="ice" type="text" value="{{old('ice')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
        <label for="if" class="h2">
            IF:
        </label>
-       <input name="if" type="text" value=""  style="width: 50%;" class="form-control" placeholder="" /><br>
+       <input name="if" type="text" value="{{old('if')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
        <label for="ville" class="h2">
            Ville:
        </label>
        @error('ville')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="ville" type="text" value=""  style="width: 50%;" class="form-control" placeholder="" /><br>
+       <input name="ville" type="text" value="{{old('ville')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
 
        <button type="submit" class="btn btn-primary "><i class="fas fa-plus-square"></i> Ajouter</button>
        </form>

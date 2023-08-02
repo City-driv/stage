@@ -79,77 +79,116 @@ input[type=number] {
     }
   }
 </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
-<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Liste Documents Factures  d'entrés:</h1></center>    <div class="facture">
-  <div class="row">
-    <label for="" class="h2 text-center">Réf:</label>
-   <input type="text" class="form-control text-center reference" style='font-size:30px;' value="
-   FACT-360-7">
-   <button onclick='FacturerEng()' class="mt-1 btn btn-success"><i class="fas fa-edit"></i> Facturer</button>
-   <button onclick='annuler()' class="mt-2 btn btn-danger"><i class="fas fa-backspace"></i>Annuler</button>
-  </div>      
+<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Liste Documents {{$t}}  d'entrés:</h1></center>
+
+<div class="row mb-2">
+  <label class="col-12 fs-1" style="font-size:20px;font-weight:900;" for=""><i style="color: #0d6efd;" class="fas fa-search" aria-hidden="true"></i> Recherche Par client:</label>
+  <input style="margin-left:5%;background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline: none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54 54 54);height: 48px;padding: 10px 10px 10px 50px;" class="input col-4" type="text" id="searchInput" placeholder="Chercher par client...">
 </div>
-<div class="modifier">
-     <div class="row pt-5 pb-5">
-       <select name="" id="" class="form-control col-3 article" style='width:30%;margin-right:5px;'>
-       <option value='497'>DUCIMUS EAQUE NON A</option><option value='498'>ET AUT ET EST DUCIMU</option><option value='499'>PHONE</option><option value='500'>SOURIS</option>          </select>
-       <button class="col-1 ajoute btn btn-success h3"><i class="fas fa-plus"></i></button>
-       <select name="" onchange="change(this.value)" id="" class="form-control col-3 client"style='display:block;width:30%;margin-right:5px;margin-left:5px;'>
-       <option value='1560'>john snow</option><option value='1561'>HAMIID</option><option value='1562'>TEST CLIENT</option><option value='1563'>testyyy</option><option value='1564'>azerty</option><option value='1565'>AEAZE</option><option value='1566'>AZEAZE</option><option value='1567'>AZEAZEAZE</option><option value='1568'>TESTYY</option><option value='1569'>SED SINT SINT TOTAM</option>          </select>
-       <table class="cmd">
-         <tr class="bg-dark text-white h5 text-center pt-3 pb-3">
-           <td>Description</td>
-           <td>Unite</td>
-           <td>Taux Remix</td>
-           <td>Qte</td>
-           <td>PUHT</td>
-           <td>TVA</td>
-           <td>TOTAL</td>
-           <td>Supp</td>
-         </tr>
-       </table>
-          <button onclick='engistrer()' class="mt-1 btn btn-success"><i class="fas fa-edit"></i> Enregistrer</button>
-          <button onclick='annuler()' class="mt-2 btn btn-danger"><i class="fas fa-backspace"></i>Annuler</button>
-     </div>
-</div>
-<div class="row">
-   <label class="col-12 fs-1" style='font-size:20px;font-weight:900;'  for=""><i style="color: #0d6efd;" class="fas fa-search"></i> Recherche Par client:</label>
-   <input style="margin-left:5%;background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline: none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54 54 54);height: 48px;padding: 10px 10px 10px 50px;" class="input col-4"  type="text" placeholder="" aria-label="default input example">
-</div>
-<br>
-<table class="text-center table table-bordered border-primary"></table>
-<div class="detaille">
- <button onclick="annuler()" style="background-color:red;color:white;padding-bottom:0;font-size:30px;border:0;">x</button>
- <table  class="table2 table-success table-striped text-white">
- </table>
-</div>
-<form action="#"  method="post"><center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Sortie Par periode :</h1></center>  
-<div class="row text-center mb-2" style="margin-left:15%">
-<input type="date" class="form-control" name="date1" style="width:30%" value=""/>
-<input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
-<button type="submit" style="margin-top: 10px;
-       border-radius: 10px;
-       margin-left:10px;
-       padding-top:5px;padding-bottom:5px;background-color:#2c2815;color:white;border-radius:10px;border:0;" class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i></button>
+
  
-</div>
-<table class="table table-striped">
- <tr class="h5">
-     <td>Entreprise</td>
-     <td>Montant Total TVA</td>
-     <td>Montant Total HT </td>
-     <td>Montant Total TTC </td>
-     <td>Action</td>
- </tr>
- <tr class="h5">
-    <td>test</td>
-    <td>1,333.20 DH</td>
-    <td>6,666.00 DH</td>
-    <td>7,999.20 DH</td>
-    <td><button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
-    </tr>
-</table>
-</form>  <script src="allFactures8.js?t=14111344"></script>
+<table class="table text-center table-bordered border-primary">
+    <thead class="table-dark">
+      <tr>
+        <th>Réf</th>
+        <th>Client</th>
+        <th>Montant HT</th>
+        <th>Montant Tva</th>
+        <th>Total TTC</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>#</th>
+      </tr>
+    </thead>
+    <tbody id="ttbody">
+        @foreach ($factures as $f)
+            <tr>
+                <td>{{$f->ref}}</td>
+                <td class="cl">{{$f->clientFact->name}}</td>
+                <td>{{$f->tht}} DH</td>
+                <td>{{$f->ttva}} DH</td>
+                <td>{{$f->ttc}} DH</td>
+                <td>{{$f->date_facture}}</td>
+                <td>{{$f->type_fact}}</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-cog"></i>Action
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a id="imp" title="Enregistrer/Imprimer" style="color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('facture.show',$f->id)}}"  class="dropdown-item"
+                          onclick="window.open('{{route('facture.show',$f->id)}}','popup','width=1000,height=1000').print(); return false;">Enregistrer/Imprimer <i class="fas fa-print"></i></a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item" title="Aprecu" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('facture.show',$f->id)}}">Aperçu <i class="far fa-eye"></i></a>
+                      </li>
+                      <li>
+                          <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Partager <i class="  fab fa-whatsapp"></i></a></li>
+                      <li>
+                         <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
+                      </li>
+                      <li>
+                         <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="#">Modifier <i class="fas fa-edit"></i></a></li>
+                      <li>
+                        <form action="{{route('facture.destroy',$f->id)}}" method="post">
+                         @csrf
+                         @method('DELETE')
+                              <a title="Supprimer" class="dropdown-item" style="padding-left;5px;color: red;text-decoration:none;font-size:19px;font-familly:cursive;color:red;" ><button type="submit" >Supprimer <i class="far fa-trash-alt"></i></button> </a></li>
+                        </form>
+                    </ul>
+                  </div>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+  </table>
+  <form action="#"  method="post"><center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Sortie Par periode :</h1></center>  
+    <div class="row text-center mb-2" style="margin-left:15%">
+      <input type="date" class="form-control" name="date1" style="width:30%" value=""/>
+      <input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
+      <button type="submit" style="margin-top: 10px;
+              border-radius: 10px;
+              margin-left:10px;
+              padding-top:5px;padding-bottom:5px;background-color:#2c2815;color:white;border-radius:10px;border:0;" class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i></button>
+        
+    </div>
+    <table class="table table-striped">
+        <tr class="h5">
+            <td>Entreprise</td>
+            <td>Montant Total TVA</td>
+            <td>Montant Total HT </td>
+            <td>Montant Total TTC </td>
+            <td>Action</td>
+        </tr>
+        <tr class="h5">
+          @if (isset($factures->first()->userFact->name))
+          <td>{{$factures->first()->userFact->name}}</td>
+          @endif
+           <td>{{$TTVA}} DH</td>
+           <td>{{$THT}} DH</td>
+           <td>{{$TTC}} DH</td>
+           <td><button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
+           </tr>
+    </table>
+    </form>
+    
+  <script>
+    const searchInput=document.getElementById('searchInput');
+    const rows = document.querySelectorAll('#ttbody tr');
+    console.log(rows);
+    searchInput.addEventListener('keyup',function(e){
+       const x=e.target.value.toLowerCase();
+       rows.forEach((el) => {
+          el.querySelector('.cl').textContent.toLowerCase().startsWith(x) ? (el.style.display='') : (el.style.display='none');
+       });
+    });
 
+    
+
+  </script>
 
 @endsection

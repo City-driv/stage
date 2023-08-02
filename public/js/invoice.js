@@ -261,11 +261,11 @@ function ajouter(e){
     </table>
 </div>
         <div class="d-print-none mt-4">
-                            <div class="float-end">
-                                <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
-                                <!-- <a href="#" class="btn btn-primary w-md">Send</a> -->
-                            </div>
-                        </div>
+                    <div class="float-end">
+                        <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
+                        <!-- <a href="#" class="btn btn-primary w-md">Send</a> -->
+                    </div>
+        </div>
 </div>
 </div>
 </div>
@@ -278,8 +278,9 @@ function ajouter(e){
 var popup = window.open("", "_blank");
   popup.document.open();
   popup.document.write(invoice);
-  popup.document.close();                                      
+  popup.document.close();                                
+  popup.print();
+  popup.close();
     }
-    
 
 // })

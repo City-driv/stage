@@ -316,13 +316,16 @@ document.getElementById('annuler').addEventListener('click',function(){
               var ttc=parseFloat(TTC).toFixed(2);
               var tva=parseFloat(Ttva).toFixed(2)
               var url=$(this).attr('action');
+              var mode_paiement=$('.payment').val()
               $.ajax({
                 type:'POST',
                 url : url,
-                data : {Produits : Produits,ref:numFact,client:client,type:typeF,ex:example,tht:th,ttva:tva,ttc : ttc},
+                data : {Produits : Produits,ref:numFact,client:client,type:typeF,ex:example,tht:th,ttva:tva,ttc : ttc,mode_paiement:mode_paiement},
                 dataType:'json',
-                success:function(){
+                success:function(res){
                   alert('submited successfully');
+                  document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
+                  console.log(res.fact)
                 },
                 error: function (xhr, status, error) {
                 console.log(error);
@@ -335,6 +338,8 @@ document.getElementById('annuler').addEventListener('click',function(){
     alert("La commande d'eja Valide svp vider commande")
       
    })
+
+   
 
    //vider
    $('#vider').on('click',function(){

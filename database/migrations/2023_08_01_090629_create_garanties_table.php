@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ligne_factures', function (Blueprint $table) {
+        Schema::create('garanties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facture_id')->references('id')->on('factures');
+            $table->foreignId('client_id')->references('id')->on('clients');
             $table->foreignId('article_id')->references('id')->on('articles');
-            $table->integer('quantite')->default(1);
-            $table->integer('remise')->default(0);
-            $table->integer('tva')->default('20');
-            $table->float('ttc');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('email');
+            $table->date('date_achat');
+            $table->date('date_fin');
+            $table->integer('num_serie');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ligne_factures');
+        Schema::dropIfExists('garanties');
     }
 };

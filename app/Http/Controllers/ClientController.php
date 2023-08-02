@@ -6,6 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Imports\ClientsImport;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClientController extends Controller
@@ -96,7 +97,7 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $client->fill($request->post())->save();
-        return to_route('clients.index')->with('success','Fournisseur bien modifier');
+        return to_route('clients.index')->with('success','Client bien modifier');
     }
 
     /**
@@ -115,6 +116,6 @@ class ClientController extends Controller
         $request->validate(['excelFileCl'=>'required']);
         Excel::import(new ClientsImport ,$request->file('excelFileCl'));
 
-        return to_route('clients.index')->with('success','articles importees');
+        return to_route('clients.index')->with('success','Clients importées');
     }
 }

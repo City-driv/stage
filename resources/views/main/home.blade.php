@@ -32,8 +32,7 @@
                  <div class='col-11 col-md-7'>
                      <div class='row etape'>
                          
-                         
-                       <button><a href='Parametres.php'>1- Paramètrez les informations de votre société</a></button><button><a href='numeration.php'>2- Paramétrez la continuité de votre numérotation</a></button> <button style='background-color:green;'><a class='text-white' href='FacturesTypes.php'><i class='fas fa-check-square'></i>  Première facture de vente créée</a></button><button style='background-color:green;'><a class='text-white' href='NoArticle.php'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a></button><button style='background-color:green;'><a class='text-white' href='NoClient.php'><i class='fas fa-check-square'></i>  Contacs clients Importer</a></button></div>
+                       <button><a href='Parametres.php'>1- Paramètrez les informations de votre société</a></button><button><a href='numeration.php'>2- Paramétrez la continuité de votre numérotation</a></button> <button style='background-color:green;'><a class='text-white' href='{{route('all.factures')}}'><i class='fas fa-check-square'></i>  Première facture de vente créée</a></button><button style='background-color:green;'><a class='text-white' href='{{route('article.index')}}'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a></button><button style='background-color:green;'><a class='text-white' href='{{route('clients.index')}}'><i class='fas fa-check-square'></i>  Contacs clients Importer</a></button></div>
                  </div>
                </div>
            </div>

@@ -8,6 +8,8 @@
    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
    @yield('headInfo')
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
    <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
    <style>
        .row .div{
@@ -215,31 +217,31 @@ body{
                <div><i class="fas fa-calendar-check"></i> Ventes <i class="fas fa-angle-double-down"></i>
                 <ul>
                     <li><a href="{{route('facture.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture</a></li>
-                    <li><a href="{{route('all.factures')}}"><i class="fas fa-stream"></i> Liste des factures</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'f'])}}"><i class="fas fa-stream"></i> Liste des factures</a></li>
                     <li><a href="{{route('bon-liv.type')}}"><i class="fas fa-plus-square"></i> Nouveau bon Livraison</a></li>
-                    <li><a href="allFactures.php?type=BON LIVRAISON"><i class="fas fa-stream"></i> Liste des Bons Livraison</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'bl'])}}"><i class="fas fa-stream"></i> Liste des Bons Livraison</a></li>
                     <li><a href="{{route('bon.cmd.type')}}"><i class="fas fa-plus-square"></i> Nouveau Bon de commande</a></li>
-                    <li><a href="allFactures.php?type=BON DE COMMANDE"><i class="fas fa-stream"></i> Liste des Bons de commandes</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'bc'])}}"><i class="fas fa-stream"></i> Liste des Bons de commandes</a></li>
                     <li><a href="{{route('bon.type')}}"><i class="fas fa-plus-square"></i> Nouveau Bon</a></li>
-                    <li><a href="allFactures.php?type=BON"><i class="fas fa-stream"></i> Liste des Bons</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'b'])}}"><i class="fas fa-stream"></i> Liste des Bons</a></li>
                     <li><a href="{{route('facture.avoir.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture d'avoir</a></li>
-                    <li><a href="allFactures.php?type=FACTURE AVOIR"><i class="fas fa-stream"></i> Liste des Factures d'Avoirs</a></li>
-                    <li><a href="Garantie.php"><i class="fas fa-plus-square"></i> Nouveau Garantie</a></li> 
-                    <li><a href="listGaranties.php"><i class="fas fa-tasks"></i> Liste Garanties</a></li> 
+                    <li><a href="{{route('all.factures',['type'=>'fv'])}}"><i class="fas fa-stream"></i> Liste des Factures d'Avoirs</a></li>
+                    <li><a href="{{route('garantie.create')}}"><i class="fas fa-plus-square"></i> Nouveau Garantie</a></li> 
+                    <li><a href="{{route('garantie.index')}}"><i class="fas fa-tasks"></i> Liste Garanties</a></li> 
                 </ul>
                   </div>
                <div><i class="far fa-file-alt"></i> Devis/Proforma <i class="fas fa-angle-double-down"></i>
                 <ul>
-                    <li><a href="Devis.php"><i class="fas fa-plus-square"></i> Nouveau Devis</a></li>
-                    <li><a href="allFactures.php?type=DEVIS"><i class="fas fa-stream"></i> Liste des Devis</a></li>
-                    <li><a href="Proformat.php"><i class="fas fa-plus-square"></i> Nouveau Facture Proforma</a></li>
-                    <li><a href="allFactures.php?type=FACTURE PROFORMA"><i class="fas fa-stream"></i> Liste des Factures Proforma</a></li>
+                    <li><a href="{{route('facture.devis.type')}}"><i class="fas fa-plus-square"></i> Nouveau Devis</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'dv'])}}"><i class="fas fa-stream"></i> Liste des Devis</a></li>
+                    <li><a href="{{route('facture.proforma.type')}}"><i class="fas fa-plus-square"></i> Nouveau Facture Proforma</a></li>
+                    <li><a href="{{route('all.factures',['type'=>'fp'])}}"><i class="fas fa-stream"></i> Liste des Factures Proforma</a></li>
                     
                 </ul>
                </div>
             <div><i class="far fa-credit-card"></i> Crédits <i class="fas fa-angle-double-down"></i>
                 <ul>
-                    <li><a href="Nocredits.php"><i class="fas fa-plus-square"></i> Nouveau crédits</a></li>
+                    <li><a href="{{route('credit.create')}}"><i class="fas fa-plus-square"></i> Nouveau crédits</a></li>
                     <li><a href="listeCredits.php"><i class="fas fa-stream"></i> Gestion des crédits</a></li>
                     <li><a href="credits.php"><i class="fas fa-th-list"></i> Liste débiteurs </a></li>
                 </ul>

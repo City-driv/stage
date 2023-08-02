@@ -5,6 +5,9 @@ use App\Http\Controllers\FactureController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CreditController;
+use App\Http\Controllers\GarantieController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('index');});
+Route::get('/', [TestController::class,'home'])->name('main');
 Route::get('/contact', function () { return view('contact');})->name('contact');
 
 Route::middleware('guest')->group(function () {
@@ -31,7 +34,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/page3', function () { return view('conditionsP3');});
     Route::get('/page4', function () { return view('conditionsP4');});
 });
-Route::get('/payement', function () { return view('payement');})->name('payement');
+Route::get('/payement',[TestController::class,'payement'])->name('payement');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/logout', 'logout')->name('logout');
@@ -49,15 +52,15 @@ Route::controller(UserController::class)->group(function () {
 
 Route::get('/home', 'index')->name('home')->middleware(['auth', 'check_user']);
 Route::post('/contactPost','contact')->name('contact.post');
-Route::get('parametres/{id}/edit','edit')->name('parametres')->middleware('auth');
-Route::post('/user/{id}','update')->name('user.update')->middleware('auth');
+Route::get('/parametres/{id}/edit','edit')->name('parametres')->middleware('auth');
+Route::put('/user/{id}','update')->name('user.update')->middleware('auth');
 
 });
 
 Route::middleware(['auth','check_user'])->group(function () {
     
-    Route::get('fournisseur/liste',[FournisseurController::class,'liste'])->name('fournisseur.liste');
-    Route::resource('fournisseur',FournisseurController::class);
+    Route::get('/fournisseur/liste',[FournisseurController::class,'liste'])->name('fournisseur.liste');
+    Route::resource('/fournisseur',FournisseurController::class);
 
     Route::resource('article',ArticleController::class);
     Route::post('/import',[ArticleController::class,'import'])->name('import.excel');
@@ -71,17 +74,16 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/bon-type',[FactureController::class,'forme_b'])->name('bon.type');
     Route::get('/bon-cmd-type',[FactureController::class,'forme_bc'])->name('bon.cmd.type');
     Route::get('/facture-avoir-type',[FactureController::class,'forme_fv'])->name('facture.avoir.type');
+    Route::get('/devis_type',[FactureController::class,'forme_d'])->name('facture.devis.type');
+    Route::get('/facture_proforma_type',[FactureController::class,'forme_p'])->name('facture.proforma.type');
+    Route::resource('/credit',CreditController::class);
 
-    Route::resource('clients',ClientController::class);
+    Route::resource('/garantie',GarantieController::class);
+    Route::resource('/clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');
 
 
 });
-
-
-
-
-
 
 
 Route::get('test',function(){

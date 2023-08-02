@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
             $table->string('ref');
-            $table->enum('type_fact', ['facture','bon','bon_livraison','bon_cmd','facture_d_avoir','facture_proforma']);
+            $table->enum('type_fact', ['facture','bon','bon_livraison','bon_cmd','facture_d_avoir','facture_proforma','devis']);
             $table->date('date_facture')->nullable();
             $table->float('ttc');
             $table->float('ttva');
             $table->float('tht');
             $table->foreignId('client_id')->references('id')->on('clients');
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('exemple')->default('ex1');
+            $table->string('mode_paiement')->nullable();
             $table->timestamps();
         });
     }

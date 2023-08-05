@@ -242,7 +242,7 @@ body{
             <div><i class="far fa-credit-card"></i> Crédits <i class="fas fa-angle-double-down"></i>
                 <ul>
                     <li><a href="{{route('credit.create')}}"><i class="fas fa-plus-square"></i> Nouveau crédits</a></li>
-                    <li><a href="listeCredits.php"><i class="fas fa-stream"></i> Gestion des crédits</a></li>
+                    <li><a href="{{route('credit.index')}}"><i class="fas fa-stream"></i> Gestion des crédits</a></li>
                     <li><a href="credits.php"><i class="fas fa-th-list"></i> Liste débiteurs </a></li>
                 </ul>
             </div>

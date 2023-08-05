@@ -1,6 +1,7 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: article edit')
 @section('content')
+<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Modifier Article:</h1></center>
    <div style="margin-left: 10%;margin-top: 5%;">
     @if ($errors->any())
     <div class="alert alert-danger">

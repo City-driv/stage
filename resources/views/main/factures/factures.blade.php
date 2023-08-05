@@ -132,7 +132,7 @@ input[type=number] {
                          <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
                       </li>
                       <li>
-                         <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="#">Modifier <i class="fas fa-edit"></i></a></li>
+                         <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="{{route('facture.edit',$f->id)}}">Modifier <i class="fas fa-edit"></i></a></li>
                       <li>
                         <form action="{{route('facture.destroy',$f->id)}}" method="post">
                          @csrf

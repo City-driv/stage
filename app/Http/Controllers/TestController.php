@@ -25,7 +25,6 @@ class TestController extends Controller
                 return to_route('home') ;
             }
             return view('payement') ;
-
         }
         return view('payement');
     }

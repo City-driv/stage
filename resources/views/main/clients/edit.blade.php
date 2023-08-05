@@ -1,6 +1,7 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: client edit')
 @section('content')
+<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Modifier Client:</h1></center>
 <div style="margin-left: 10%;margin-top: 5%;">
     {{-- <form  method="POST" action="{{route('clients.store')}}"> --}}
        <form action="{{route('clients.update',$client->id)}}" method="post">

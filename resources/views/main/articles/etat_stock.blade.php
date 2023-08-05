@@ -1,6 +1,7 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: Article etat de stock')
 @section('content')
+<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>L'etat de stock:</h1></center>
 <div class="row mt-3">
     <div class="col-md-4 col-12">
        <label for="" class="h3"><i class="fas fa-check"></i> Articles disponibles</label>

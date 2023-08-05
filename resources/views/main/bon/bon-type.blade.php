@@ -11,9 +11,10 @@
       overflow-x: hidden;
     }
   </style>
+  <center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Choisier votre BON preferé:</h1></center>
 <div class="container">
     <div class="row">
-      <label for="" class="col-12 fs-1">Choisier votre BON preferé:</label>
+      {{-- <label for="" class="col-12 fs-1">Choisier votre BON preferé:</label> --}}
        <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
              <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
              <a href="/facture/create?t=b&Ex=1" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>

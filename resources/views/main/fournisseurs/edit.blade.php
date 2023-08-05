@@ -1,7 +1,7 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: fournisseur edit')
 @section('content')
-
+<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Modifier fournisseur</h1></center>
 <form style="margin-left: 10%;margin-top: 5%;"  method="POST" action="{{route('fournisseur.update',$fournisseur->id)}}"  enctype="multipart/form-data">
     @csrf
     @method('PUT')

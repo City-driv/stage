@@ -84,7 +84,7 @@ input::-webkit-inner-spin-button {
     </div>
     <div class="col-md-3 col-12 mt-4" style="">
     <div class="form-floating">
-     <select style="overflow-y: hidden;display:;" class="form-select payment" id="floatingSelectGrid" aria-label="Floating label select example">
+     <select style="overflow-y: hidden;display:;" class="form-select " id="payment" aria-label="Floating label select example">
           <option value="">Au choix du client</option>
           <option value="Virement">Virement</option>
           <option value="Chéque">Chéque</option>

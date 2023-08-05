@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\GarantieController;
+use App\Http\Controllers\LigneCreditController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,8 +42,8 @@ Route::controller(UserController::class)->group(function () {
     //All routes for user controller goes here...
     
     Route::middleware('guest')->group(function () {
-        Route::post('/signup', 'inscription')->name('enregistrer');
-    Route::post('/login', 'login')->name('login');
+    Route::post('/signup', 'inscription')->name('enregistrer');
+    Route::post('/login/post', 'login')->name('login');
     
     Route::get('/forgetPwd', 'forgetPwd')->name('forgetPwd');
     Route::post('/forgetPwd', 'forgetPwdPost')->name('forgetPwd.post');
@@ -77,7 +78,10 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/devis_type',[FactureController::class,'forme_d'])->name('facture.devis.type');
     Route::get('/facture_proforma_type',[FactureController::class,'forme_p'])->name('facture.proforma.type');
     Route::resource('/credit',CreditController::class);
-
+    Route::post('/ligneCredit',[LigneCreditController::class,'store']);
+    Route::get('/recu/{ligne_credit}',[LigneCreditController::class,'show']);
+    Route::get('/getFactures/{clientId}',[CreditController::class,'getFacturesByClient']);
+    Route::get('/getPayments/{creditId}',[LigneCreditController::class,'getLignes']);
     Route::resource('/garantie',GarantieController::class);
     Route::resource('/clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');

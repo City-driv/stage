@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('credits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('type')->nullable();
             $table->string('ref')->nullable();
             $table->float('p_marchandise');

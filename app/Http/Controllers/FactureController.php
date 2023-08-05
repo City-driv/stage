@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Client;
 use App\Models\Facture;
 use App\Models\Ligne_facture;
 use App\Models\User;
@@ -96,20 +97,20 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $uId=Auth::id();
         Facture::create([
             'ref'=>$request->ref,
             'client_id'=>$request->client,
-            'user_id'=>Auth::id(),
+            'user_id'=>$uId,
             'date_facture'=>date("Y/m/d"),
             'type_fact'=>$request->type,
             'ttc'=>$request->ttc,
             'tht'=>$request->tht,
             'ttva'=>$request->ttva,
             'exemple'=>'ex'.$request->ex,
-            // 'mode_paiement'=>$request->mode_paiement
+            'mode_paiement'=>$request->mode_paiement
         ]);
-        $fact_id=Facture::latest()->first()->id;
+        $fact_id=Facture::where('user_id',$uId)->latest()->first()->id;
         $produits=$request->Produits;
         foreach ($produits as $pr) {
             Ligne_facture::create([
@@ -141,15 +142,57 @@ class FactureController extends Controller
      */
     public function edit(Facture $facture)
     {
-        //
+        // dd($facture->lignes);
+        $user=User::where('id',Auth::id())->first();
+        $clients=$user->clients;
+        $articles=$user->articles;
+        $liste=[];
+        foreach ($facture->lignes as $lg) {
+            // $liste+=$lg->concat($lg->article);
+            // $lg+=$lg->article;
+            // $liste->concat($lg);
+            // $x=$lg+ $lg->article;
+            $lg->art=$lg->article;
+            // dump($lg);
+            array_push($liste,$lg);
+        }
+        ;
+        // dd($liste);
+        $jsonData=['articlesJ'=>$liste];
+        return view('main.factures.edit',['clients'=>$clients,'articles'=>$articles,'facture'=>$facture,'jsonData'=>$jsonData]);
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Facture $facture)
     {
-        //
+        $fid=$facture->id;
+
+        $facture->update([
+            'client_id'=>$request->client,
+            'ttc'=>$request->ttc,
+            'tht'=>$request->tht,
+            'ttva'=>$request->ttva,
+            'mode_paiement'=>$request->mode_paiement
+        ]);
+
+
+        Ligne_facture::where('facture_id',$facture->id)->delete(); 
+        $produits=$request->Produits;
+        foreach ($produits as $pr) {
+            Ligne_facture::create([
+                'facture_id'=>$fid,
+                'article_id' => $pr['id'],
+                'quantite'=>$pr['Qtee'],
+                'remise'=>$pr['remise'],
+                'tva'=>$pr['tva'],
+                'ttc'=>$pr['TTc'],
+            ]);
+        }
+        return response()->json(['request'=>$request->Produits,'facture'=>$request->post(),'fid'=>$fid]);
+        // return response()->json(['msg'=>'edit msg']);
     }
 
     /**
@@ -168,4 +211,5 @@ class FactureController extends Controller
         $produits=Article::all();
         return view('main.factures.test',compact('produits'));
     }
+
 }

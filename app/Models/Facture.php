@@ -16,5 +16,8 @@ class Facture extends Model
     public function clientFact(){
        return $this->belongsTo(Client::class,'client_id'); //facture belongs to a single Client .
     }
+    public function lignes(){
+      return $this->hasMany(Ligne_facture::class);
+    }
 
 }

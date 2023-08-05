@@ -1,4 +1,7 @@
-// Client
+
+console.log(jsonData.articlesJ[0]);
+
+
 // Create a variable to store the search input.
 var searchInput = document.getElementById("searchInput");
 
@@ -40,13 +43,38 @@ function filterSelectArt() {
     }
   }
 }
+let Produits=[];
+
 searchInputArt.addEventListener("input", filterSelectArt);
 
+window.addEventListener('load', function() {
+    // Votre code à exécuter une fois que la page est chargée
+    // Par exemple :
+    const ft=jsonData.articlesJ;
+    for (let x=0; x< ft.length ;x++){
+        console.log(ft[x]);
+        let product={};
+        product['description']=ft[x].art.description;
+        product['Qtee']=ft[x].quantite;
+        product['price']=ft[x].art.price;
+        product['tva']=ft[x].art.tva;
+        product['quantite']=ft[x].art.quantite;
+        product['id']=ft[x].art.id;
+        product['MontantTva']=0;
+        product['unite']='';
+        product['remise']=0;
+        product['TTc']=0;
+        Produits.push(product);
+        
+        console.log(product);
+
+    }
+    chargerArticles();
+  });
 
 var add=document.getElementById('addArt');
 add.addEventListener('click',ajouterArt);
 
-let Produits=[];
 let ValiderVar=false;
 
 
@@ -317,15 +345,19 @@ document.getElementById('annuler').addEventListener('click',function(){
               var tva=parseFloat(Ttva).toFixed(2);
               var url=$(this).attr('action');
               var mode_paiement=$('#payment').val();
+              var factId=jsonData.articlesJ[0].facture_id;
               $.ajax({
-                type:'POST',
-                url : url,
+                type:'PUT',
+                url : '/facture/'+ factId,
                 data : {Produits : Produits,ref:numFact,client:client,type:typeF,ex:example,tht:th,ttva:tva,ttc : ttc,mode_paiement:mode_paiement},
                 dataType:'json',
                 success:function(res){
                   alert('submited successfully');
+                //   console.log(Produits);
                   document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
-                  console.log(res.fact)
+                  console.log(res.request)
+                  console.log(res.facture)
+                  console.log(res.fid);
                 },
                 error: function (xhr, status, error) {
                 console.log(error);

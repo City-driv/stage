@@ -90,6 +90,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     
     Route::resource('/achat',AchatController::class);
     Route::get('/getListe/{id}',[AchatController::class,'getListe']);
+    Route::resource('/user',UserController::class);
 });
 
 

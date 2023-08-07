@@ -7,17 +7,19 @@
         <div class="alert alert-success">{{session('success')}}</div>
     @endif 
     {{-- @dump($id) --}}
-    <form action="{{route('user.update',$user->id)}}" method="POST" style="margin-left: 20%;width:70%;" enctype="multipart/form-data">
+    <div style="margin-left: 20%;width:70%;">
+    <form action="{{route('user.update',$id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
+        <input type="hidden" hidden readonly name="id" value="{{$id}}">
             <label for='exampleInputEmail1' style='font-size:14px;font-weight:700; class='form-label' >Email :</label>
         <div class='row'>
         <div class='col-md-6 col-12'>
-        <input type='email' required='false' class='form-control' name='email' value='{{$user->email}}' readonly id='exampleInputEmail1' />
-        <label for='exampleInputEmail1'  style='font-size:14px;font-weight:700;'  class='form-label'>Nom entreprise :</label>
-        <input type='text' class='form-control'  name='name' readonly value='{{$user->name}}' id='exampleInputEmail1'  />
-            <label for='exampleInputEmail1'  style='font-size:14px;font-weight:700;'  class='form-label'>Forme juridique :</label>
-        <select class="form-control" name="fj" style="" id="">
+        <input type='email' class='form-control' name='email' value='{{$user->email}}' readonly id='exampleInputEmail1' />
+        <label for='n1'  style='font-size:14px;font-weight:700;'  class='form-label'>Nom entreprise :</label>
+        <input type='text' class='form-control'  name='name' readonly value='{{$user->name}}' id='n1'  />
+            <label for='n2'  style='font-size:14px;font-weight:700;'  class='form-label'>Forme juridique :</label>
+        <select class="form-control" name="fj" style="" id="n2">
                     <option selected value="{{$user->name}}">{{$user->fj}}</option>
                     <option  value="Auto-entrepreneur" >Auto-entrepreneur</option>
                     <option  value="Personne physique">Personne physique</option>
@@ -26,15 +28,13 @@
                     <option  value="La Societe en Nom Collectif">La Societe en Nom Collectif</option>
                     <option  value="La Societe en commandite simple">La Societe en commandite simple</option>
                     <option  value="La Societe anonyme simplifiee">La Societe anonyme simplifiee</option>
-                    <option  value="La Societe en commandite par actions">
-                        La Societe en commandite par actions</option>
-                    <option  value="La Societe anonyme">
-                        La Societe anonyme</option>
+                    <option  value="La Societe en commandite par actions">La Societe en commandite par actions</option>
+                    <option  value="La Societe anonyme">La Societe anonyme</option>
                     <option  value="La Societe en participation">La Societe en participation</option>
                     <option  value="Le groupement d'interêt economique">Le groupement d'interêt economique</option>
                     <option  value="SARL au">SARL au</option>
                     <option  value="Succursale">Succursale</option>
-                </select>  
+        </select>  
             <label for='adr'  style='font-size:14px;font-weight:700;' class='form-label'>Adresse:</label>
             <input type='text' class='form-control' name='adresse' value='{{$user->adresse}}' id='adr' />
             <label for='telephone'  style='font-size:14px;font-weight:700;' class='form-label'>Telephone 1:</label>
@@ -60,15 +60,17 @@
             <label for='cnss'  style='font-size:14px;font-weight:700;' class='form-label'>CNSS:</label>
             <input type='text' class='form-control' name='cnss' value='{{$user->cnss}}'  />
             <label class='h5'>Mot de passe:<input id='check' type='checkbox' class='h1' style='height:20px;width:20px;    margin-top: 4px;float: right;'/></label>
-            <input type='password' name='password' value="{{$user->password}}" class='form-control' placeholder='***********' />
+            {{-- <input type='password' name='password' value="{{$user->password}}" class='form-control' placeholder='***********' /> --}}
+            <input type='password' name='password' value="{{$user->password}}" class='form-control pass' placeholder='***********' />
             <br/>
             <input type='file' name='img' accept='image/*' class='form-control ' id='inputGroupFile01'>
-            <img  class='card-img-top img' name='Logo' src=images/t1.jfif value='t1.jfif' class='' alt='...'/>   
+            <img  class='card-img-top img' name='Logo' src="{{asset('imgs/Basic.png')}}" value='t1.jfif' class='' alt='...'/>   
                     </div>
                     </div> 
                     <br>
                     <button type="submit" class="btn btn-success  mb-2"><i class="fas fa-file-download"></i> Enregistrer</button>
 </form>
+</div>
 <script>
 document.querySelector("input[type='file']").addEventListener("change",function(){
     let Path=URL.createObjectURL(this.files[0]);

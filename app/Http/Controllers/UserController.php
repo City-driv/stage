@@ -60,41 +60,48 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    // public function edit(string $id)
+    // {
+    //     // $user=Auth::user();
+    //     if ($id == Auth::id()) {
+    //         $user=Auth::user();
+    //         // dd(Auth::user());  
+    //         return view('auth.editUser',['user'=>$user,'id'=>$id]);
+    //     }else{
+    //         return back();
+    //     }
+    // }
     public function edit(string $id)
-    {
-        // $user=Auth::user();
-        if ($id == Auth::id()) {
-            $user=User::find($id);
-            return view('auth.editUser',compact('user'));
-        }else{
-            return back();
-        }
+{
+    if ($id == Auth::id()) {
+        $user = Auth::user();
+        return view('auth.editUser', ['user' => $user, 'id' => $id]);
+    } else {
+        return back();
     }
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,string $id)
+    public function update(Request $request)
     {
-        // dd($request->post());
+        // dd($request->id);
+        $id=$request->id;
         // some errors to handle here !!!!!!!!!!!!!!!!!!!error
         // dump($request->post());
         $Uid=Auth::id();
-        $user=User::where('id',$Uid)->first();
-        // dump($user);
+        $user=DB::table('users')->where('id',$id);
+        dd($user);
         // dd($request->post());
         if ($id == $Uid) {    
-            // dd($request->post());
             if ($request->hasFile('img')) {
                 $img = time() . '-' . $request->file('img')->getClientOriginalName();
                 $request['img'] = $img;
                 $request->file('img')->move(\public_path('profiles'), $img);
-                if (File::exists('profiles/' . $user->img)) {
-                    File::delete('profiles/' . $user->img);
-                }
             }
             
-            $user->fill($request->post())->save();
+            // $user->fill($request->post())->save();
 
             return view('auth.editUser')->with('success','modified successfully');
         }

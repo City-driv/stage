@@ -267,7 +267,7 @@ body{
                 @php
                     $id= Auth::id();
                 @endphp
-                <li><a href="{{route('parametres',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
+                <li><a href="{{route('user.edit',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
                 <li><a href="numeration.php"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
             </ul>
             </div>

@@ -243,19 +243,19 @@ body{
                 <ul>
                     <li><a href="{{route('credit.create')}}"><i class="fas fa-plus-square"></i> Nouveau crédits</a></li>
                     <li><a href="{{route('credit.index')}}"><i class="fas fa-stream"></i> Gestion des crédits</a></li>
-                    <li><a href="credits.php"><i class="fas fa-th-list"></i> Liste débiteurs </a></li>
+                    <li><a href="{{route('liste.credit')}}"><i class="fas fa-th-list"></i> Liste débiteurs </a></li>
                 </ul>
             </div>
             <div><i class="fas fa-chart-line"></i> Achats <i class="fas fa-angle-double-down"></i>
                 <ul>
-                    <li><a href="NoFacture.php"><i class="fas fa-plus-square"></i> Nouveau facture/Bon</a></li>
-                    <li><a href="listFactures.php"><i class="fas fa-stream"></i> Liste des factures/Bons</a></li>
+                    <li><a href="{{route('achat.create')}}"><i class="fas fa-plus-square"></i> Nouveau facture/Bon</a></li>
+                    <li><a href="{{route('achat.index')}}"><i class="fas fa-stream"></i> Liste des factures/Bons</a></li>
                 </ul>
             </div>
                <div><i class="fas fa-upload"></i> Sauvegarde <i class="fas fa-angle-double-down"></i>
                <ul>
-                   <li><a href="allFactures.php"><i class="fas fa-file-import"></i> Documents Sorties</a></li>
-                   <li><a href="listFactures.php"><i class="fas fa-file-download"></i> Documents entrée</a></li>
+                   <li><a href="{{route('all.factures')}}"><i class="fas fa-file-import"></i> Documents Sorties</a></li>
+                   <li><a href="{{route('achat.index')}}"><i class="fas fa-file-download"></i> Documents entrée</a></li>
                    <li><a href="sortie.php"><i class="fas fa-sign-out-alt"></i> Mouvement sorties</a></li> 
                    <li><a href="entree.php"><i class="fas fa-arrow-alt-circle-right"></i> Mouvement d'entrés</a></li>  
                    <li><a href="sortieF.php"><i class="fas fa-clipboard-check"></i> Mouvement Sorties Facturé</a></li> 

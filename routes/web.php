@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\FournisseurController;
@@ -78,6 +79,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/devis_type',[FactureController::class,'forme_d'])->name('facture.devis.type');
     Route::get('/facture_proforma_type',[FactureController::class,'forme_p'])->name('facture.proforma.type');
     Route::resource('/credit',CreditController::class);
+    Route::get('/listeDebiteur',[CreditController::class,'liste'])->name('liste.credit');
     Route::post('/ligneCredit',[LigneCreditController::class,'store']);
     Route::get('/recu/{ligne_credit}',[LigneCreditController::class,'show']);
     Route::get('/getFactures/{clientId}',[CreditController::class,'getFacturesByClient']);
@@ -85,8 +87,9 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::resource('/garantie',GarantieController::class);
     Route::resource('/clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');
-
-
+    
+    Route::resource('/achat',AchatController::class);
+    Route::get('/getListe/{id}',[AchatController::class,'getListe']);
 });
 
 

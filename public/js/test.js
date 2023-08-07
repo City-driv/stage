@@ -331,7 +331,7 @@ document.getElementById('annuler').addEventListener('click',function(){
                 console.log(error);
                 }
               })
-        ValiderVar=true
+        ValiderVar=true;
         }else
         alert("selectionner une Produit")
     }else

@@ -21,30 +21,43 @@ class FactureController extends Controller
             $type=$_GET['type'];
             if ($type=='f') {
                 $t='Factures';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture')->get();
+                $x='facture';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture')->get();
             }elseif($type=='bl') {
                 $t='Bons Livraison';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_livraison')->get();
+                $x='bon_livraison';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_livraison')->get();
             }elseif($type=='bc'){
                 $t='Bons de Commandes';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_cmd')->get();
+                $x='';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_cmd')->get();
             }elseif ($type=='fv') {
                 $t="Factures d'Avoirs";
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_d_avoir')->get();
+                $x='bon_cmd';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_d_avoir')->get();
             }elseif ($type=='b') {
                 $t='Bons';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon')->get();
+                $x='bon';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon')->get();
             }elseif ($type=='dv') {
                 $t='Devis';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','devis')->get();
+                $x='devis';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','devis')->get();
             }elseif ($type=='fp') {
                 $t='Factures Proforma';
-                $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_proforma')->get();
+                $x='facture_proforma';
+                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_proforma')->get();
             }
         }else{
             $factures=Facture::where('user_id',Auth::id())->get();
             $t='Factures';
         }
+        if (!isset($x)) {
+            $factures=Facture::where('user_id',Auth::id())->get();
+        }else{
+            $factures=Facture::where('user_id',Auth::id())->where('type_fact',$x)->get();
+        }
+        // dd($t);
         $TTC=$factures->sum('ttc');
         $TTVA=$factures->sum('ttva');
         $THT=$factures->sum('tht');
@@ -121,6 +134,9 @@ class FactureController extends Controller
                 'tva'=>$pr['tva'],
                 'ttc'=>$pr['TTc'],
             ]);
+            $ar=Article::where('id',$pr['id'])->first();
+            $ar->quantite=$ar->quantite - $pr['Qtee'];
+            $ar->save();
         }
 
         return response()->json(['message' => $request->user,'ref'=>$request->ref,'client'=>$request->client,'fact'=>$fact_id]);

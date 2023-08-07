@@ -102,4 +102,9 @@ class CreditController extends Controller
         $credit->delete();
         return to_route('credit.index')->with('success','credit supprimee');
     }
+
+    public function liste(){
+        $credits= Credit::where('user_id',Auth::id())->where('p_reste','>',0)->get();
+        return view('main.credits.liste',compact('credits'));
+    }
 }

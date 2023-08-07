@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Credit;
 use App\Models\Ligne_credit;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,9 @@ class LigneCreditController extends Controller
     {
         // $idC=$request->Id;
         Ligne_credit::create($request->post());
+        $cr=Credit::where('id',$request->credit_id)->first();
+        $cr->p_reste=$cr->p_reste - $request->montant;
+        $cr->save();
         return response()->json(['message'=>$request->post()]);
     }
     public function getLignes($creditId){

@@ -17,6 +17,12 @@ class FactureController extends Controller
      */
     public function index()
     {
+        // $x=null;
+        if (isset($_GET['date1'])) {
+            $x=$_GET['type'];
+            $t=$x;
+            // dd($_GET['date1']);
+        }
         if(isset($_GET['type'])){
             $type=$_GET['type'];
             if ($type=='f') {
@@ -29,11 +35,11 @@ class FactureController extends Controller
                 // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_livraison')->get();
             }elseif($type=='bc'){
                 $t='Bons de Commandes';
-                $x='';
+                $x='bon_cmd';
                 // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_cmd')->get();
             }elseif ($type=='fv') {
                 $t="Factures d'Avoirs";
-                $x='bon_cmd';
+                $x='facture_d_avoir';
                 // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_d_avoir')->get();
             }elseif ($type=='b') {
                 $t='Bons';
@@ -51,18 +57,70 @@ class FactureController extends Controller
         }else{
             $factures=Facture::where('user_id',Auth::id())->get();
             $t='Factures';
+            $x=null;
         }
-        if (!isset($x)) {
-            $factures=Facture::where('user_id',Auth::id())->get();
+        $startDate = null;
+        $endDate = null;
+        
+        if (isset($_GET['date1']) && isset($_GET['date2']) ) {
+            $startDate = $_GET['date1'];
+            $endDate = $_GET['date2'];
+            // dd($request->post());
+        }
+        if ($x==null) {
+            $factures=Facture::where('user_id',Auth::id())
+            ->when($startDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('date_facture', [$startDate, $endDate]);
+            })->get();
         }else{
-            $factures=Facture::where('user_id',Auth::id())->where('type_fact',$x)->get();
+            $factures=Facture::where('user_id',Auth::id())->where('type_fact',$x)
+            ->when($startDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('date_facture', [$startDate, $endDate]);
+            })->get();
         }
+
+        if (isset($_GET['trimestre']) && $_GET['trimestre']!=='') {
+            $tr=$_GET['trimestre'];
+            $year=date('Y');
+            $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
+            $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));
+            $factures=Facture::where('user_id',Auth::id())->where('type_fact',$x)
+            ->when($start_date, function ($query) use ($start_date, $end_date) {
+                return $query->whereBetween('date_facture', [$start_date, $end_date]);
+            })->get();
+        }
+
         // dd($t);
         $TTC=$factures->sum('ttc');
         $TTVA=$factures->sum('ttva');
         $THT=$factures->sum('tht');
-        return view('main.factures.factures',compact('factures','TTC','TTVA','THT','t'));
+        return view('main.factures.factures',compact('factures','TTC','TTVA','THT','t','x'));
     }
+
+//     use Illuminate\Http\Request;
+// use App\Models\Invoice; // Assuming your Invoice model is named Invoice
+
+// class InvoiceController extends Controller
+// {
+//     // Other methods in the controller...
+
+//     public function filterByQuarter(Request $request)
+//     {
+//         $quarter = $request->input('quarter');
+//         $year = $request->input('year');
+
+//         // Calculate the start and end dates of the selected quarter
+//         $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($quarter - 1) * 3) . ' months'));
+//         $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($quarter * 3) . ' months -1 day'));
+
+//         // Retrieve the invoices that fall within the selected quarter
+//         $invoices = Invoice::whereBetween('invoice_date', [$start_date, $end_date])->get();
+
+//         // Pass the filtered invoices to the view
+//         return view('invoices.index', ['invoices' => $invoices]);
+//     }
+// }
+
 
     /**
      * Show the form for creating a new resource.

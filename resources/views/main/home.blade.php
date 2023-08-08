@@ -32,7 +32,7 @@
                  <div class='col-11 col-md-7'>
                      <div class='row etape'>
                          
-                       <button><a href='Parametres.php'>1- Paramètrez les informations de votre société</a></button><button><a href='numeration.php'>2- Paramétrez la continuité de votre numérotation</a></button> <button style='background-color:green;'><a class='text-white' href='{{route('all.factures')}}'><i class='fas fa-check-square'></i>  Première facture de vente créée</a></button><button style='background-color:green;'><a class='text-white' href='{{route('article.index')}}'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a></button><button style='background-color:green;'><a class='text-white' href='{{route('clients.index')}}'><i class='fas fa-check-square'></i>  Contacs clients Importer</a></button></div>
+                       <button><a href='{{route('user.edit',Auth::id())}}'>1- Paramètrez les informations de votre société</a></button><button><a href='numeration.php'>2- Paramétrez la continuité de votre numérotation</a></button> <button style='background-color:green;'><a class='text-white' href='{{route('all.factures')}}'><i class='fas fa-check-square'></i>  Première facture de vente créée</a></button><button style='background-color:green;'><a class='text-white' href='{{route('article.index')}}'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a></button><button style='background-color:green;'><a class='text-white' href='{{route('clients.index')}}'><i class='fas fa-check-square'></i>  Contacs clients Importer</a></button></div>
                  </div>
                </div>
            </div>
@@ -171,15 +171,15 @@
              </a>
        </div>
        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center">
-           <a href="allFactures.php" class="notification">
+           <a href="{{route('all.factures')}}" class="notification">
                <span><i class="fa-6x fas fa-file-invoice"></i><br>
                 <h3 class="text-center">Documents</h3></span>
-               <span class="badge">5     
+               <span class="badge">{{$nbd}}  
                </span>
              </a>
        </div>
        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 text-center">
-           <a href="Parametres.php" class="notification text-center">
+           <a href="{{route('user.edit',Auth::id())}}" class="notification text-center">
                <span><i class="fa-6x fas fa-cogs"></i></span>
              </a>
        </div>

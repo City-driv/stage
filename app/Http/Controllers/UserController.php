@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\Article;
 use App\Models\User;
-use App\Models\Client;  
+use App\Models\Client;
+use App\Models\Facture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,8 @@ class UserController extends Controller
                          where('quantite','=',0)->get();
         $nba=Article::count();
         $nbc=Client::count();
-        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba,'nbc'=>$nbc]);
+        $nbd=Facture::count();
+        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba,'nbc'=>$nbc,'nbd'=>$nbd]);
     }
 
     /**
@@ -74,8 +76,10 @@ class UserController extends Controller
     public function edit(string $id)
 {
     if ($id == Auth::id()) {
-        $user = Auth::user();
-        return view('auth.editUser', ['user' => $user, 'id' => $id]);
+        $user = DB::table('users')->where('id',$id)->first();
+        // dd($user->id);
+        // dd($id);
+        return view('auth.editUser', ['user' => $user]);
     } else {
         return back();
     }
@@ -86,24 +90,61 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        // dd($request->id);
         $id=$request->id;
         // some errors to handle here !!!!!!!!!!!!!!!!!!!error
         // dump($request->post());
         $Uid=Auth::id();
-        $user=DB::table('users')->where('id',$id);
-        dd($user);
+        // $user=DB::table('users')->where('id',$id)->first();
+        // dd($user);
+        // dd($request->post());
+        // if ($id == $Uid) {    
+        //     if ($request->hasFile('img')) {
+        //         $img = time() . '-' . $request->file('img')->getClientOriginalName();
+        //         $request['img'] = $img;
+        //         $request->file('img')->move(\public_path('profiles'), $img);
+        //     }
+        //     DB::table('users')->where('id',$id)->update([
+        //         'fj'=>$request->fj,
+        //         'telephone'=>$request->telephone,
+        //         'ice'=>$request->ice,
+        //         'adresse'=>$request->adresse,
+        //         'mobile'=>$request->mobile,
+        //         'img'=>$request->img,
+        //         'if'=>$request->if,
+        //         'site_web'=>$request->site_web,
+        //         'num_pattente'=>$request->num_pattente,
+        //         'num_rc'=>$request->num_rc,
+        //         'cnss'=>$request->cnss
+        //     ]);
+
+        //     return view('auth.editUser')->with('success','modified successfully');
+        // }
         // dd($request->post());
         if ($id == $Uid) {    
             if ($request->hasFile('img')) {
                 $img = time() . '-' . $request->file('img')->getClientOriginalName();
-                $request['img'] = $img;
+                $request['im'] = $img;
+                // dd($img);
                 $request->file('img')->move(\public_path('profiles'), $img);
+            }else {
+                $request['im']=Auth::user()->img;
             }
-            
-            // $user->fill($request->post())->save();
-
-            return view('auth.editUser')->with('success','modified successfully');
+            DB::table('users')->where('id',$id)->update([
+                'fj'=>$request->fj,
+                'telephone'=>$request->telephone,
+                'ice'=>$request->ice,
+                'adresse'=>$request->adresse,
+                'mobile'=>$request->mobile,
+                'img'=>$request->im,
+                'if'=>$request->if,
+                'site_web'=>$request->site_web,
+                'num_pattente'=>$request->num_pattente,
+                'num_rc'=>$request->num_rc,
+                'cnss'=>$request->cnss
+            ]);
+    
+            $user = DB::table('users')->where('id', $id)->first(); // Fetch the updated user
+            return view('auth.editUser', ['user' => $user])->with('success', 'modified successfully');
         }
     }
 

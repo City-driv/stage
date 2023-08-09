@@ -256,8 +256,8 @@ body{
                <ul>
                    <li><a href="{{route('all.factures')}}"><i class="fas fa-file-import"></i> Documents Sorties</a></li>
                    <li><a href="{{route('achat.index')}}"><i class="fas fa-file-download"></i> Documents entrée</a></li>
-                   <li><a href="sortie.php"><i class="fas fa-sign-out-alt"></i> Mouvement sorties</a></li> 
-                   <li><a href="entree.php"><i class="fas fa-arrow-alt-circle-right"></i> Mouvement d'entrés</a></li>  
+                   <li><a href="{{route('mv.sortie')}}"><i class="fas fa-sign-out-alt"></i> Mouvement sorties</a></li> 
+                   <li><a href="{{route('mv.entre')}}"><i class="fas fa-arrow-alt-circle-right"></i> Mouvement d'entrés</a></li>  
                    <li><a href="sortieF.php"><i class="fas fa-clipboard-check"></i> Mouvement Sorties Facturé</a></li> 
                    <li><a href="entreeF.php"><i class="fas fa-clipboard-check"></i> Mouvement d'entrés Facturé</a></li>  
                </ul>

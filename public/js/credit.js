@@ -139,3 +139,17 @@ function Modifier(id) {
     });
     document.querySelector(".Modifier").style.transform = "scale(1)";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const rows = document.querySelectorAll('#tbt tr');
+
+    searchInput.addEventListener('keyup', function(e) {
+        const x = e.target.value.toLowerCase();
+        console.log(x);
+        rows.forEach(el => {
+            const cellContent = el.querySelector('.cl').textContent.toLowerCase();
+            el.style.display = cellContent.includes(x) ? '' : 'none';
+        });
+    });
+});

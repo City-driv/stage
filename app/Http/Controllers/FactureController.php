@@ -23,7 +23,7 @@ class FactureController extends Controller
             $t=$x;
             // dd($_GET['date1']);
         }
-        if(isset($_GET['type'])){
+        if(isset($_GET['type']) && $_GET['type']!==''){
             $type=$_GET['type'];
             if ($type=='f') {
                 $t='Factures';
@@ -80,7 +80,7 @@ class FactureController extends Controller
         }
 
         if (isset($_GET['trimestre']) && $_GET['trimestre']!=='') {
-            $tr=$_GET['trimestre'];
+            $tr= intval($_GET['trimestre']); // Convert to integer
             $year=date('Y');
             $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
             $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));

@@ -24,4 +24,4 @@ function Ajoute(){
 //annuler
 function annuler(){
     document.querySelector(".AjouteClient").style.transform="scale(0)"
-  }
+}

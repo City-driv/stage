@@ -260,3 +260,16 @@ function Liste(id){
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  const rows = document.querySelectorAll('#tbt tr');
+
+  searchInput.addEventListener('keyup', function(e) {
+      const x = e.target.value.toLowerCase();
+      rows.forEach(el => {
+          const cellContent = el.querySelector('.fr').textContent.toLowerCase();
+          el.style.display = cellContent.includes(x) ? '' : 'none';
+      });
+  });
+});

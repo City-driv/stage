@@ -65,15 +65,10 @@
      }
     </style>
 <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion crédits :</h1></center> <form action="/listeCredits.php"  method="post">
-    <input value="" type="text" name="numero" placeholder="Recherche par Client" style="    background: #f3f3f3 0 0 no-repeat padding-box;
-        border: 0;
-        outline:none;
-        border-radius: 6px;
-        box-shadow: 0 3px 6px rgb(54, 54, 54);
-        height: 48px;
-        padding: 10px 10px 10px 50px;
-       " class=" col-9 col-md-3 mt-2" id=""/>
-      <button name="submit2" type="submit"  style='' class="search"><i class="fas fa-search"></i>Chercher</button>
+    <input  type="text" name="numero" placeholder="Recherche par Client" style="    background: #f3f3f3 0 0 no-repeat padding-box;
+        border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;
+        padding: 10px 10px 10px 50px;" class=" col-9 col-md-3 mt-2" id="searchInput" />
+      {{-- <button name="submit2" type="submit"  style='' class="search"><i class="fas fa-search"></i>Chercher</button> --}}
     </form>
         <table class='table table-striped mt-2'>
         <tr class='h3'>
@@ -85,10 +80,11 @@
             <td>Piéce à jointe</td>
             <td>action</td> 
         </tr>
+        <tbody id="tbt">
         @foreach ($credits as $cr)
             
             <tr>
-                <td>{{$cr->client->name}}</td>
+                <td class="cl">{{$cr->client->name}}</td>
                 <td>{{$cr->client->telephone}}</td>
                 <td>{{$cr->client->adresse}}</td>
                 <td>{{$cr->ref}}</td>
@@ -115,7 +111,7 @@
                 </td>
             </tr>
         @endforeach
-               
+    </tbody>
              
         </table>
       <div class="Ajouter" style='transform:scale(0)'>

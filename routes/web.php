@@ -8,7 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\GarantieController;
+use App\Http\Controllers\LigneAchatController;
 use App\Http\Controllers\LigneCreditController;
+use App\Http\Controllers\LigneFactureController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,14 +89,15 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::resource('/garantie',GarantieController::class);
     Route::resource('/clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');
-    
+    Route::get('/mvsortie',[LigneFactureController::class,'index'])->name('mv.sortie');
+    Route::get('/mventre',[LigneAchatController::class,'index'])->name('mv.entre');
     Route::resource('/achat',AchatController::class);
     Route::get('/getListe/{id}',[AchatController::class,'getListe']);
     Route::resource('/user',UserController::class);
 });
 
 
-Route::get('test',function(){
-    return view('main.docsFactures.ex1');
-});
+Route::get('test',function(){return view('main.docsFactures.ex1');});
+Route::get('test3',function(){return view('main.factures.mvSortie');});
+
 Route::get('test2',[FactureController::class,'test']);

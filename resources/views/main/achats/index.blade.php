@@ -81,11 +81,9 @@ td{
 </style>
 <div class="row">
     {{-- <form action="/listFactures.php"  method="post"> --}}
-      <input value="" type="text" name="fournisseur" placeholder="Recherche par fournisseur" style="    background: #f3f3f3 0 0 no-repeat padding-box;
-      border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;
-      padding: 10px 10px 10px 50px;" class=" col-9 col-md-3" id="">
-    <button type="submit" style='' class="search"><i class="fas fa-search"></i>Chercher
-  </button>
+      <input value="" type="text" name="fournisseur" placeholder="Recherche par fournisseur" style="background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;padding: 10px 10px 10px 50px;" class=" col-9 col-md-3" id="searchInput">
+    {{-- <button type="submit" style='' class="search"><i class="fas fa-search"></i>Chercher
+  </button> --}}
   </div>
   <div  style="overflow-x:auto">
   <table class="table table-striped table-responsive">
@@ -102,9 +100,10 @@ td{
           <td>Action</td>
       </tr>
       <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Liste Documents entrée :</h1></center> 
+      <tbody id="tbt">
             @foreach ($achats as $ac)
                 <tr>
-                <td>{{$ac->fournisseur->nom_entreprise}}</td>
+                <td class="fr">{{$ac->fournisseur->nom_entreprise}}</td>
                 <td onclick="Liste({{$ac->id}})" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="color:blue;text-decoration:underline;cursor:pointer;">{{$ac->numero}}</td>
                 <td>{{$ac->date}}</td>
                 <td>{{$ac->total}} DH</td>
@@ -131,12 +130,9 @@ td{
                 @method('DELETE')
                   <button title="Supprimer" type="submit" class="btn" style="color:red;">Supprimer <i class="far fa-trash-alt"></i></button></td>
                 </form>
-                
-                
                 </tr>
-            
             @endforeach
-               
+          </tbody>
                 
              </table>
   </div>

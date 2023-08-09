@@ -83,6 +83,13 @@ input[type=number] {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
 <center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Liste Documents {{$t}}  d'entrés:</h1></center>
+{{-- @php
+    $url = Route::current();
+@endphp --}}
+{{-- @dump(Request::url())
+@dump(Request::path())
+@dump(Request::fullUrl()) --}}
+{{-- @dump(request()->getQueryString()) --}}
 
 <div class="row mb-2">
   <label class="col-12 fs-1" style="font-size:20px;font-weight:900;" for=""><i style="color: #0d6efd;" class="fas fa-search" aria-hidden="true"></i> Recherche Par client:</label>
@@ -147,22 +154,25 @@ input[type=number] {
     </tbody>
   </table>
   @dump($x)
-  <form action="{{route('facture.index',['type'=>$x])}}"  method="GET">
-    <input type="text" hidden name="type" value="{{$x}}">
-    <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Sortie Par periode :</h1></center>  
-    <div class="row text-center mb-2" style="margin-left:15%">
-      <input type="date" class="form-control"  name="date1" style="width:30%" value=""/>
-      <input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
-      <select class="form-select-sm" name="trimestre" style="width: auto" aria-label="select Trimestre">
-        <option value="">select Trimestre</option>
-        <option value="1">T1</option>
-        <option value="2">T2</option>
-        <option value="3">T3</option>
-        <option value="4">T4</option>
-      </select>
-      <button type="submit" style="margin-top: 10px;border-radius: 10px;margin-left:10px;padding-top:5px;padding-bottom:5px;background-color:#2c2815;color:white;border-radius:10px;border:0;" class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i></button>
-    </div>
-  </form>
+
+  @if (request()->getQueryString()!== null)
+      <form action="{{route('facture.index',['type'=>$x])}}"  method="GET">
+        <input type="text" hidden name="type" value="{{$x}}">
+        <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Sortie Par periode :</h1></center>  
+        <div class="row text-center mb-2" style="margin-left:15%">
+          <input type="date" class="form-control"  name="date1" style="width:30%" value=""/>
+          <input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
+          <select class="form-select-sm" name="trimestre" style="width: auto" aria-label="select Trimestre">
+            <option value="">select Trimestre</option>
+            <option value="1">T1</option>
+            <option value="2">T2</option>
+            <option value="3">T3</option>
+            <option value="4">T4</option>
+          </select>
+          <button type="submit" style="margin-top: 10px;border-radius: 10px;margin-left:10px;padding-top:5px;padding-bottom:5px;background-color:#2c2815;color:white;border-radius:10px;border:0;" class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i></button>
+        </div>
+      </form>      
+  @endif
 
 
     <table class="table table-striped">
@@ -186,15 +196,29 @@ input[type=number] {
     
     
   <script>
-    const searchInput=document.getElementById('searchInput');
-    const rows = document.querySelectorAll('#ttbody tr');
-    console.log(rows);
-    searchInput.addEventListener('keyup',function(e){
-       const x=e.target.value.toLowerCase();
-       rows.forEach((el) => {
-          el.querySelector('.cl').textContent.toLowerCase().startsWith(x) ? (el.style.display='') : (el.style.display='none');
-       });
+    // const searchInput=document.getElementById('searchInput');
+    // const rows = document.querySelectorAll('#ttbody tr');
+    // console.log(rows);
+    // searchInput.addEventListener('keyup',function(e){
+    //    const x=e.target.value.toLowerCase();
+    //    rows.forEach((el) => {
+    //       el.querySelector('.cl').textContent.toLowerCase().startsWith(x) ? (el.style.display='') : (el.style.display='none');
+    //    });
+    // });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const rows = document.querySelectorAll('#ttbody tr');
+
+        searchInput.addEventListener('keyup', function(e) {
+            const x = e.target.value.toLowerCase();
+            rows.forEach(el => {
+                const cellContent = el.querySelector('.cl').textContent.toLowerCase();
+                el.style.display = cellContent.includes(x) ? '' : 'none';
+            });
+        });
     });
+
 
     
 

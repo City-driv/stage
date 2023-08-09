@@ -40,14 +40,14 @@
     border: 1px solid #06486D;
   }
   footer{
-    height: 8vh; 
+    /* height: 8vh;  */
     font-size:15px;
     position: absolute;
     width: 100%;
-    padding-left:15px;
-    padding-right:15px;
-    margin-top: 93.2vh;
-    margin-top: 192.6vh;
+    /* padding-left:15px; */
+    /* padding-right:15px; */
+    /* margin-top: 93.2vh; */
+    /* margin-top: 192.6vh; */
     font-family:cursive;
     background:#6EC6F7;
   }
@@ -58,16 +58,16 @@
 </head>
 <body>
  
-<footer>
-<div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div></footer>
-<div class=''>
-  <div class='row' style='border-bottom: 1px solid #06486D;'>
-    <div class='col-9 h1 text-center' style='    border-top: 0;font-size:75px;font-familly:cursive;
-    background: -webkit-linear-gradient(#00185E,#06486D);-webkit-background-clip: text;-webkit-text-fill-color: transparent;
+  <div class=''>
+    <div class='row' style='border-bottom: 1px solid #06486D;'>
+      <div class='col-9 h1 text-center' style='border-top: 0;font-size:75px;font-familly:cursive;background: -webkit-linear-gradient(#00185E,#06486D);-webkit-background-clip: text;-webkit-text-fill-color: transparent;
     '>{{Auth::user()->name}}</div>
     <div class='col-3'>
-        {{-- to add img --}}
-      <img src=images/t1.jfif style='width: 90px;height: 90px;background-size: 90px 90px;' alt='' srcset=''>
+      {{-- to add img --}}
+      @php
+          $img=asset('profiles/'.Auth::user()->img);
+      @endphp
+      <img src='{{$img}}' style='width: 90px;height: 90px;background-size: 90px 90px;' alt='Entreprise logo' >
       <div class='type h5'>
         {{$facture->type_fact}}
         <br>
@@ -90,14 +90,14 @@
         <div class='col-12 h6'>{{$facture->clientFact->name}}</div>
         <div class='col-12 h6 pt-2'>{{$facture->clientFact->adresse}}</div>
         <div class='col-12 h6'><i class='fas fa-phone-alt'></i>{{$facture->clientFact->telephone}}</div>      </div>
+      </div>
+      <div  style='background-color: #A8DDFA' class='col-5 h5 pt-2'>
+        
+        <center><h5></h5></center>
+      </div>
     </div>
-    <div  style='background-color: #A8DDFA' class='col-5 h5 pt-2'>
-    
-    <center><h5></h5></center>
-    </div>
-  </div>
-  <div class='row mt-4'>
-    <div class='col-1'></div>
+    <div class='row mt-4'>
+      <div class='col-1'></div>
       <table class='col-10'>
         <tr class='ligne1'>
           <td>Description</td>
@@ -107,17 +107,17 @@
           <td>Total TTC</td>
         </tr>
         @foreach ($Ligne_fact as $lf)
-            <tr class='tr'>
-                <td style='text-align: left; padding: 4px;'>{{$lf->article->description}}</td>
-                <td>{{$lf->article->price}} DH</td>
-                <td>{{$lf->remise}} %</td>
-                <td>{{$lf->quantite}}</td> 
-                <td style='width:15%'>{{ ($lf->ttc )}} DH</td>
-            </tr>
+        <tr class='tr'>
+          <td style='text-align: left; padding: 4px;'>{{$lf->article->description}}</td>
+          <td>{{$lf->article->price}} DH</td>
+          <td>{{$lf->remise}} %</td>
+          <td>{{$lf->quantite}}</td> 
+          <td style='width:15%'>{{ ($lf->ttc )}} DH</td>
+        </tr>
         @endforeach
         <tr style='' class='ligne1'>
-        <td colspan='6'>Récapulatif</td></tr>
-       <td>Total Net H.T</td>
+          <td colspan='6'>Récapulatif</td></tr>
+          <td>Total Net H.T</td>
           <td>Montant TVA</td>
           <td class='ligne1' colspan='4'>Net a payer en MAD</td>
         </tr>
@@ -139,5 +139,8 @@
   </div>
 </div>
 
+<footer>
+<div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
+</footer>
 </body>
 </html>

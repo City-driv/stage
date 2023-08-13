@@ -14,7 +14,26 @@ class LigneFactureController extends Controller
      */
     public function index()
     {
-        $factures=Facture::select('id','ttc','ttva','tht')->where('user_id',Auth::id())->whereIn('type_fact',['facture','bon_livraison','bon_cmd','bon',])->get();
+        if (isset($_GET['date1']) && $_GET['date2']!=='' ) {
+            // dd('la date kaayna');
+            $factures=Facture::select('id','ttc','ttva','tht')->where('user_id',Auth::id())->whereIn('type_fact',['facture','bon_livraison','bon_cmd','bon',])->when($_GET['date1'], function ($query) {
+                return $query->whereBetween('date_facture', [$_GET['date1'], $_GET['date2']]);
+            })->get();;
+
+        }else {
+            $factures=Facture::select('id','ttc','ttva','tht')->where('user_id',Auth::id())->whereIn('type_fact',['facture','bon_livraison','bon_cmd','bon',])->get();
+        }
+        if (isset($_GET['type']) && $_GET['type']=='f') {
+            if (isset($_GET['date1']) && $_GET['date2']!=='' ) {
+                // dd('la date kaayna');
+                $factures=Facture::select('id','ttc','ttva','tht')->where('user_id',Auth::id())->where('type_fact','facture')->when($_GET['date1'], function ($query) {
+                    return $query->whereBetween('date_facture', [$_GET['date1'], $_GET['date2']]);
+                })->get();;
+    
+            }else {
+                $factures=Facture::select('id','ttc','ttva','tht')->where('user_id',Auth::id())->where('type_fact','facture')->get();
+            } 
+        }
         $factureIds = $factures->pluck('id'); // Extract IDs from the collection
         $TTC=$factures->sum('ttc');
         $TTVA=$factures->sum('ttva');

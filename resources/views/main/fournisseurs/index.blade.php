@@ -69,7 +69,7 @@
         <div class='dropdown-menu'>
         <a  style='color:#212529;;text-decoration:none;font-size:20px;' href='{{route('fournisseur.show',$f->id)}}'> Aperçu <i class='fas fa-eye'></i></a><br/>
         <a  style='color:#212529;;text-decoration:none;font-size:20px;' href='{{route('fournisseur.edit',$f->id)}}'> Modifier <i class='fas fa-edit'></i></a><br/>
-        <a  class='' style='color:#212529;;text-decoration:none;font-size:20px;' href='listFactures.php?id=Courtney Rhodes' target='_blank'> liste d'achats <i class='fas fa-list-ul'></i></a><br/>
+        <a  class='' style='color:#212529;;text-decoration:none;font-size:20px;' href='{{route('achat.index',['fr'=>$f->id])}}' target='_blank'> liste d'achats <i class='fas fa-list-ul'></i></a><br/>
         <form action="{{route('fournisseur.destroy',$f->id)}}" method="post" onSubmit="return confirm('confirmation suppression')">
         @csrf
         @method('DELETE')

@@ -18,6 +18,9 @@ class AchatController extends Controller
     public function index()
     {
         $achats=Achat::where('user_id',Auth::id())->get();
+        if(isset($_GET['fr']) && $_GET['fr']!==''){
+            $achats=Achat::where('user_id',Auth::id())->where('fournisseur_id',$_GET['fr'])->get();
+        }
         return view('main.achats.index',compact('achats'));
     }
 

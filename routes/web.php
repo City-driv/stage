@@ -11,6 +11,7 @@ use App\Http\Controllers\GarantieController;
 use App\Http\Controllers\LigneAchatController;
 use App\Http\Controllers\LigneCreditController;
 use App\Http\Controllers\LigneFactureController;
+use App\Http\Controllers\NumerotationController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -94,6 +95,8 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::resource('/achat',AchatController::class);
     Route::get('/getListe/{id}',[AchatController::class,'getListe']);
     Route::resource('/user',UserController::class);
+    Route::post('/facturer/{id}',[FactureController::class,'facturer'])->name('facturer');
+    Route::get('/numerotation',[NumerotationController::class,'index'])->name('numerotation');
 });
 
 

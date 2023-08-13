@@ -258,8 +258,8 @@ body{
                    <li><a href="{{route('achat.index')}}"><i class="fas fa-file-download"></i> Documents entrée</a></li>
                    <li><a href="{{route('mv.sortie')}}"><i class="fas fa-sign-out-alt"></i> Mouvement sorties</a></li> 
                    <li><a href="{{route('mv.entre')}}"><i class="fas fa-arrow-alt-circle-right"></i> Mouvement d'entrés</a></li>  
-                   <li><a href="sortieF.php"><i class="fas fa-clipboard-check"></i> Mouvement Sorties Facturé</a></li> 
-                   <li><a href="entreeF.php"><i class="fas fa-clipboard-check"></i> Mouvement d'entrés Facturé</a></li>  
+                   <li><a href="{{route('mv.sortie',['type'=>'f'])}}"><i class="fas fa-clipboard-check"></i> Mouvement Sorties Facturé</a></li> 
+                   <li><a href="{{route('mv.entre',['type'=>'f'])}}"><i class="fas fa-clipboard-check"></i> Mouvement d'entrés Facturé</a></li>  
                </ul>
                </div>
                <div><i class="fas fa-cog"></i> Paramètres <i class="fas fa-angle-double-down"></i>
@@ -268,7 +268,7 @@ body{
                     $id= Auth::id();
                 @endphp
                 <li><a href="{{route('user.edit',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
-                <li><a href="numeration.php"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
+                <li><a href="{{route('numerotation')}}"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
             </ul>
             </div>
                <div class="btn-disabled"><a href="{{route('logout')}}"><button  class="button" type="submit"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button></a>   </div>

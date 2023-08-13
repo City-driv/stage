@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Facture;
+use App\Models\Numerotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,8 +26,11 @@ class UserController extends Controller
     {
         $id=Auth::user()->id;
         $artDis=Article::where('user_id',$id)->get();
+        $num=Numerotation::where('user_id',$id)->first();
+        $inf=$num->alr_inf;
+        $sup=$num->alr_sup;
         $artAlert=Article::where('user_id',$id)->
-                         where('quantite','<',10)->get();
+                         where('quantite','<',$inf)->where('quantite','>',$sup)->get();
         $artEpuise=Article::where('user_id',$id)->
                          where('quantite','=',0)->get();
         $nba=Article::count();
@@ -77,8 +81,6 @@ class UserController extends Controller
 {
     if ($id == Auth::id()) {
         $user = DB::table('users')->where('id',$id)->first();
-        // dd($user->id);
-        // dd($id);
         return view('auth.editUser', ['user' => $user]);
     } else {
         return back();
@@ -158,8 +160,11 @@ class UserController extends Controller
     public function inscription(UserRequest $request)
     {
         $user = $request->validated();
-        $user['name'] = $request->email;
+        $user['name'] = $request->entreprise_name;
         User::create($user);
+        $uid=User::where('name',$request->entreprise_name)->latest()->first()->id;
+        $num=['user_id'=>$uid,'clt'=>'CLT-','art'=>'ART-','fact'=>'FACT-','bon_liv'=>'BL-','bon_cmd'=>'BC-','bon'=>'BN-','devis'=>'DV-','fact_pro'=>'FP-','fact_d_avoir'=>'FAV-','alr_inf'=>10,'alr_sup'=>5];
+        Numerotation::create($num);
         // dd($user);
         return to_route('connexion')->with('success', 'Compte créé avec succès');
     }

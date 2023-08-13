@@ -14,7 +14,22 @@ class LigneAchatController extends Controller
      */
     public function index()
     {
-        $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->get();
+        if (isset($_GET['date1']) && $_GET['date2']!=='') {
+            $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->when($_GET['date1'], function ($query){
+                return $query->whereBetween('date', [$_GET['date1'], $_GET['date2']]);
+            })->get();;
+        }else {
+            $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->get();
+        }
+        if (isset($_GET['type']) && $_GET['type']=='f') {
+            if (isset($_GET['date1']) && $_GET['date2']!=='') {
+                $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->where('type','Facture')->when($_GET['date1'], function ($query){
+                    return $query->whereBetween('date', [$_GET['date1'], $_GET['date2']]);
+                })->get();;
+            }else {
+                $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->where('type','Facture')->get();
+            }
+        }
         $achatIds = $Achats->pluck('id'); // Extract IDs from the collection
         $TOTAL=$Achats->sum('total');
         $REMISE=$Achats->sum('remiseGlobal');

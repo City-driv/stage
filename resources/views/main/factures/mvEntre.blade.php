@@ -43,26 +43,19 @@ margin-top:10px;
 </style>
 
 
+
     <input type="text" name="numero" placeholder="Recherche par Numéro" style="background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);
         height: 48px;padding: 10px 10px 10px 50px;" class=" col-9 col-md-3" id="searchInput" />   
     <center><h1 style="margin-left:15%;color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Entrés Par période :</h1></center>  
-    <div class="row text-center mb-2" style="margin-left:15%">
-      <input type="date" class="form-control" name="date1" style="width:30%" value=""/>
-      <input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
-      <button type="submit" style="    margin-top: 10px;
-      border-radius: 10px;
-      margin-left: 10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      /* background-color: #2c2815; */
-      color: white;
-      border-radius: 49px;
-      border: 0;
-      background: color: rgba(230,197,90,1);
-      color: rgba(230,197,90,1);
-      background: rgb(54, 54, 54); " class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i></button>
-        
-    </div>
+    <form action="{{route('mv.entre')}}" method="get">
+        <div class="row text-center mb-2" style="margin-left:15%">
+            <input type="date" class="form-control" name="date1" style="width:30%" value=""/>
+            <input type="date" class="form-control" style="width:30%"  name="date2" value=""/>
+            <button type="submit" style="margin-top: 10px;border-radius: 10px;margin-left: 10px;padding-top: 5px;padding-bottom: 5px;border-radius: 49px;border: 0;color: rgba(230,197,90,1);
+            background: rgb(54, 54, 54); " class="col-2 col-md-1"><i class="fa-2x fas fa-calculator"></i>
+            </button>
+        </div>
+    </form>
     <table class="table table-striped">
         <tr class="h5">
             <td>Entreprise</td>
@@ -87,7 +80,9 @@ margin-top:10px;
             <td style="text-align:left;">Prix d'achat</td>
             <td style="text-align:left;">Qte entrés</td>
             <td style="text-align:left;">Date </td>
-            <td style="text-align:left;">Type </td>
+            @if (request()->getQueryString()!=="type=f")
+                <td style="text-align:left;">Type </td>
+            @endif
         </tr>
         <tbody id="tbt">
             @foreach ($ligne_achat as $la)
@@ -97,7 +92,9 @@ margin-top:10px;
                     <td style="text-align:left;">{{$la->price}} DH</td>
                     <td style="text-align:left;">{{$la->qte_recue}}</td>
                     <td style="text-align:left;">{{$la->achat->date}}</td>
-                    <td style="text-align:left;">{{$la->achat->type}}</td>
+                    @if (request()->getQueryString()!=="type=f")
+                        <td style="text-align:left;">{{$la->achat->type}}</td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

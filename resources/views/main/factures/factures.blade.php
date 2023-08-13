@@ -96,7 +96,6 @@ input[type=number] {
   <input style="margin-left:5%;background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline: none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54 54 54);height: 48px;padding: 10px 10px 10px 50px;" class="input col-4" type="text" id="searchInput" placeholder="Chercher par client...">
 </div>
 
- 
 <table class="table text-center table-bordered border-primary">
     <thead class="table-dark">
       <tr>
@@ -136,6 +135,11 @@ input[type=number] {
                       <li>
                           <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Partager <i class="  fab fa-whatsapp"></i></a></li>
                       <li>
+                        @if ($f->type_fact =='devis')    
+                          <li>
+                            <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="facturer({{$f->id}})">Facturer <i class="fas fa-share"></i></a></li>
+                          <li>
+                        @endif
                          <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
                       </li>
                       <li>
@@ -153,7 +157,8 @@ input[type=number] {
         @endforeach
     </tbody>
   </table>
-  @dump($x)
+  {{-- @dump($x) --}}
+
 
   @if (request()->getQueryString()!== null)
       <form action="{{route('facture.index',['type'=>$x])}}"  method="GET">
@@ -190,11 +195,36 @@ input[type=number] {
            <td>{{$TTVA}} DH</td>
            <td>{{$THT}} DH</td>
            <td>{{$TTC}} DH</td>
-           <td><button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
+           <td>
+            <form action="{{route('facture.index',['type'=>$x,'excel'=>'excel'])}}" method="get">
+            @csrf
+            <input type="hidden" name="excel" value="excel">
+            <input type="text" hidden name="type" value="facture">
+              <button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
+            </form>
            </tr>
     </table>
-    
-    
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="ctn">
+
+         
+        </div>
+      </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>    
   <script>
     // const searchInput=document.getElementById('searchInput');
     // const rows = document.querySelectorAll('#ttbody tr');
@@ -219,7 +249,20 @@ input[type=number] {
         });
     });
 
-
+    function facturer (fid){
+      var i=fid;
+        document.querySelector('.ctn').innerHTML=`
+        <form action="/facturer/${fid}" method="POST">
+            @csrf
+            <div class="row">
+              <input type="hidden" hidden name='id' value="${fid}">
+              <label for="" class="h2 text-center">Réf:</label>
+              <input type="text" class="form-control text-center reference" name="ref" style='font-size:30px;' value="FACT-360-21">
+           </div>  
+           <button type="submit" class="btn btn-primary">Facturer</button>
+        </form>
+        `
+    }
     
 
   </script>

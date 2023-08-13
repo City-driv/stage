@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class FactureController extends Controller
 {
     /**
@@ -17,6 +18,12 @@ class FactureController extends Controller
      */
     public function index()
     {
+        // if (isset($_GET['excel'])) {
+        //     $userId=Auth::id();
+        //     $invoiceType='facture';
+        //     dd($invoiceType);
+        //     // return Excel::download(new FacturesExport ($userId, $invoiceType), 'invoices.xlsx');
+        // }
         // $x=null;
         if (isset($_GET['date1'])) {
             $x=$_GET['type'];
@@ -89,6 +96,7 @@ class FactureController extends Controller
                 return $query->whereBetween('date_facture', [$start_date, $end_date]);
             })->get();
         }
+      
 
         // dd($t);
         $TTC=$factures->sum('ttc');
@@ -200,6 +208,14 @@ class FactureController extends Controller
         return response()->json(['message' => $request->user,'ref'=>$request->ref,'client'=>$request->client,'fact'=>$fact_id]);
     }
 
+    public function facturer(Request $request){
+        $u=Auth::id();
+        $facture=Facture::where('user_id',$u)->where('id',$request->id)->first();
+        $facture['type_fact']='facture';
+        $facture['ref']=$request->ref;
+        $facture->save();
+        return to_route('facture.index',['type'=>'f']);
+    }
     /**
      * Display the specified resource.
      */

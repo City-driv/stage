@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AchatController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\FournisseurController;
@@ -97,6 +98,9 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::resource('/user',UserController::class);
     Route::post('/facturer/{id}',[FactureController::class,'facturer'])->name('facturer');
     Route::get('/numerotation',[NumerotationController::class,'index'])->name('numerotation');
+    Route::resource('/admin',AdminController::class);
+    Route::get('/admin/active/{id}',[AdminController::class,'activer'])->name('user.active');
+    Route::get('/admin/desactive/{id}',[AdminController::class,'desactiver'])->name('user.desactive');
 });
 
 

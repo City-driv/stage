@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('ligne_factures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facture_id')->references('id')->on('factures');
-            $table->foreignId('article_id')->references('id')->on('articles');
+            $table->foreignId('facture_id')->references('id')->on('factures')->onDelete('cascade');
+            $table->foreignId('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->integer('quantite')->default(1);
             $table->integer('remise')->default(0);
             $table->integer('tva')->default('20');

@@ -8,12 +8,35 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <link rel="icon" href="logo.jfif" />
     <style type="text/css" media="print"> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+      @media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        -webkit-print-color-adjust: exact;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 6vh;
+        margin-top: 0;
+    }
+    
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+
+}
+         @page { size: A4;margin: 0mm; }
+        html { background-color: #FFFFFF; margin: 0px;  }
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
     margin: 0;  
-   }
+}
    </style>
     <style>
         .example2{
@@ -98,7 +121,7 @@
      .py{
          margin-left:50%;
      }
-     footer{
+     /* footer{
          height:6vh;
          padding-left:20px;
          position: absolute;
@@ -106,7 +129,15 @@
          margin-top: -6vh;display:none;         font-size:17px;
          background:#D3D3D3;
          color:black;
-     }
+     } */
+     .footer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 6.4vh;
+          background-color: #D3D3D3;
+      }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -115,7 +146,10 @@
 <header>
     <div class='row'>
         <div class='col-12 text-center mt-5'>
-          <img style='width: 100px;height: 100px; background-size: 100px 100px;' src=images/t1.jfif class='rounded-circle logo' alt='...'>
+            @php
+                $img=asset('profiles/'.Auth::user()->img);
+            @endphp
+          <img style='width: 100px;height: 100px; background-size: 100px 100px;' src='{{$img}}' class='rounded-circle logo' alt='...'>
           <br><h1 class='Nom'>{{Auth::user()->entreprise_name}}</h1>
         </div>
     </div>
@@ -217,9 +251,10 @@
               </div>
           </div>
       </div>
-    </div><footer>
-    <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i> 
-     /ICE:{{Auth::user()->ice}}</footer>
+    </div>
+    <footer>
+    <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i></label>
+    Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</footer>
 
 </body>
 </html>

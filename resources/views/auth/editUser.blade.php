@@ -64,12 +64,12 @@
             <input type='password' name='password' value="{{$user->password}}" class='form-control pass' placeholder='***********' />
             <br/>
             <input type='file' name='img' accept='image/*' class='form-control ' id='inputGroupFile01'>
-            <img class='card-img-top img' name='Logo' src="{{asset('/profiles/'.$user->img)}}" value='{{$user->img}}'  alt='...'/>   
+            <img class='card-img-top img' name='Logo' src="{{asset('/profiles/'.$user->img)}}" value='{{$user->img}}'  alt='...'/>
                     </div>
-                    </div> 
+                    </div>
                     <br>
                     <button type="submit" class="btn btn-success  mb-2"><i class="fas fa-file-download"></i> Enregistrer</button>
-</form>
+        </form>
 </div>
 <script>
 document.querySelector("input[type='file']").addEventListener("change",function(){

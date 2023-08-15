@@ -11,10 +11,10 @@ class Client extends Model
     protected $fillable=['name','adresse','telephone','ice','if','ville','user_id'];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id')->cascadeDelete();
     }
     public function factures(){
-        return $this->hasMany(Facture::class); 
+        return $this->hasMany(Facture::class)->cascadeDelete();
     }
 
 }

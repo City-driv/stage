@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='en' class="a4-page">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,17 @@
     <link rel="icon" href="logo.png" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <style type="text/css" media="print"> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        .a4-page {
+    height: 297mm; /* Hauteur du format A4 en millimètres */
+    width: 210mm; /* Largeur du format A4 en millimètres */
+}
+
+@media print {
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+}
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -74,7 +84,15 @@ tr:nth-child(odd){
 tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
-.footer{
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.4vh;
+    background-color: #333333;
+}
+/* .footer{
     
     margin: auto;
   position: absolute;
@@ -83,7 +101,7 @@ tr:nth-child(even){
   width: 100%;
   height:6.4vh;
  background-color: #333333;
- margin-top: 190vh;height:8vh;}
+ margin-top: 190vh;height:8vh;} */
 .footer .col-6{
     
      color: white;
@@ -93,8 +111,9 @@ tr:nth-child(even){
 }
 .div {
     background-color:#FDD835 ;
-    height:6.4vh;
-     margin-top: 190vh;height:8vh;   
+    /* height:6.4vh; */
+     margin-top: 190vh;
+     /* height:8vh;    */
 }
 .div i{
         color: black;
@@ -113,7 +132,10 @@ tr:nth-child(even){
 <div class='row pt-4' >
   <div class='col-6'>
       <div class='row mt-4' style='padding-left: 30px;'>
-          <div class='col-3'><img src=images/t1.jfif style='
+        @php
+            $img=asset('profiles/'.Auth::user()->img);
+        @endphp
+          <div class='col-3'><img src='{{$img}}' style='
             height: 80px;
             width: 80px;
             background-size:  80px 80px;' alt='' srcset=''></div>
@@ -199,14 +221,13 @@ tr:nth-child(even){
  </div>
    
  </div>
-</div><div class="footer">
+</div>
+    <div class="footer">
        <div class="row">
-           <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
-           <div class="col-6 div text-center" style=" color: #333333;
-            font-size: 14px;
-            font-family: cursive;
-            text-align: center;">
-               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} </div>
+           <div class="col-6 text-center">merci pour votre Confiance</div>
+           <div class="col-6 div text-center" style=" color: #333333;font-size: 14px;font-family: cursive;">
+               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}}
+            </div>
        </div>
    </div>
       

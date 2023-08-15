@@ -33,9 +33,9 @@ class UserController extends Controller
                          where('quantite','<',$inf)->where('quantite','>',$sup)->get();
         $artEpuise=Article::where('user_id',$id)->
                          where('quantite','=',0)->get();
-        $nba=Article::count();
-        $nbc=Client::count();
-        $nbd=Facture::count();
+        $nba=Article::where('user_id',$id)->count();
+        $nbc=Client::where('user_id',$id)->count();
+        $nbd=Facture::where('user_id',$id)->count();
         return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba,'nbc'=>$nbc,'nbd'=>$nbd]);
     }
 

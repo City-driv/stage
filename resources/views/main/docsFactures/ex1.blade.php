@@ -8,7 +8,17 @@
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
     <link rel="icon" href="logo.png" />
     <style type='text/css' media='print'> 
-      @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+       .a4-page {
+    height: 297mm; /* Hauteur du format A4 en millimètres */
+    width: 210mm; /* Largeur du format A4 en millimètres */
+}
+
+@media print {
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+}
       body {
   -webkit-print-color-adjust:exact;
   border: none !important;
@@ -48,9 +58,11 @@
     /* padding-right:15px; */
     /* margin-top: 93.2vh; */
     /* margin-top: 192.6vh; */
+    height: 6.4vh;
     font-family:cursive;
     background:#6EC6F7;
   }
+  
   .tr{
       }
     </style>
@@ -93,7 +105,10 @@
       </div>
       <div  style='background-color: #A8DDFA' class='col-5 h5 pt-2'>
         
-        <center><h5></h5></center>
+        <center>
+          <h5>ICE :{{Auth::user()->ice}}</h5>
+          <p>{{Auth::user()->adresse}}</p>
+        </center>
       </div>
     </div>
     <div class='row mt-4'>

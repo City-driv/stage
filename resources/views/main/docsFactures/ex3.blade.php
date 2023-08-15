@@ -11,12 +11,35 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
 
     <style type="text/css" media="print"> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+         @page { size: A4;margin: 0mm; }
+        html { background-color: #FFFFFF; margin: 0px;  }
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
     margin: 0;  
-   }
+}
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        -webkit-print-color-adjust: exact;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 6vh;
+        margin-top: 0;
+    }
+    
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+
+}
    </style>
     <style>
       .example4{
@@ -27,15 +50,16 @@
          color: white;
          font-size:33px;
          border-bottom:  4px solid #137A5C;
-         
-         
         }
         .footer{
             background-color: rgb(72, 72, 72);
+            width: 100%;
             height: 10vh;
             color: white;
             border-top: 7px solid #137A5C;
-            osition: absolute;margin-top:101.5vh;        }
+            position: absolute;
+            /* margin-top:101.5vh;   */
+                }
       .logo{
            width: 15%;
            height: 80px;
@@ -134,7 +158,10 @@
      <div class='example4'>
 <div class='row text-center'>
    <div class='entreprise pt-2'>
-     <img src=images/t1.jfif class='logo'   onerror=this.onerror=null; this.src='images/alt.jpg'  alt='' srcset=''>
+    @php
+      $img=asset('profiles/'.Auth::user()->img);
+    @endphp
+     <img src='{{$img}}' class='logo'   onerror=this.onerror=null; this.src='images/alt.jpg'  alt='' srcset=''>
      <label for='' class='Nom text-center'>test</label>   
      </div>
      <div class='row'>

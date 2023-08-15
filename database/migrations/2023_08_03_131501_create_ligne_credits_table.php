@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ligne_credits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('credit_id')->references('id')->on('credits');
+            $table->foreignId('credit_id')->references('id')->on('credits')->onDelete('cascade');
             $table->float('montant');
             $table->date('date');
             $table->string('observation')->nullable();

@@ -157,7 +157,10 @@ input[type=number] {
         @endforeach
     </tbody>
   </table>
-  {{-- @dump($x) --}}
+  {{-- @if (isset($_GET['trimestre']))
+  @dump( $_GET['trimestre'])
+      
+  @endif --}}
 
 
   @if (request()->getQueryString()!== null)
@@ -198,8 +201,11 @@ input[type=number] {
            <td>
             <form action="{{route('facture.index',['type'=>$x,'excel'=>'excel'])}}" method="get">
             @csrf
+            @if (isset($_GET['trimestre']))
+              <input type="hidden" name="trimestre" value="{{$_GET['trimestre']}}">
+            @endif
             <input type="hidden" name="excel" value="excel">
-            <input type="text" hidden name="type" value="facture">
+            <input type="text" hidden name="type" value="{{$x}}">
               <button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
             </form>
            </tr>

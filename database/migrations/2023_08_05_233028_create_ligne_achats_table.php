@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('ligne_achats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('achat_id')->references('id')->on('achats');
-            $table->foreignId("article_id")->references('id')->on('articles');
+            $table->foreignId('achat_id')->references('id')->on('achats')->onDelete('cascade');
+            $table->foreignId("article_id")->references('id')->on('articles')->onDelete('cascade');
             $table->integer('qte_cmd');
             $table->integer('qte_recue');
             $table->float('price');

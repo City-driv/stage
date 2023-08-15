@@ -19,8 +19,8 @@ return new class extends Migration
             $table->float('ttc');
             $table->float('ttva');
             $table->float('tht');
-            $table->foreignId('client_id')->references('id')->on('clients');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('exemple')->default('ex1');
             $table->string('mode_paiement')->nullable();
             $table->timestamps();

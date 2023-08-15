@@ -11,10 +11,10 @@ class Facture extends Model
     protected $fillable=['ref','type_fact','date_facture','client_id','user_id','ttc','tht','ttva','exemple','mode_paiement'];
 
     public function userFact(){
-       return $this->belongsTo(User::class,'user_id'); //facture belongs to a single User .
+       return $this->belongsTo(User::class,'user_id')->cascadeDelete(); //facture belongs to a single User .
     }
     public function clientFact(){
-       return $this->belongsTo(Client::class,'client_id'); //facture belongs to a single Client .
+       return $this->belongsTo(Client::class,'client_id')->cascadeDelete(); //facture belongs to a single Client .
     }
     public function lignes(){
       return $this->hasMany(Ligne_facture::class);

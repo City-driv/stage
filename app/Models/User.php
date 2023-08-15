@@ -57,14 +57,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function clients(){
-        return $this->hasMany(Client::class);
+    public function clients()
+    {
+        return $this->hasMany(Client::class)->cascadeDelete();
     }
-    public function articles(){
-        return $this->hasMany(Article::class);
+    public function articles()
+    {
+        return $this->hasMany(Article::class)->cascadeDelete();
     }
-    public function fournisseurs(){
-        return $this->hasMany(Fournisseur::class);
+    public function fournisseurs()
+    {
+        return $this->hasMany(Fournisseur::class)->cascadeDelete();
     }
-    
+    public function documents()
+    {
+        return $this->hasMany(Facture::class)->cascadeDelete();
+    }
 }

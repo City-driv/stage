@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('nom_banque')->nullable();
             $table->string('email');
             $table->string('site_internet')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

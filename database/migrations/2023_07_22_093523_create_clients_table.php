@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ice')->nullable();
             $table->string('if')->nullable();
             $table->string('ville');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

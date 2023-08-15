@@ -8,7 +8,9 @@
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
     <link rel="icon" href="logo.png" />
     <style type='text/css' media='print'> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        @page { size: A4;margin: 0mm; }
+        html { background-color: #FFFFFF; margin: 0px;  }
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -37,7 +39,8 @@
     padding-right:15px;
     font-family:cursive;
     background:rgb(255, 248, 151);
-    margin-top: 192vh;  }
+    /* margin-top: 192vh; */
+    }
   .tr{
       }
     </style>
@@ -47,12 +50,15 @@
 <div class="ligne"></div>
  
 <footer>
-<div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}} /Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->js}} /ICE:{{Auth::user()->ice}}</div></footer>
+<div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}} /Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div></footer>
 <div class=''>
   <div class='row mt-4' style='border-bottom: 1px solid rgb(105, 104, 0);'>
     <div class='col-9 h1 text-center' style='font-size:75px;font-familly:cursive;'>{{Auth::user()->entreprise_name}}</div>
     <div class='col-3'>
-      <img src=images/t1.jfif style='width: 90px;height: 90px;background-size: 90px 90px;' alt='' srcset=''>
+      @php
+        $img=asset('profiles/'.Auth::user()->img);
+      @endphp
+      <img src={{$img}} style='width: 90px;height: 90px;background-size: 90px 90px;' alt='' srcset=''>
       <div class='type h5'>
         {{$facture->type_fact}}
         <br>
@@ -78,7 +84,10 @@
     </div>
     <div  style='background-color: rgb(255, 248, 151)' class='col-5 h5 pt-2'>
     
-    <center><h5></h5></center>
+    <center>
+      <h5>ICE :{{Auth::user()->ice}}</h5>
+      <p>{{Auth::user()->adresse}}</p>
+    </center>
     </div>
   </div>
   <div class='row mt-4'>

@@ -117,7 +117,10 @@
 <header>
     <div class='row'>
         <div class='col-12 text-center mt-5'>
-          <img style='width: 100px;height: 100px; background-size: 100px 100px;'  src=images/t1.jfif class='rounded-circle logo' alt='...'>
+            @php
+                $img=asset('profiles/'.Auth::user()->img);
+            @endphp
+          <img style='width: 100px;height: 100px; background-size: 100px 100px;'  src='{{$img}}' class='rounded-circle logo' alt='...'>
           <br><h1 class='Nom'>test</h1>
         </div>
     </div>

@@ -11,6 +11,24 @@
         <table>
             <thead>
                 <tr>
+                    <th>Entreprise</th>
+                    <th>Montant Total TVA</th>
+                    <th>Montant Total THT</th>
+                    <th>Montant Total TTC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{$name}}</td>
+                    <td>{{$tva}}</td>
+                    <td>{{$tht}}</td>
+                    <td>{{$ttc}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
                     <th>ref</th>
                     <th>Montant Tva</th>
                     <th>Montant HT</th>
@@ -32,8 +50,8 @@
                         <td>{{$fc->mode_paiement}}</td>
                         <td>{{$fc->date_facture}}</td>
                         <td>{{$fc->type_fact}}</td>
-                        <td>{{$fc->client->ice}}</td>
-                        <td>{{$fc->client->if}}</td>
+                        <td>{{$fc->clientFact->ice}}</td>
+                        <td>{{$fc->clientFact->if}}</td>
                     </tr>
                 @endforeach
             </tbody>

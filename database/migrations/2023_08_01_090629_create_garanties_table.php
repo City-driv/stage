@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('garanties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients');
-            $table->foreignId('article_id')->references('id')->on('articles');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreignId('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('email');
             $table->date('date_achat');
             $table->date('date_fin');

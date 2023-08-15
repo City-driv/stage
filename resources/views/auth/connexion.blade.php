@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    {{-- <link rel="icon" href="logo.png" /> --}}
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
       button
@@ -44,16 +44,11 @@ font-family:system-ui;">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-1 col-xs-1"></div>
         <div class="col-xl-4 col-lg-4 col-md-4  col-sm-10 col-xs-10">
             <div class="row">
-                <div class="col-12 text-center fw-bold"  style="font-size:70px;  
-                       background: -webkit-linear-gradient(#ff3c00, rgb(204 204 253));                -webkit-background-clip: text; font-family:cursive; font-weight: 900; -webkit-text-fill-color: transparent;">
-                <a href="/">
-                      WORFAC 
-                   </a> 
+                <div class="col-12 text-center fw-bold"  style="font-size:70px;background: -webkit-linear-gradient(#ff3c00, rgb(204 204 253));-webkit-background-clip: text; font-family:cursive; font-weight: 900; -webkit-text-fill-color: transparent;">
+                  <a href="/">WORFAC</a>
                 </div>
                 <div class="col-12 mb-3" style="border-radius: 7px;box-shadow: 5px 10px 8px #888888;">
-                      <div class="row pt-3 pb-5 fs-3" style="padding-left: 10px;background-color:#f60;
-                                              color: white;
-                                              border-radius:4px;">
+                      <div class="row pt-3 pb-5 fs-3" style="padding-left: 10px;background-color:#f60;color: white;border-radius:4px;">
                           <div class="col-12">
                             Bienvenue chez WORFAC
                           </div>

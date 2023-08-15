@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('numerotations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('clt')->default('CLT-');
             $table->string('art')->default('ART-');
             $table->string('fact')->default('FACT-');

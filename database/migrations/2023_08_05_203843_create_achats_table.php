@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('achats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fournisseur_id')->references('id')->on('fournisseurs');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('fournisseur_id')->references('id')->on('fournisseurs')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('numero');
             $table->date('date');
             $table->float('total');

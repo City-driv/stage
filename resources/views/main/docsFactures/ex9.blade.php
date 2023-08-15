@@ -8,10 +8,21 @@
     <link rel="icon" href="logo.png" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <style type="text/css" media="print"> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+             .a4-page {
+    height: 297mm; /* Hauteur du format A4 en millimètres */
+    width: 210mm; /* Largeur du format A4 en millimètres */
+}
+
+@media print {
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+}
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
+    padding-top:5px;
     margin: 0;  
    }
    </style>
@@ -72,7 +83,15 @@ tr:nth-child(odd){
 tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
-.footer{
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.4vh;
+    background-color: #521400;
+}
+/* .footer{
     
     margin: auto;
   position: absolute;
@@ -81,7 +100,7 @@ tr:nth-child(even){
   width: 100%;
   height:6.4vh;
  background-color: #521400;
- margin-top: 160vh;height:8vh;      }
+ margin-top: 160vh;height:8vh;      } */
 .footer .col-6{
     
      color: white;
@@ -111,10 +130,11 @@ tr:nth-child(even){
 <div class='row pt-4' >
   <div class='col-6'>
       <div class='row mt-4' style='padding-left: 30px;'>
-          <div class='col-3'><img src=images/t1.jfif style='
-            height: 80px;
-            width: 80px;
-            background-size:  80px 80px;' alt='' srcset=''></div>
+          <div class='col-3'>
+            @php
+                $img=asset('profiles/'.Auth::user()->img);
+            @endphp
+            <img src='{{$img}}' style='height: 80px;width: 80px;background-size:  80px 80px;' alt='' srcset=''></div>
           <div class='col-9  nomE'> {{Auth::user()->entreprise_name}}</div>
           <div class='col-12 h3'>Contact</div>
           <div class='col-12 h6'><i class='fas fa-mobile-alt'></i>{{Auth::user()->telephone}}</div>
@@ -204,9 +224,7 @@ tr:nth-child(even){
        <div class="row">
        <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
            <div class="col-6 div text-center" style=" color: #521400;
-            font-size: 14px;
-            font-family: cursive;
-            text-align: center;">
+            font-size: 14px;font-family: cursive;text-align: center;">
                Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}}</div>
        </div>
    </div>

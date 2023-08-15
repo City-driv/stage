@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('quantite');
             $table->float('price');
             $table->string('tva');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('type')->nullable();
-            $table->string('ref')->nullable();
+            $table->string('ref');
             $table->float('p_marchandise');
             $table->float('p_avance');
             $table->float('p_reste');

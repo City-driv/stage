@@ -5,14 +5,26 @@
 <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
 @section('content')
+<center>
+  <h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter Credit</h1>
+</center>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{route('credit.store')}}" method="post" enctype="multipart/form-data">
   @csrf
     <div class="row mt-2">
         <div class="col-11 col-md-4 mt-1">
          <div class="form-floating">
              <select required name='client_id' class="form-select client" id="clients" aria-label="Floating label select example">
-             <option value="">sélectionnez client</option>
+             <option >sélectionnez client</option>
              @foreach ($clients as $cl)
                 <option value='{{$cl->id}}'>{{$cl->name}}</option> 
              @endforeach
@@ -43,22 +55,13 @@
            </div>
            
         </div>
-        {{-- <div class="col-11 col-md-4 mt-1" style='display:none'>
-         <div class="form-floating">
-             <select name='article' class="form-select article" id="floatingSelectGrid" aria-label="Floating label select example">
-               <option value="">sélectionnez article</option>
-              <option value='497'>DUCIMUS EAQUE NON A</option><option value='498'>ET AUT ET EST DUCIMU</option><option value='499'>PHONE</option><option value='500'>SOURIS</option>            </select>
-             <label for="floatingSelectGrid" class='h5'>Aticles:</label>
-             </div>
-        </div> --}}
-        
        
     </div>
     <div class="row"  style="margin-left: 10px;">
     <div  style="margin-left: 10px;" class="col-11 col-md-3 mt-1">
            <div class="row h6">
               <label for="" class="col-11">Prix Marchandise (DH)</label>
-              <input required type='number' name='p_marchandise' id="pm" value='0'  class="form-control col-11 prix" >
+              <input  type='number' name='p_marchandise' id="pm"   class="form-control col-11 prix" >
            </div>
         </div>  
       <div  style="margin-left: 10px;" class="col-11 col-md-3 mt-1">
@@ -98,7 +101,7 @@
          <div  style="margin-left: 10px;" class="col-11 col-md-3 mt-1">
           <div class="row h6">
             <label for="">Date crédits:</label>                                           
-            <input required type="date" id="date" name="date_credit" class="form-control" id=""> 
+            <input  type="date" id="date" name="date_credit" class="form-control" id=""> 
           </div>
          </div>
          <div  style="margin-left: 10px;" class="col-11 col-md-3 mt-1">

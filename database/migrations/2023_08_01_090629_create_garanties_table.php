@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->date('date_achat');
             $table->date('date_fin');
-            $table->integer('num_serie');
+            $table->string('num_serie');
             $table->timestamps();
         });
     }

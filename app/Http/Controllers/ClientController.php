@@ -18,9 +18,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $id=Auth::user()->id;
-        $clients=Client::where('user_id',$id)->get();;
-        return view('main.clients.index',compact('clients'));
+        $id = Auth::user()->id;
+        $clients = Client::where('user_id', $id)->get();;
+        return view('main.clients.index', compact('clients'));
     }
 
     /**
@@ -43,13 +43,13 @@ class ClientController extends Controller
     {
         // dd($request->post());
         $request->validate([
-            'name'=> 'required',
-            'adresse'=> 'required',
-            'telephone'=>'required',
-            'ville'=>'required'
+            'name' => 'required',
+            'adresse' => 'required',
+            'telephone' => 'required',
+            'ville' => 'required'
         ]);
         // $request['if']=212121;
-        $request['user_id']=Auth::id();
+        $request['user_id'] = Auth::id();
         // dd($request->post());
         Client::create($request->post());
 
@@ -62,7 +62,7 @@ class ClientController extends Controller
         //     'ville'=>$request->ville,
         //     'user_id'=>'1'
         // ]);
-        return to_route('clients.index')->with('success','Nouveau client ajoutee');
+        return to_route('clients.index')->with('success', 'Nouveau client ajoutee');
     }
 
     /**
@@ -73,7 +73,6 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        
     }
 
     /**
@@ -84,7 +83,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('main.clients.edit',compact('client'));
+        return view('main.clients.edit', compact('client'));
     }
 
     /**
@@ -96,8 +95,14 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $request->validate([
+            'name' => 'required',
+            'adresse' => 'required',
+            'telephone' => 'required',
+            'ville' => 'required'
+        ]);
         $client->fill($request->post())->save();
-        return to_route('clients.index')->with('success','Client bien modifier');
+        return to_route('clients.index')->with('success', 'Client modifier');
     }
 
     /**
@@ -109,13 +114,14 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return to_route('clients.index')->with('success','deleted successfuly');
+        return to_route('clients.index')->with('success', 'Client supprimer');
     }
 
-    public function importCl(Request $request){
-        $request->validate(['excelFileCl'=>'required']);
-        Excel::import(new ClientsImport ,$request->file('excelFileCl'));
+    public function importCl(Request $request)
+    {
+        $request->validate(['excelFileCl' => 'required|mimes:xlsx, xls']);
+        Excel::import(new ClientsImport, $request->file('excelFileCl'));
 
-        return to_route('clients.index')->with('success','Clients importées');
+        return to_route('clients.index')->with('success', 'Clients importées');
     }
 }

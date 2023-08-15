@@ -11,6 +11,6 @@ class Article extends Model
     protected $fillable=['description','quantite','price','tva','user_id'];
     
     public function user() {
-        return $this->belongsTo(User::class,'user_id')->cascadeDelete(); //article belongs to a single User. One
+        return $this->belongsTo(User::class,'user_id'); //article belongs to a single User. One
     }
 }

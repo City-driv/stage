@@ -33,19 +33,19 @@
         </div>
         <div class="col-10 col-md-6 h5">
                 Email :
-            <input type="email" style="" name="email" id="" class="form-control">
+            <input type="email" value="{{old('email')}}" name="email"  class="form-control">
         </div>
         <div class="col-10 col-md-6"></div>
         <div class="col-10 col-md-6 h5">Date d'achat 
-            <input type="date" name="date_achat" class="form-control">
+            <input type="date" value="{{old('date_achat')}}" name="date_achat" class="form-control">
         </div>
         <div class="col-10 col-md-6 h5">
                 Date fin garantie :
-                <input type="date" name="date_fin" class="form-control" >
+                <input type="date" value="{{old('date_fin')}}" name="date_fin" class="form-control" >
         </div>
         <div class="col-10 col-md-6 h5">
             Numéro série  :
-            <input type="number" name="num_serie" class="form-control" id="">
+            <input type="number" value="{{old('num_serie')}}" name="num_serie" class="form-control" >
         </div>
         <div class="col-10"> 
             <button type="submit" class="btn btn-primary" ><i class="fas fa-download"></i> Ajout Garantie</button>

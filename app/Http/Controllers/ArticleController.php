@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticleRequest;
 use App\Imports\ArticlesImport;
 use App\Models\Article;
+use App\Models\Numerotation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,9 +17,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $id=Auth::user()->id;
-        $articles=Article::where('user_id',$id)->get();
-        return view('main.articles.index',compact('articles'));
+        $id = Auth::user()->id;
+        $articles = Article::where('user_id', $id)->get();
+        return view('main.articles.index', compact('articles'));
     }
 
     /**
@@ -73,21 +74,23 @@ class ArticleController extends Controller
         return to_route('article.index')->with('success', 'Article supprimer');
     }
 
-    public function import(Request $request){
-        $request->validate(['excelfile'=>'required']);
-        Excel::import(new ArticlesImport,$request->file('excelfile'));
-        return to_route('article.index')->with('success','articles importees');
+    public function import(Request $request)
+    {
+        $request->validate(['excelfile' => 'required|mimes:xlsx, xls']);
+        Excel::import(new ArticlesImport, $request->file('excelfile'));
+        return to_route('article.index')->with('success', 'articles importees');
     }
 
-    public function stock(){
-        $id=Auth::user()->id;
-        $artDis=Article::where('user_id',$id)->get();
-        $artAlert=Article::where('user_id',$id)->
-                         where('quantite','<',10)->get();
-        $artEpuise=Article::where('user_id',$id)->
-                         where('quantite','=',0)->get();
-        
+    public function stock()
+    {
+        $id = Auth::user()->id;
+        $inf=Numerotation::where('user_id',$id)->first()->alr_inf;
+        // dd($inf);
+        $artDis = Article::where('user_id', $id)->where('quantite','>',0)->get();
+        $artAlert = Article::where('user_id', $id)->where('quantite', '<', $inf)->get();
+        $artEpuise = Article::where('user_id', $id)->where('quantite', '<=', 0)->get();
+
         // $article=Article::all();
-        return view('main.articles.etat_stock',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise]);
+        return view('main.articles.etat_stock', ['artD' => $artDis, 'artA' => $artAlert, 'artE' => $artEpuise]);
     }
 }

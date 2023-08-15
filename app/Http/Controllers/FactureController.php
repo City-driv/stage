@@ -177,7 +177,7 @@ class FactureController extends Controller
 
         $user = User::where('id', Auth::id())->first();
         $clients = $user->clients;
-        $articles = $user->articles;
+        $articles = $user->articles->filter(function ($article) {return $article->quantite > 0;});
         // dd($clients);
         if (isset($_GET['t']) && isset($_GET['Ex'])) {
             // dump($_GET['t'] . '__'.$_GET['Ex']);

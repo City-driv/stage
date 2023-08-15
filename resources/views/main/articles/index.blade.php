@@ -17,12 +17,12 @@
         <form class="row g-3" method="POST" action="{{route('import.excel')}}" enctype="multipart/form-data">
             @csrf
             <div class="col-auto">
-              <input type="file" class="form-control" name="excelfile" >
+              <input type="file" accept='.xlsx,.xls,' class="form-control" name="excelfile" >
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-success mb-3"><i class="fas fa-file-excel" aria-hidden="true"></i>Importer Articles</button>
             </div>
-          </form>
+        </form>
     </div>
     </div>
     {{-- <div style="margin-left: 2%"> --}}
@@ -48,7 +48,7 @@
                 <form action="{{route('article.destroy',$article->id)}}" method="post">
                 @csrf
                 @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="fas fa-minus-circle" aria-hidden="true"></i></button>
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');" class="btn btn-danger"><i class="fas fa-minus-circle" aria-hidden="true"></i></button>
                 </form>
             </td>
 
@@ -64,7 +64,7 @@
        <div class="row"></div>
           <div class="mb-3">
        <label for="description" class="form-label">Description :</label>
-       <input type="text" style="width:50%" class="form-control col-8" name="description" placeholder="ARTICLE 568/12" />
+       <input type="text" style="width:50%" required class="form-control col-8" name="description" placeholder="ARTICLE" />
      </div>
      <div class="mb-3">
        <label for="quantite"  class="form-label">Quantite:</label>
@@ -72,11 +72,11 @@
      </div>
      <div class="mb-3">
        <label for="price"  class="form-label">PUHT(DH):</label>
-       <input type="number" value="1" min="0" style="width:50%" class="form-control col-8" name="price" placeholder="20" />
+       <input type="number" value="1" min="0" style="width:50%" class="form-control col-8" name="price" required placeholder="" />
      </div>
      <div class="mb-3">
        <label for="tva"  class="form-label">Tva(%):</label>
-       <input type="number" value="20" min="0" style="width:50%" class="form-control col-8" name="tva" placeholder="10" />
+       <input type="number" value="20" min="0" style="width:50%" class="form-control col-8" name="tva" placeholder="20" />
      </div>
      <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Ajouter Article</button>
           <button type="button" class="btn btn-danger" onclick="annuler()"><i class="fas fa-backspace"></i> Annuler </button>

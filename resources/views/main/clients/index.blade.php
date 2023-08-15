@@ -35,12 +35,12 @@
             <form class="row g-3" method="POST" action="{{route('import.excel.client')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-auto">
-                  <input type="file" class="form-control" name="excelFileCl" >
+                  <input type="file" accept='.xlsx,.xls'  class="form-control" name="excelFileCl" >
                 </div>
                 <div class="col-auto">
                   <button type="submit" class="btn btn-success mb-3"><i class="fas fa-file-excel" aria-hidden="true"></i>Importer Clients</button>
                 </div>
-              </form>
+            </form>
         </div>
         </div>
         
@@ -66,11 +66,10 @@
                     <td>{{$client->if}}</td>
                     <td>{{$client->ville}}</td>
                     <td class="d-flex">
-                        
                         <form action="{{route('clients.destroy',$client->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" onclick="return confirme('vous etes sur')" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
+                        <button type="submit" onclick="return confirm('vous etes sur')" class="btn btn-danger"><i class="fas fa-minus-circle"></i></button>
                         </form>
                         <a href="{{route('clients.edit',$client->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                     </td>

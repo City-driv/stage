@@ -28,23 +28,17 @@
    }
    .Ajouter,.Modifier,.Liste{
     margin-left: 20%;
-    */: ;
     padding-left: 20px;
-    /* padding-top: 2%; */
     border-radius: 10px;
-    /* box-shadow: rgb(252 183 66) 5px 10px 20px inset; */
     padding-bottom: 2%;
-    /* margin-top: -15%; */
     width: 95%;
     border: 1px solid black;
     position: relative;
     transform: scale(0);
-    /* top: 0; */
     margin: auto;
     position: absolute;
     top: 0;
     left: 0;
-    /* bottom: 0; */
     margin-top: 10%;
     right: 0;
     border-radius: 1px;
@@ -65,10 +59,9 @@
      }
     </style>
 <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion crédits :</h1></center> <form action="/listeCredits.php"  method="post">
-    <input  type="text" name="numero" placeholder="Recherche par Client" style="    background: #f3f3f3 0 0 no-repeat padding-box;
+    <input  type="text" name="numero" placeholder="Recherche par Client" style="background: #f3f3f3 0 0 no-repeat padding-box;
         border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;
         padding: 10px 10px 10px 50px;" class=" col-9 col-md-3 mt-2" id="searchInput" />
-      {{-- <button name="submit2" type="submit"  style='' class="search"><i class="fas fa-search"></i>Chercher</button> --}}
     </form>
         <table class='table table-striped mt-2'>
         <tr class='h3'>
@@ -82,7 +75,6 @@
         </tr>
         <tbody id="tbt">
         @foreach ($credits as $cr)
-            
             <tr>
                 <td class="cl">{{$cr->client->name}}</td>
                 <td>{{$cr->client->telephone}}</td>
@@ -193,4 +185,57 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{asset('js/credit.js')}}"></script>
+    <script>
+        
+function Liste(id){
+    document.querySelector(".LPay").innerHTML=`
+    <div class="col-3 text-center bg-dark text-white h5 pt-1 pb-1" style="border:1px solid white;">Montant</div>
+    <div class="col-2 text-center bg-dark text-white h5 pt-1 pb-1" style="border:1px solid white;">Date</div>
+    <div class="col-2 text-center bg-dark text-white h5 pt-1 pb-1" style="border:1px solid white;">reçu</div>
+    <div class="col-3 text-center bg-dark text-white h5 pt-1 pb-1" style="border:1px solid white;">Observation</div>
+    <div class="col-2 text-center bg-dark text-white h5 pt-1 pb-1" style="border:1px solid white;">Etat</div>
+    `;
+    document.querySelector(".Liste").style.transform="scale(1)";
+    $.ajax({
+        url: '/getPayments/' + id,
+        type: 'GET',
+        success: function(response) {
+            // Afficher les factures des client correspondants
+            var result = response.payments;
+            alert('success');
+            if (result.length > 0) {
+              //  console.log(response.factures);
+                $.each(result, function(index, lg) {
+                    document.querySelector(".LPay").innerHTML+=`
+                    <div class="col-3 text-center bg-dark text-white pt-1 pb-1 h5" style="border:1px solid white;">${lg.montant} DH</div>
+                    <div class="col-2 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;">${lg.date}</div>
+                    <div class="col-2 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;"><i onclick='imprimer(${lg.id})' style='cursor: pointer;background-color: #c7cdd5;border-radius: 5px;border: 1px solid black;color: black;padding: 10px;' class="fas fa-print"> Imprimer</i></div>
+                    <div class="col-3 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;">${lg.observation}</div>
+                    <div class="col-2 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                    style="background: white;color: black;border: 1px solid white;border-radius: 0;"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cog"></i> action</button>
+                    <div class="dropdown-menu" style="text-align: left;">
+                    <a style="text-decoration: none;color: white;background: #0f950f;padding: 4px;border-radius: 3px;
+                     border: 1px solid #9a9797;" href="modifPaiement.php?id=${lg.id}"><i class="fas fa-edit"></i>Modifier</a>
+                     <br/>
+                     <form action="/deleteLigne/${lg.id}"  method="post" onSubmit="return confirm('confirmation suppression')">
+                     @csrf
+                    <button style="color: white;background: #ff4949;border: 1px solid #8f8f8f;
+                     border-radius: 5px;" type="submit" name="suprimerPaiment" ><i class="fas fa-trash-alt"></i>Supprimer</button>
+                     </form>
+                    </div>
+                    `;
+                  });
+                
+            } else {
+                document.querySelector(".LPay").innerHTML+='Aucun payement correspondant trouvé.';
+            }
+        },
+        error: function() {
+            alert('Une erreur s\'est produite lors de la récupération des paiements.');
+        }
+    });
+}
+    </script>
 @endsection

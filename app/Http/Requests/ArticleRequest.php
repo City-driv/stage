@@ -28,4 +28,5 @@ class ArticleRequest extends FormRequest
             'quantite'=>'required'
         ];
     }
+    
 }

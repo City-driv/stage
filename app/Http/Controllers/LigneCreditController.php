@@ -36,9 +36,14 @@ class LigneCreditController extends Controller
         $cr->save();
         return response()->json(['message'=>$request->post()]);
     }
+
     public function getLignes($creditId){
         $result = Ligne_credit::where('credit_id',$creditId)->get();
         return response()->json(['payments'=>$result]);
+    }
+    public function deleteLigne($id){
+        Ligne_credit::where('id',$id)->first()->delete();
+        return to_route('credit.index');
     }
 
     /**

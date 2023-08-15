@@ -55,7 +55,11 @@
     
     <div class="col-12 col-md-4">
     <input value="{{$fournisseur->photo}}" type='file' name='photo' accept='image/*' class='form-control' id='inputGroupFile01'>
-    <img src="{{asset('Fimgs/'.$fournisseur->photo)}}" class="img" style="width:100%;height:200px; background-size:200px 100%;" alt="" srcset="">
+    @if ($fournisseur->photo==null)
+        <img src="{{asset('imgs/facts/alt.jpg')}}" class="img" style="width:100%;height:200px; background-size:200px 100%;" alt="" srcset="">
+    @else
+        <img src="{{asset('Fimgs/'.$fournisseur->photo)}}" class="img" style="width:100%;height:200px; background-size:200px 100%;" alt="" srcset="">
+    @endif
     </div>
 </div>
 <div class="row">

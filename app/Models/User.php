@@ -59,18 +59,18 @@ class User extends Authenticatable
     ];
     public function clients()
     {
-        return $this->hasMany(Client::class)->cascadeDelete();
+        return $this->hasMany(Client::class);
     }
     public function articles()
     {
-        return $this->hasMany(Article::class)->cascadeDelete();
+        return $this->hasMany(Article::class);
     }
     public function fournisseurs()
     {
-        return $this->hasMany(Fournisseur::class)->cascadeDelete();
+        return $this->hasMany(Fournisseur::class);
     }
     public function documents()
     {
-        return $this->hasMany(Facture::class)->cascadeDelete();
+        return $this->hasMany(Facture::class);
     }
 }

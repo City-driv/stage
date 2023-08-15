@@ -1,14 +1,15 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: client create')
 @section('content')
-<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter Client:</h1></center>
+<center>
+    <h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter Client:</h1>
+</center>
 <div style="margin-left: 10%;margin-top: 5%;">
-    {{-- <form  method="POST" action="{{route('clients.store')}}"> --}}
-       <form action="{{route('clients.store')}}" method="post">
+    <form action="{{route('clients.store')}}" method="post">
        @csrf
        <label for="" class="h1"><i class="fas fa-user-plus"></i></label><br>
        <label for="name" class="h2">    
-           Nom d’entreprise ou Nom Complet:
+           Nom d'entreprise ou Nom Complet:
        </label>
        @error('name')
            <span class="text-danger">{{$message}}</span>
@@ -20,8 +21,6 @@
        @error('adresse')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       
-
        <input name="adresse" type="text" value="{{old('adresse')}}" style="width: 50%;" class="form-control" />
        <label for="telephone" class="h2">
            Télephone:
@@ -29,18 +28,18 @@
        @error('telephone')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="telephone" type="number" value="{{old('telephone')}}"  style="width: 50%;" class="form-control" placeholder="+212631933957" /><br>
+       <input name="telephone" type="tel" value="{{old('telephone')}}"  style="width: 50%;" class="form-control" placeholder="+212631933957" /><br>
        <label for="ice" class="h2">
            ICE:
        </label>
        @error('ice')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="ice" type="text" value="{{old('ice')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
+       <input name="ice" type="number" value="{{old('ice')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
        <label for="if" class="h2">
            IF:
        </label>
-       <input name="if" type="text" value="{{old('if')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
+       <input name="if" type="number" value="{{old('if')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
        <label for="ville" class="h2">
            Ville:
        </label>
@@ -48,9 +47,8 @@
            <span class="text-danger">{{$message}}</span>
        @enderror
        <input name="ville" type="text" value="{{old('ville')}}"  style="width: 50%;" class="form-control" placeholder="" /><br>
-
        <button type="submit" class="btn btn-primary "><i class="fas fa-plus-square"></i> Ajouter</button>
-       </form>
+    </form>
 </div>
 
 @endsection

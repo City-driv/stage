@@ -1,7 +1,9 @@
 @extends('layouts.userNav')
 @section('title','WORFAC: fournisseur create')
 @section('content')
-<center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter fournisseur</h1></center>
+<center>
+    <h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter fournisseur</h1>
+</center>
 <form style="margin-left: 10%;margin-top: 5%;"  method="POST" action="{{route('fournisseur.store')}}"  enctype="multipart/form-data">
     @csrf
     @if ($errors->any())
@@ -12,20 +14,20 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 <label for="" class="h1"><i class="fa-2x fas fa-truck"></i></label><br>
 <div class="row">
     <div class="col-12 col-md-8">
         <div class="row">
             <div class="col-12 col-md-2 h6">Code Fournisseur:</div>
-            <div class="col-12 col-md-2"><input type="text" class="form-control" name="code_fournisseur" ></div>
+            <div class="col-12 col-md-2"><input type="text" class="form-control" value="{{old('code_fournisseur')}}" name="code_fournisseur" ></div>
             <div class="col-12 col-md-2 h6">Type de Fournisseur:</div>
             <div class="col-12 col-md-2 h6" style="float:left"><label for="part">Particulier</label>
             <input required type="radio"  value="Particulier" name="type_fournisseur" id="part"></div>
             <div class="col-12 col-md-2 h6" style="float:left"><label for="entr">Entreprise</label>
             <input required type="radio" value="Entreprise" name="type_fournisseur" id="entr"></div>
             <label for="" class="col-10 col-md-3 h6"  style="margin-left:10px;">Nom l'entreprise <br/>
-            <input type="text"  style="margin-left:10px;" name="nom_entreprise" class=" form-control">
+            <input type="text"  style="margin-left:10px;" value="{{old('nom_entreprise')}}" name="nom_entreprise" class=" form-control">
             </label>
             <label for="" class="col-10 col-md-3  h6"  style="margin-left:10px;">Form Juridique   <br/> 
             <select class=" form-control" name="fj" style="margin-left:10px;" id="">
@@ -46,17 +48,14 @@
             </select>
             </label>
             <label for="" class="col-10 col-md-3  h6"  style="margin-left:10px;">ICE  <br/>
-            <input name="ice" type="text" class="form-control" style="margin-left:10px;"> </label>
+            <input name="ice" type="text" value="{{old('ice')}}" class="form-control" style="margin-left:10px;"> </label>
             <label for="" class="col-10 col-md-3  h6"  style="margin-left:10px;">IF   <br/>
-            <input name="if" type="text" class="form-control" style="margin-left:10px;"> </label>
-       
-      
+            <input name="if" type="text" value="{{old('if')}}" class="form-control" style="margin-left:10px;"> </label>
         </div>
     </div>
-    
     <div class="col-12 col-md-4">
     <input type='file' name='photo' accept='image/*' class='form-control' id='inputGroupFile01'>
-    <img src="images/alt.jpg" class="img" style="width:100%;height:200px; background-size:200px 100%;" alt="" srcset="">
+    <img src="{{asset('imgs/facts/alt.jpg')}}" class="img" style="width:100%;height:200px; background-size:200px 100%;" alt="" srcset="">
     </div>
 </div>
 <div class="row">

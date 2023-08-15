@@ -30,4 +30,15 @@ class FournisseurRequest extends FormRequest
             'telephone'=>'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'code_fournisseur.required' => 'Le code de fournisseur est obligatoire',
+            'type_fournisseur.required' => 'Le type de fournisseur est obligatoire',
+            "nom_entreprise.required"=>"Veuillez entrer le nom d'entreprise",
+            "adresse.required"=>"Veuillez entrer l'adresse ",
+            "email.required"=>"Veuillez entrer un email",
+            "telephone.required"=>"Veuillez entrer un numéro de téléphone",
+        ];
+    }
 }

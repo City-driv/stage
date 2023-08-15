@@ -88,6 +88,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/recu/{ligne_credit}',[LigneCreditController::class,'show']);
     Route::get('/getFactures/{clientId}',[CreditController::class,'getFacturesByClient']);
     Route::get('/getPayments/{creditId}',[LigneCreditController::class,'getLignes']);
+    Route::post('/deleteLigne/{id}',[LigneCreditController::class,'deleteLigne']);
     Route::resource('/garantie',GarantieController::class);
     Route::resource('/clients',ClientController::class);
     Route::post('/import/client',[ClientController::class,'importCl'])->name('import.excel.client');

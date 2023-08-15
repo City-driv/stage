@@ -9,19 +9,21 @@
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
     <style type='text/css' media='print'> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        @page { size: A4; margin: 0mm; } 
+        html { background-color: #FFFFFF; margin: 0px;} 
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm;} 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
     margin: 0;  
    }
    </style>
-   <style>
-   </style>
+  
 </head>
 <body>
 <div class='row mt-1 mb-1' style='border-bottom: 1px dashed black;'>
-        <div class='col-3 text-center mt-2' ><img src='images/' style='margin-left: 10px;width: 50%;height:8vh;' alt='' srcset=''></div>
+        <div class='col-3 text-center mt-2' >
+            <img src='{{"/profiles/".Auth::user()->img}}' style='margin-left: 10px;width: 50%;height:8vh;' alt='' srcset=''></div>
         <div class='col-5 mt-5' style='border: 1px solid black;'>
           <div class='row'>
              <h2 style='text-decoration: underline; text-align: center;  text-underline-position: under;' class='col-12'>REÇU DE PAIEMENT</h2> 
@@ -31,8 +33,8 @@
         </div>
         <div class='col-4 mt-2'>
             <div class='row' style='text-align:right;'>
-               <p class='col-9'><strong>Date: {{$payement->date}}</strong></p>
-               {{-- <p style='margin:0;' class='col-9'><strong>02:13:18</strong></p> --}}
+                <p class='col-9'><strong>Date: {{date('Y-m-d')}}</strong></p>
+               <p style='margin:0;' class='col-9'><strong>{{date('H:m:s')}}</strong></p>
             </div>
         </div>
         <div class='col-1'></div>
@@ -83,7 +85,8 @@
         <div class='col-9'>Société :{{Auth::user()->entreprise_name}} -IF:{{Auth::user()->if}} -ICE:{{Auth::user()->ice}} -Email :{{Auth::user()->email}}<span style='color:blue;'></span></div>
           <div class='col-2'><i style='margin-left:3px;margin-bottom:-20px;color:#C8C8C8;' class='fas fa-cut'></i></div>
           </div>     <div class='row'>
-        <div class='col-3 text-center' ><img src='images/' style='margin-left: 10px;width: 50%;height:6vh;' alt='' srcset=''></div>
+        <div class='col-3 text-center' >
+            <img src='{{"/profiles/".Auth::user()->img}}' style='margin-left: 10px;width: 50%;height:6vh;' alt='' ></div>
         <div class='col-5' style='border: 1px solid black;'>
           <div class='row'>
              <h2 style='text-decoration: underline; text-align: center;  text-underline-position: under;' class='col-12'>REÇU DE PAIEMENT</h2> 
@@ -93,8 +96,8 @@
         </div>
         <div class='col-4'>
             <div class='row' style='text-align:right;'>
-               <p class='col-9'><strong>Date: {{$payement->date}}</strong></p>
-               {{-- <p style='margin:0;' class='col-9'><strong>02:13:18</strong></p> --}}
+               <p class='col-9'><strong>Date: {{date('Y-m-d')}}</strong></p>
+               <p style='margin:0;' class='col-9'><strong>{{date('H:m:s')}}</strong></p>
             </div>
         </div>
         <div class='col-1'></div>
@@ -138,7 +141,7 @@
               </div>
               <label for='' class='col-6 h5 text-center'>Signature du Client</label>
               <label for='' class='col-6 h5 text-center mb-2'>Signature</label>
-              <p class='mt-5'>l'opération enregistrée sur votre compte , avec date de valeur le <strong>:2023/08/04</strong></p>
+              <p class='mt-5'>l'opération enregistrée sur votre compte , avec date de valeur le <strong>:{{$payement->date}}</strong></p>
           </div>
         </div>
         <div class='col-2'></div>

@@ -16,8 +16,8 @@ class CreditController extends Controller
      */
     public function index()
     {
-        $credits=Credit::where('user_id',Auth::id())->get();
-        return view('main.credits.index',compact('credits'));
+        $credits = Credit::where('user_id', Auth::id())->get();
+        return view('main.credits.index', compact('credits'));
     }
 
     /**
@@ -25,9 +25,9 @@ class CreditController extends Controller
      */
     public function create()
     {
-        $user=User::where('id',Auth::id())->first();
-        $clients=$user->clients;
-        return view('main.credits.create',compact('clients'));
+        $user = User::where('id', Auth::id())->first();
+        $clients = $user->clients;
+        return view('main.credits.create', compact('clients'));
     }
 
     public function getFacturesByClient($clientId)
@@ -35,7 +35,6 @@ class CreditController extends Controller
         // Récupérer les articles correspondants au client sélectionné
         $client = Client::findOrFail($clientId);
         $factures = $client->factures;
-        
         return response()->json(['factures' => $factures]);
     }
     /**
@@ -44,8 +43,14 @@ class CreditController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'client_id'=>'required',
-            'p_marchandise'=>'required',
+            'client_id' => 'required',
+            'p_marchandise' => 'required',
+            'ref' => 'required',
+            'motif' => 'required',
+            'date_credit' => 'required'
+        ], [
+            'client_id.required' => 'Veuillez choisir un client', 'p_marchandise.required' => 'Prix marchandise obligatoire',
+            'ref.required' => 'Veuillez choisir un Ref', 'motif.required' => 'Veuillez entrer un motif', 'date_credit.required' => 'Date credit obligatoire'
         ]);
         // dd($request->post());
         if ($request->hasFile('piece_jointe')) {
@@ -53,17 +58,17 @@ class CreditController extends Controller
             $request['piece_jointe'] = $pc;
             $request->file('piece_jointe')->move(\public_path('piece_jointe'), $pc);
         }
-        $request['user_id']=Auth::id();
-        $request['ref']=$request->ref;
+        $request['user_id'] = Auth::id();
+        $request['ref'] = $request->ref;
         Credit::create($request->post());
-        $crId=Credit::where('user_id',$request->user_id)->latest()->first()->id;
+        $crId = Credit::where('user_id', $request->user_id)->latest()->first()->id;
 
         Ligne_credit::create([
-            'credit_id'=>$crId,
-            'montant'=>$request->p_avance,
-            'date'=>$request->date_credit,
-            'observation'=>$request->observation,
-            'mode_paiement'=>$request->mode_paiment
+            'credit_id' => $crId,
+            'montant' => $request->p_avance,
+            'date' => $request->date_credit,
+            'observation' => $request->observation,
+            'mode_paiement' => $request->mode_paiment
         ]);
         return to_route('credit.index');
     }
@@ -81,7 +86,7 @@ class CreditController extends Controller
      */
     public function edit(Credit $credit)
     {
-        return response()->json(['credit'=>$credit]);
+        return response()->json(['credit' => $credit]);
     }
 
     /**
@@ -90,7 +95,7 @@ class CreditController extends Controller
     public function update(Request $request, Credit $credit)
     {
         $credit->fill($request->post())->save();
-        return to_route('credit.index')->with('success','credit modifiee');
+        return to_route('credit.index')->with('success', 'credit modifiee');
     }
 
     /**
@@ -98,13 +103,15 @@ class CreditController extends Controller
      */
     public function destroy(Credit $credit)
     {
-        Ligne_credit::where('credit_id',$credit->id)->delete();
+        Ligne_credit::where('credit_id', $credit->id)->delete();
         $credit->delete();
-        return to_route('credit.index')->with('success','credit supprimee');
+        return to_route('credit.index')->with('success', 'credit supprimee');
     }
 
-    public function liste(){
-        $credits= Credit::where('user_id',Auth::id())->where('p_reste','>',0)->get();
-        return view('main.credits.liste',compact('credits'));
+    public function liste()
+    {
+        $credits = Credit::where('user_id', Auth::id())->where('p_reste', '>', 0)->get();
+        return view('main.credits.liste', compact('credits'));
     }
+    
 }

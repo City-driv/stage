@@ -61,15 +61,6 @@ class AchatController extends Controller
         }
 
         return response()->json(['message'=>'data inserted successfully']);
-        ////////////////////////////////////////
-        // if ($request->hasFile('file')){
-        //     return response()->json(['msg'=>$request->Produits]);
-        // }elseif ($request->hasFile('piece_jointe')) {
-        //     return response()->json(['msg'=>$request->all(),'tnt'=>'tnt']);
-        // }
-        // else {
-        //     return response()->json(['msg'=>'no file','req'=>$request->fd]);
-        // }
     }
 
     /**

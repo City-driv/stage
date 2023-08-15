@@ -9,7 +9,9 @@
     <link rel='icon' href='logo.png' />
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
     <style type='text/css' media='print'> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        @page { size: A4;  margin: 0mm;}
+        html { background-color: #FFFFFF; margin: 0px;}
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm;} 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -36,7 +38,7 @@
 <body>
     <div class='row'>
         <div class='col-10 text-center'>
-            <img src=images/t1.jfif alt='' srcset=''>
+            <img src='{{"/profiles/".Auth::user()->img}}' alt='entreprise_logo' >
         </div>
         <div class='col-10 h3'>Formulaire de Garantie {{Auth::user()->name}}</div>
         <div class='col-10 h5'>Client : <span>{{$garantie->client->name}}</span> </div>
@@ -50,22 +52,12 @@
         <div class='col-10 h5'>Email Revendeur : <span>{{Auth::user()->email}}</span></div>
         <div class='col-10 h5'>Adresse du Revendeur : <span>{{Auth::user()->adresse}}</span></div>
         <div class='col-10 h5'>Numéro série : <span style='border: 1px solid #ababab;
-        background-color: #dfdddd;
-        color: black;
-        padding-left: 5px;
-        padding-right: 5px;'>{{$garantie->num_serie}}</span></div>
+        background-color: #dfdddd;color: black;padding-left: 5px;padding-right: 5px;'>{{$garantie->num_serie}}</span></div>
         <div class='col-12 h5'>
             description Article:
         </div> 
         <span class='col-10 h2 text-center' style='background-color: rgb(240 240 240);
-        border-radius: 5px;
-        margin-left: 10px;
-        margin-top: 20px;
-        border: 2px solid #ababab;
-        color: #191919;
-        padding: 20px;
-        /* font-family: -webkit-body; */
-        font-family: inherit;'>{{$garantie->article->description}}</span>
+        border-radius: 5px;margin-left: 10px;margin-top: 20px;border: 2px solid #ababab;color: #191919;padding: 20px;font-family: inherit;'>{{$garantie->article->description}}</span>
         <div class='col-10 h5'>
          important :veuillez conserver précieusement cette carte de Garantie se réserve le droit de vous demander le présent document avant d'accepter toute procédure deréparation  La garandi  n'affecte ou ne limite pas vos droits légaux</div>
     </div>    

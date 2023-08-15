@@ -14,9 +14,8 @@ class GarantieController extends Controller
      */
     public function index()
     {
-        $garanties=Garantie::where('user_id',Auth::id())->get();
-        // dd($garanties);
-        return view('main.garanties.index',compact('garanties'));
+        $garanties = Garantie::where('user_id', Auth::id())->get();
+        return view('main.garanties.index', compact('garanties'));
     }
 
     /**
@@ -24,10 +23,10 @@ class GarantieController extends Controller
      */
     public function create()
     {
-        $user=User::where('id',Auth::id())->first();
-        $clients=$user->clients;
-        $articles=$user->articles;
-        return view('main.garanties.create',compact('clients','articles'));
+        $user = User::where('id', Auth::id())->first();
+        $clients = $user->clients;
+        $articles = $user->articles;
+        return view('main.garanties.create', compact('clients', 'articles'));
     }
 
     /**
@@ -36,12 +35,20 @@ class GarantieController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_achat'=>'required',
-            'date_fin'=>'required',
+            'date_achat' => 'required',
+            'date_fin' => 'required',
+            'num_serie' => 'required',
+            'email' => 'required'
+        ], [
+            'date_achat.required' => 'La date d\'achat est obligatoire.',
+            'date_fin.required' => 'La date de fin est obligatoire.',
+            'num_serie.required' => 'Num serie est obligatoire.',
+            'email.required' => 'Veuillez entrer un email'
         ]);
-        $request['user_id'] =Auth::id() ; 
+
+        $request['user_id'] = Auth::id();
         Garantie::create($request->post());
-        return to_route('garantie.index')->with('success','Garantie ajoutee');
+        return to_route('garantie.index')->with('success', 'Garantie ajoutee');
     }
 
     /**
@@ -49,7 +56,7 @@ class GarantieController extends Controller
      */
     public function show(Garantie $garantie)
     {
-        return view('main.garanties.show',compact('garantie'));
+        return view('main.garanties.show', compact('garantie'));
     }
 
     /**
@@ -57,10 +64,10 @@ class GarantieController extends Controller
      */
     public function edit(Garantie $garantie)
     {
-        $user=User::where('id',Auth::id())->first();
-        $clients=$user->clients;
-        $articles=$user->articles;
-        return view('main.garanties.edit',compact('garantie','clients','articles'));
+        $user = User::where('id', Auth::id())->first();
+        $clients = $user->clients;
+        $articles = $user->articles;
+        return view('main.garanties.edit', compact('garantie', 'clients', 'articles'));
     }
 
     /**
@@ -69,11 +76,18 @@ class GarantieController extends Controller
     public function update(Request $request, Garantie $garantie)
     {
         $request->validate([
-            'date_achat'=>'required',
-            'date_fin'=>'required',
+            'date_achat' => 'required',
+            'date_fin' => 'required',
+            'num_serie' => 'required',
+            'email' => 'required'
+        ], [
+            'date_achat.required' => 'La date d\'achat est obligatoire.',
+            'date_fin.required' => 'La date de fin est obligatoire.',
+            'num_serie.required' => 'Num serie est obligatoire.',
+            'email.required' => 'Veuillez entrer un email'
         ]);
         $garantie->fill($request->post())->save();
-        return to_route('garantie.index')->with('success','Garantie Modifier');
+        return to_route('garantie.index')->with('success', 'Garantie Modifier');
     }
 
     /**
@@ -82,6 +96,6 @@ class GarantieController extends Controller
     public function destroy(Garantie $garantie)
     {
         $garantie->delete();
-        return view('main.garanties.index')->with('success','garantie supprimer');
+        return view('main.garanties.index')->with('success', 'garantie supprimer');
     }
 }

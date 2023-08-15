@@ -6,27 +6,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
 <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Liste Garanties :</h1></center>
-<form action="/listGaranties.php"  method="post">
 
-
-    <input value="" type="text" name="Nom" placeholder="Recherche par Entreprise ou Nom " style="    background: #f3f3f3 0 0 no-repeat padding-box;
-        border: 0;
-        outline:none;
-        border-radius: 6px;
-        box-shadow: 0 3px 6px rgb(54, 54, 54);
-        height: 48px;
-        padding: 10px 10px 10px 50px;
-" class=" col-9 col-md-3 mt-2" id=""/>
-    <input value="" type="text" name="numero" placeholder="Recherche par ICE" style="    background: #f3f3f3 0 0 no-repeat padding-box;
-        border: 0;
-        outline:none;
-        border-radius: 6px;
-        box-shadow: 0 3px 6px rgb(54, 54, 54);
-        height: 48px;
-        padding: 10px 10px 10px 50px;
-       " class=" col-9 col-md-3 mt-2" id=""/>
-      <button name="submit2" type="submit"  style='' class="search"><i class="fas fa-search"></i>Chercher</button>
-    </form>
+    <input id="searchInput" type="text" name="Nom" placeholder="Recherche par Entreprise ou Nom " style="background: #f3f3f3 0 0 no-repeat padding-box;
+        border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;padding: 10px 10px 10px 50px;" class=" col-9 col-md-3 mt-2"/>
         <table class='table table-striped mt-2'>
         <tr class='h3'>
             <td>Nom Complet</td>
@@ -36,9 +18,10 @@
             <td>Date Fin Garantie</td> 
             <td>Action</td> 
         </tr>
+        <tbody id="tbt">
         @foreach ($garanties as $gr)
            <tr>
-            <td>{{$gr->client->name}}</td>
+            <td class="nm">{{$gr->client->name}}</td>
             <td>{{$gr->article->description}}</td>
             <td>{{$gr->email}}</td>
             <td>{{$gr->date_achat}}</td>
@@ -75,4 +58,19 @@
             </tr>
         @endforeach
         </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('searchInput');
+  const rows = document.querySelectorAll('#tbt tr');
+
+  searchInput.addEventListener('keyup', function(e) {
+      const x = e.target.value.toLowerCase();
+      rows.forEach(el => {
+          const cellContent = el.querySelector('.nm').textContent.toLowerCase();
+          el.style.display = cellContent.includes(x) ? '' : 'none';
+      });
+  });
+});
+    </script>
 @endsection

@@ -1,4 +1,3 @@
-    
 
 function Ajoute(id){
     document.querySelector(".Ajouter").style.transform="scale(1)";
@@ -8,6 +7,7 @@ function Ajoute(id){
     document.querySelector(".Ajouter").style.transform="scale(0)"  ;
     document.querySelector(".Liste").style.transform="scale(0)";
     document.querySelector(".Modifier").style.transform="scale(0)";
+    document.querySelector(".ModifierPay").style.transform = "scale(0)";
 
 })
 document.getElementById('btnAjout').addEventListener('click',function(){
@@ -98,6 +98,27 @@ function imprimer(id){
 //         }
 //     });
 // }
+function ModifierLignePay(id){
+    $.ajax({
+        url: '/modifierLigne/' + id ,
+        type: 'GET',
+        success: function(response) {
+            // Afficher ligne payement
+            var result = response.lignePay;
+               $('#Mmnt').val(result.montant);
+               $('#Mdate_mnt').val(result.date);
+               $('#Mmdp').val(result.mode_paiement);
+               $('#Mobservation').val(result.observation);
+               $('#modifierPay').attr('action','/modifierLigneP/'+id);
+        },
+        error: function() {
+            alert('Une erreur s\'est produite lors de la récupération de vtrfit.');
+        }
+    });
+    document.querySelector(".ModifierPay").style.transform = "scale(1)";
+    document.querySelector(".Liste").style.transform="scale(0)";
+
+}
 
 function Modifier(id) {
     var cid = id;
@@ -140,7 +161,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     searchInput.addEventListener('keyup', function(e) {
         const x = e.target.value.toLowerCase();
-        console.log(x);
         rows.forEach(el => {
             const cellContent = el.querySelector('.cl').textContent.toLowerCase();
             el.style.display = cellContent.includes(x) ? '' : 'none';

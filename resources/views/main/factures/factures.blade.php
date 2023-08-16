@@ -133,7 +133,7 @@ input[type=number] {
                           <a class="dropdown-item" title="Aprecu" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('facture.show',$f->id)}}">Aperçu <i class="far fa-eye"></i></a>
                       </li>
                       <li>
-                          <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Partager <i class="  fab fa-whatsapp"></i></a></li>
+                          <a href="{{'https://api.whatsapp.com/send?text='.route('facture.show',$f->id)}}" title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;">Partager <i class="fab fa-whatsapp"></i></a></li>
                       <li>
                         @if ($f->type_fact =='devis')    
                           <li>
@@ -148,7 +148,10 @@ input[type=number] {
                         <form action="{{route('facture.destroy',$f->id)}}" method="post">
                          @csrf
                          @method('DELETE')
-                              <a title="Supprimer" class="dropdown-item" style="padding-left;5px;color: red;text-decoration:none;font-size:19px;font-familly:cursive;color:red;" ><button type="submit" >Supprimer <i class="far fa-trash-alt"></i></button> </a></li>
+                              {{-- <a title="Supprimer" class="dropdown-item" style=" padding-left;5px;color: red;text-decoration:none;font-size:19px;font-familly:cursive;color:red;" > --}}
+                                <button type="submit" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" class="btn" >Supprimer <i class="far fa-trash-alt"></i></button> 
+                              {{-- </a> --}}
+                            </li>
                         </form>
                     </ul>
                   </div>
@@ -232,15 +235,6 @@ input[type=number] {
     </div>
   </div>    
   <script>
-    // const searchInput=document.getElementById('searchInput');
-    // const rows = document.querySelectorAll('#ttbody tr');
-    // console.log(rows);
-    // searchInput.addEventListener('keyup',function(e){
-    //    const x=e.target.value.toLowerCase();
-    //    rows.forEach((el) => {
-    //       el.querySelector('.cl').textContent.toLowerCase().startsWith(x) ? (el.style.display='') : (el.style.display='none');
-    //    });
-    // });
     
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');

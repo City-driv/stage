@@ -42,7 +42,7 @@ margin-top:10px;
  }
 </style>
 
-@dump(request()->getQueryString())
+{{-- @dump(request()->getQueryString()) --}}
 
     <input value="" type="text" placeholder="Recherche par Réf" style="background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;padding: 10px 10px 10px 50px;" class="col-9 col-md-3" id="searchInput" />
     <center><h1 style="margin-left:15%;color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Sortie Par période :</h1></center>  
@@ -117,7 +117,4 @@ margin-top:10px;
             });
 
         </script>
-
-
-
 @endsection

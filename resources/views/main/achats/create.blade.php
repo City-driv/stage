@@ -4,6 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <meta name="csrf-token" content="{{csrf_token()}}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
 <center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Ajouter facture d'achat:</h1></center>
@@ -62,7 +63,7 @@
           </select>
     </div>
      <div class="col-md-4 col-12 h5">Piece à jointe :<br/>
-     <input type="file"  accept='.png, .jpg, .jpeg, .pdf,.doc,.docx,.xlsx,.xls,.csv' name="file" class="form-control" id="pj" /><div class="h6" style="font-size:13px:color:gray;">image,pdf,doc,docx,xlsx,xls,csv</div></div>
+     <input type="file" required accept='.png, .jpg, .jpeg, .pdf,.doc,.docx,.xlsx,.xls,.csv' name="file" class="form-control" id="pj" /><div class="h6" style="font-size:13px:color:gray;">image,pdf,doc,docx,xlsx,xls,csv</div></div>
 </div>
 <select name="Article" class="form-select form-select-lg mb-3" id="">
     <option>selectionner Article :</option>

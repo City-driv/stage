@@ -42,11 +42,11 @@ margin-top:10px;
  }
 </style>
 
-
-
     <input type="text" name="numero" placeholder="Recherche par Numéro" style="background: #f3f3f3 0 0 no-repeat padding-box;border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);
         height: 48px;padding: 10px 10px 10px 50px;" class=" col-9 col-md-3" id="searchInput" />   
-    <center><h1 style="margin-left:15%;color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Entrés Par période :</h1></center>  
+    <center>
+        <h1 style="margin-left:15%;color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">bulletin  Entrés Par période :</h1>
+    </center>  
     <form action="{{route('mv.entre')}}" method="get">
         <div class="row text-center mb-2" style="margin-left:15%">
             <input type="date" class="form-control" name="date1" style="width:30%" value=""/>
@@ -67,11 +67,15 @@ margin-top:10px;
         <td>{{Auth::user()->entreprise_name}}</td>
         <td>{{$TOTAL}} DH</td>
         <td>{{$REMISE}} DH</td>
-              <td><button style="" class="exp" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
+        <td>
+            <button class="exp" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button>
+        </td>
     </tr>
     </table>
          
-      <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Articles entrés :</h1></center> 
+      <center>
+        <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Articles entrés :</h1>
+      </center> 
       
       <table class='table table-striped'>
         <tr class='h3' style='color:white;'>

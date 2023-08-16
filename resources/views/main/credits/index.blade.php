@@ -58,11 +58,12 @@
        }
      }
     </style>
-<center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion crédits :</h1></center> <form action="/listeCredits.php"  method="post">
+<center>
+    <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion crédits :</h1>
+</center>
     <input  type="text" name="numero" placeholder="Recherche par Client" style="background: #f3f3f3 0 0 no-repeat padding-box;
         border: 0;outline:none;border-radius: 6px;box-shadow: 0 3px 6px rgb(54, 54, 54);height: 48px;
         padding: 10px 10px 10px 50px;" class=" col-9 col-md-3 mt-2" id="searchInput" />
-    </form>
         <table class='table table-striped mt-2'>
         <tr class='h3'>
             <td>Nom Client</td>
@@ -106,7 +107,7 @@
     </tbody>
              
         </table>
-      <div class="Ajouter" style='transform:scale(0)'>
+    <div class="Ajouter" style='transform:scale(0)'>
        <div class="row">
         <div class="h1 text-center">Paiement</div>
          <div class="h3">Montant :</div>
@@ -134,6 +135,40 @@
          <button class="mt-2 btn btn-danger annule" id="annule"><i class="fas fa-backspace"></i>Annuler</button>
        </div>
     </div>
+
+    <div class="ModifierPay" style='transform:scale(0);margin-left: 20%;padding-left: 20px;border-radius: 10px;padding-bottom: 2%;width: 95%;border: 1px solid black;
+    position: relative;transform: scale(0);margin: auto;position: absolute;top: 0;left: 0;margin-top: 10%;right: 0;border-radius: 1px;
+    background-color: white;padding-right: 20px;box-shadow: 1px 0px 71px #404040;border: 1px solid;border: 1px solid #bababa;border-radius: 4px;'>
+        <div class="row">
+        <form action="" method="post" id="modifierPay">
+            @csrf
+         <div class="h1 text-center">Modifier Paiement</div>
+          <div class="h3">Montant :</div>
+          
+          <input type="number" id="Mmnt" class="form-control">
+          <div class="h3">Date :</div>
+          <input type="date" id="Mdate_mnt" class="form-control">
+          <div class="h3">Mode de paiement:</div>
+          <select name="mode_paiement" id="Mmdp" class="form-control">
+          <option value="">Au choix du client</option>
+                           <option value="Virement">Virement</option>
+                           <option value="Chéque">Chéque</option>
+                           <option value="Traite">Traite</option>
+                           <option value="Espéce">Espèce</option>
+                           <option value="Versement">Versement</option>
+                           <option value="Carte bancaire">Carte bancaire</option>
+                           <option value="Affacturage">Affacturage</option>
+                           <option value="Autres">Autres</option>
+          </select>
+          <div class="h3">Observation :</div>
+          <textarea name="observation" id="Mobservation" class="form-control" cols="15" rows="6"></textarea>
+          <br>
+          <button class="mt-2 btn btn-primary" id="btnModifier"><i class="fas fa-plus-circle"></i>Modifier</button>
+          <button class="mt-2 btn btn-danger annule" id="annule"><i class="fas fa-backspace"></i>Annuler</button>
+        </form>
+        </div>
+     </div>
+
     <div class="Liste" style='transform:scale(0)'>
        <div class="row">
         <div class="h3 text-center">Liste Payments</div>
@@ -207,7 +242,7 @@ function Liste(id){
               //  console.log(response.factures);
                 $.each(result, function(index, lg) {
                     document.querySelector(".LPay").innerHTML+=`
-                    <div class="col-3 text-center bg-dark text-white pt-1 pb-1 h5" style="border:1px solid white;">${lg.montant} DH</div>
+                    <div class="col-3 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px solid white;">${lg.montant} DH</div>
                     <div class="col-2 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;">${lg.date}</div>
                     <div class="col-2 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;"><i onclick='imprimer(${lg.id})' style='cursor: pointer;background-color: #c7cdd5;border-radius: 5px;border: 1px solid black;color: black;padding: 10px;' class="fas fa-print"> Imprimer</i></div>
                     <div class="col-3 text-center bg-dark text-white  pt-1 pb-1 h5" style="border:1px  solid white;">${lg.observation}</div>
@@ -217,12 +252,12 @@ function Liste(id){
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cog"></i> action</button>
                     <div class="dropdown-menu" style="text-align: left;">
                     <a style="text-decoration: none;color: white;background: #0f950f;padding: 4px;border-radius: 3px;
-                     border: 1px solid #9a9797;" href="modifPaiement.php?id=${lg.id}"><i class="fas fa-edit"></i>Modifier</a>
+                     border: 1px solid #9a9797; cursor: pointer;" onclick="ModifierLignePay(${lg.id})" ><i class="fas fa-edit"></i>Modifier</a>
                      <br/>
                      <form action="/deleteLigne/${lg.id}"  method="post" onSubmit="return confirm('confirmation suppression')">
                      @csrf
                     <button style="color: white;background: #ff4949;border: 1px solid #8f8f8f;
-                     border-radius: 5px;" type="submit" name="suprimerPaiment" ><i class="fas fa-trash-alt"></i>Supprimer</button>
+                     border-radius: 5px;" type="submit"  ><i class="fas fa-trash-alt"></i>Supprimer</button>
                      </form>
                     </div>
                     `;
@@ -237,5 +272,7 @@ function Liste(id){
         }
     });
 }
+
+
     </script>
 @endsection

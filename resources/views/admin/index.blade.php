@@ -188,11 +188,6 @@ body{
                           <a title="Desactiver_compte" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('user.desactive',$user->id)}}">Desactiver compte <i class="fa fa-times"></i></a></li>
                       <li>
                       <li>
-                          <a class="dropdown-item" title="Aprecu" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('admin.show',$user->id)}}">Aperçu <i class="far fa-eye"></i></a>
-                      </li>
-                         <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
-                      </li>
-                      <li>
                          <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="{{route('admin.edit',$user->id)}}">Modifier <i class="fas fa-edit"></i></a></li>
                       <li>
                         <form action="{{route('admin.destroy',$user->id)}}" method="post">

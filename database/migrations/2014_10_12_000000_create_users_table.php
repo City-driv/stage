@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('num_rc')->nullable();
             $table->string('cnss')->nullable();
             $table->string('img')->nullable();
+            $table->integer('num_doc')->nullable()->default(0);
             $table->timestamps();
         });
     }

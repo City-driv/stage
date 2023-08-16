@@ -206,6 +206,9 @@ class FactureController extends Controller
             'exemple' => 'ex' . $request->ex,
             'mode_paiement' => $request->mode_paiement
         ]);
+        $user=User::where('id',$uId)->first();
+        $user->num_doc=$user->num_doc +1;
+        $user->save();
         $fact_id = Facture::where('user_id', $uId)->latest()->first()->id;
         $produits = $request->Produits;
         foreach ($produits as $pr) {

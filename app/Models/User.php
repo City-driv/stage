@@ -35,7 +35,8 @@ class User extends Authenticatable
         'adresse',
         'mobile',
         'site_web',
-        'if'
+        'if',
+        'num_doc'
     ];
 
     /**

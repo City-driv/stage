@@ -133,13 +133,7 @@ function chargerArticles(){
       <td class='pt-3'>${parseFloat(Produits[index].TTc).toFixed(2) }DH</td>
       <td class='pt-3'><button onclick=suprimer(${Produits[index].id}) style='background-color:transparent;border:0;'><i style='color:red;background-color:transparent;' class="h3 fas fa-trash-alt"></i></button></td>
     </tbody>`
-    // let select=document.querySelectorAll(".valid");
-    // for (let i = 0; i < select.length; i++) {
-    //     for (let zndex = 0; zndex < select[i].options.length; zndex++) {
-    //         if(select[i].options[zndex].value==Produits[i].unite)
-    //             select[i].options[zndex].setAttribute("selected","true")
-    //     }
-    // }
+    
     }
     Calculer()
     console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
@@ -172,20 +166,7 @@ function ModifierTva(val,id){
     chargerArticles()
 }
 
-//Event Qte
-// function EventQte(operation,Qte,id)
-// {
-//     for (let index = 0; index < Produits.length; index++) {
-//         if(Produits[index].id==id){
-//             if(operation=="+")
-//             Produits[index].Qtee=parseInt(Qte+1)
-//             else
-//             if(Qte!=0)
-//             Produits[index].Qtee=parseInt(Qte-1)
-//         }
-//     }
-//     chargerArticles()
-// }
+
 
 function EventQte(operation,Qte,id)
 {
@@ -271,31 +252,7 @@ document.getElementById('annuler').addEventListener('click',function(){
   document.querySelector(".AjouteClient").style.transform="scale(0)"
 })
 
-// function factInfo(){
-//   var numFact = $('#Ref').val();
-//   var client = $('#clients').val();
-//   var typeF = $('#type').val();
-//   console.log(numFact +'::'+ client + '::'+typeF);
 
-// }
-
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-    // Fonction pour envoyer les données à Laravel
-    // function saveProductsToLaravel(products) {
-    //     fetch('/facture/store', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Assurez-vous d'avoir la balise meta CSRF dans votre HTML.
-    //         },
-    //         body: JSON.stringify({ products: products })
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => console.log(data.message))
-    //     .catch(error => console.log('Une erreur s\'est produite :', error));
-    // }
-// :::::::::::::::::::::
 
     $.ajaxSetup({
       headers:{
@@ -323,8 +280,11 @@ document.getElementById('annuler').addEventListener('click',function(){
                 data : {Produits : Produits,ref:numFact,client:client,type:typeF,ex:example,tht:th,ttva:tva,ttc : ttc,mode_paiement:mode_paiement},
                 dataType:'json',
                 success:function(res){
-                  alert('submited successfully');
+                  swal("Facture ajouter!", "Votre facture a été bien ajoutée !", "success");
+                  // alert('submited successfully');
                   document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
+                  document.getElementById('wht').setAttribute('href','https://api.whatsapp.com/send?text=http://127.0.0.1:8000/facture/'+res.fact);
+
                   console.log(res.fact)
                 },
                 error: function (xhr, status, error) {
@@ -335,7 +295,8 @@ document.getElementById('annuler').addEventListener('click',function(){
         }else
         alert("selectionner une Produit")
     }else
-    alert("La commande d'eja Valide svp vider commande")
+    swal("Ajouter facture!", "La commande d'eja Valide svp vider commande!", "info");
+    // alert("La commande d'eja Valide svp vider commande")
       
    })
 

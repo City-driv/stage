@@ -58,6 +58,9 @@ class AchatController extends Controller
                 'qte_recue'=>$pr->QteRecue,
                 'price'=>$pr->price
             ]);
+            $ar = Article::where('id', $pr->id)->first();
+            $ar->quantite = $ar->quantite + $pr->QteRecue;
+            $ar->save();
         }
 
         return response()->json(['message'=>'data inserted successfully']);

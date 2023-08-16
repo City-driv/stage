@@ -3,6 +3,7 @@
 @section('headInfo')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="csrf-token" content="{{csrf_token()}}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('content')
 {{-- <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script> --}}
@@ -134,8 +135,8 @@ input::-webkit-inner-spin-button {
         {{-- <button type="button" class="btn btn-success col-md-9 col-12  " onclick="Valider()"><i class="far fa-check-circle"></i> Valider</button> --}}
       </form>
         <a href="#" id="imprime" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
-        <button type="button"onclick="whtsp()"  data-action="share/whatsapp/share"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
-        Whatsapp</button>
+        <a href="#" id="wht"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
+        Whatsapp</a>
         <button style="border:1px solid #075e54; " type="button" class="btn btn-light col-md-9 col-12 mt-2" id="vider">Vider</button>
     </div>
   <div class="AjouteClient" style="background-color: rgb(248, 248, 248);padding-left: 10%;border-radius: 5px;box-shadow: rgb(231 231 231) 5px 10px 20px inset;

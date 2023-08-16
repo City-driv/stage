@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Client;
 use App\Models\Facture;
 use App\Models\Ligne_facture;
+use App\Models\Numerotation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class FactureController extends Controller
         if (isset($_GET['excel'])) {
             $userId = Auth::id();
             $invoiceType = $_GET['type'];
-            if (isset($_GET['trimestre']) && $_GET['trimestre']!=='') {
+            if (isset($_GET['trimestre']) && $_GET['trimestre'] !== '') {
                 $tr = intval($_GET['trimestre']); // Convert to integer
                 $year = date('Y');
                 $startDate = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
@@ -115,31 +116,6 @@ class FactureController extends Controller
         return view('main.factures.factures', compact('factures', 'TTC', 'TTVA', 'THT', 't', 'x'));
     }
 
-    //     use Illuminate\Http\Request;
-    // use App\Models\Invoice; // Assuming your Invoice model is named Invoice
-
-    // class InvoiceController extends Controller
-    // {
-    //     // Other methods in the controller...
-
-    //     public function filterByQuarter(Request $request)
-    //     {
-    //         $quarter = $request->input('quarter');
-    //         $year = $request->input('year');
-
-    //         // Calculate the start and end dates of the selected quarter
-    //         $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($quarter - 1) * 3) . ' months'));
-    //         $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($quarter * 3) . ' months -1 day'));
-
-    //         // Retrieve the invoices that fall within the selected quarter
-    //         $invoices = Invoice::whereBetween('invoice_date', [$start_date, $end_date])->get();
-
-    //         // Pass the filtered invoices to the view
-    //         return view('invoices.index', ['invoices' => $invoices]);
-    //     }
-    // }
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -177,15 +153,45 @@ class FactureController extends Controller
 
         $user = User::where('id', Auth::id())->first();
         $clients = $user->clients;
-        $articles = $user->articles->filter(function ($article) {return $article->quantite > 0;});
-        // dd($clients);
+        $articles = $user->articles->filter(function ($article) {
+            return $article->quantite > 0;
+        });
+        // dd($ref);
+        $pre = Numerotation::where('user_id', Auth::id())->first()->fact;
+        $nbf = Facture::where('user_id', Auth::id())->count();
+        $ref = $pre . $nbf + 1;
         if (isset($_GET['t']) && isset($_GET['Ex'])) {
             // dump($_GET['t'] . '__'.$_GET['Ex']);
             $type = $_GET['t'];
+            if ($type == 'bl') {
+                $n = 'bon_liv';
+                $t = 'bon_livraison';
+            } elseif ($type == 'bc') {
+                $n = 'bon_cmd';
+                $t = 'bon_cmd';
+            } elseif ($type == 'b') {
+                $n = 'bon';
+                $t = 'bon';
+            } elseif ($type == 'fv') {
+                $n = 'fact_d_avoir';
+                $t = 'facture_d_avoir';
+            } elseif ($type == 'dv') {
+                $n = 'devis';
+                $t = 'devis';
+            } elseif ($type == 'fp') {
+                $n = 'fact_pro';
+                $t = 'facture_proforma';
+            } else {
+                $n = 'fact';
+                $t = 'facture';
+            }
+            $pre = Numerotation::where('user_id', Auth::id())->first()->$n;
+            $nbf = Facture::where('user_id', Auth::id())->where('type_fact', $t)->count();
+            $ref = $pre . $nbf + 1;
             $exemple = $_GET['Ex'];
-            return view('main.factures.create', ['clients' => $clients, 'articles' => $articles, 't' => $type, 'ex' => $exemple]);
+            return view('main.factures.create', ['clients' => $clients, 'articles' => $articles, 't' => $type, 'ex' => $exemple, 'ref' => $ref]);
         }
-        return view('main.factures.create', ['clients' => $clients, 'articles' => $articles, 't' => 'F', 'ex' => '1']);
+        return view('main.factures.create', ['clients' => $clients, 'articles' => $articles, 't' => 'F', 'ex' => '1', 'ref' => $ref]);
     }
 
     /**
@@ -206,8 +212,8 @@ class FactureController extends Controller
             'exemple' => 'ex' . $request->ex,
             'mode_paiement' => $request->mode_paiement
         ]);
-        $user=User::where('id',$uId)->first();
-        $user->num_doc=$user->num_doc +1;
+        $user = User::where('id', $uId)->first();
+        $user->num_doc = $user->num_doc + 1;
         $user->save();
         $fact_id = Facture::where('user_id', $uId)->latest()->first()->id;
         $produits = $request->Produits;

@@ -24,19 +24,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $id=Auth::user()->id;
-        $artDis=Article::where('user_id',$id)->get();
-        $num=Numerotation::where('user_id',$id)->first();
-        $inf=$num->alr_inf;
-        $sup=$num->alr_sup;
-        $artAlert=Article::where('user_id',$id)->
-                         where('quantite','<',$inf)->where('quantite','>',$sup)->get();
-        $artEpuise=Article::where('user_id',$id)->
-                         where('quantite','=',0)->get();
-        $nba=Article::where('user_id',$id)->count();
-        $nbc=Client::where('user_id',$id)->count();
-        $nbd=Facture::where('user_id',$id)->count();
-        return view('main.home',['artD'=>$artDis,'artA'=>$artAlert,'artE'=>$artEpuise,'nba'=>$nba,'nbc'=>$nbc,'nbd'=>$nbd]);
+        $id = Auth::user()->id;
+        $artDis = Article::where('user_id', $id)->where('quantite', '>', 0)->get();
+        $num = Numerotation::where('user_id', $id)->first();
+        $inf = $num->alr_inf;
+        $sup = $num->alr_sup;
+        $artAlert = Article::where('user_id', $id)->where('quantite', '<', $inf)->where('quantite', '>', $sup)->get();
+        $artEpuise = Article::where('user_id', $id)->where('quantite', '=', 0)->get();
+        $nba = Article::where('user_id', $id)->count();
+        $nbc = Client::where('user_id', $id)->count();
+        $nbd = Facture::where('user_id', $id)->count();
+        return view('main.home', ['artD' => $artDis, 'artA' => $artAlert, 'artE' => $artEpuise, 'nba' => $nba, 'nbc' => $nbc, 'nbd' => $nbd]);
     }
 
     /**
@@ -44,7 +42,7 @@ class UserController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -78,24 +76,24 @@ class UserController extends Controller
     //     }
     // }
     public function edit(string $id)
-{
-    if ($id == Auth::id()) {
-        $user = DB::table('users')->where('id',$id)->first();
-        return view('auth.editUser', ['user' => $user]);
-    } else {
-        return back();
+    {
+        if ($id == Auth::id()) {
+            $user = DB::table('users')->where('id', $id)->first();
+            return view('auth.editUser', ['user' => $user]);
+        } else {
+            return back();
+        }
     }
-}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
     {
-        $id=$request->id;
+        $id = $request->id;
         // some errors to handle here !!!!!!!!!!!!!!!!!!!error
         // dump($request->post());
-        $Uid=Auth::id();
+        $Uid = Auth::id();
         // $user=DB::table('users')->where('id',$id)->first();
         // dd($user);
         // dd($request->post());
@@ -122,29 +120,29 @@ class UserController extends Controller
         //     return view('auth.editUser')->with('success','modified successfully');
         // }
         // dd($request->post());
-        if ($id == $Uid) {    
+        if ($id == $Uid) {
             if ($request->hasFile('img')) {
                 $img = time() . '-' . $request->file('img')->getClientOriginalName();
                 $request['im'] = $img;
                 // dd($img);
                 $request->file('img')->move(\public_path('profiles'), $img);
-            }else {
-                $request['im']=Auth::user()->img;
+            } else {
+                $request['im'] = Auth::user()->img;
             }
-            DB::table('users')->where('id',$id)->update([
-                'fj'=>$request->fj,
-                'telephone'=>$request->telephone,
-                'ice'=>$request->ice,
-                'adresse'=>$request->adresse,
-                'mobile'=>$request->mobile,
-                'img'=>$request->im,
-                'if'=>$request->if,
-                'site_web'=>$request->site_web,
-                'num_pattente'=>$request->num_pattente,
-                'num_rc'=>$request->num_rc,
-                'cnss'=>$request->cnss
+            DB::table('users')->where('id', $id)->update([
+                'fj' => $request->fj,
+                'telephone' => $request->telephone,
+                'ice' => $request->ice,
+                'adresse' => $request->adresse,
+                'mobile' => $request->mobile,
+                'img' => $request->im,
+                'if' => $request->if,
+                'site_web' => $request->site_web,
+                'num_pattente' => $request->num_pattente,
+                'num_rc' => $request->num_rc,
+                'cnss' => $request->cnss
             ]);
-    
+
             $user = DB::table('users')->where('id', $id)->first(); // Fetch the updated user
             return view('auth.editUser', ['user' => $user])->with('success', 'modified successfully');
         }
@@ -162,8 +160,8 @@ class UserController extends Controller
         $user = $request->validated();
         $user['name'] = $request->entreprise_name;
         User::create($user);
-        $uid=User::where('name',$request->entreprise_name)->latest()->first()->id;
-        $num=['user_id'=>$uid,'clt'=>'CLT-','art'=>'ART-','fact'=>'FACT-','bon_liv'=>'BL-','bon_cmd'=>'BC-','bon'=>'BN-','devis'=>'DV-','fact_pro'=>'FP-','fact_d_avoir'=>'FAV-','alr_inf'=>10,'alr_sup'=>5];
+        $uid = User::where('name', $request->entreprise_name)->latest()->first()->id;
+        $num = ['user_id' => $uid, 'clt' => 'CLT-', 'art' => 'ART-', 'fact' => 'FACT-', 'bon_liv' => 'BL-', 'bon_cmd' => 'BC-', 'bon' => 'BN-', 'devis' => 'DV-', 'fact_pro' => 'FP-', 'fact_d_avoir' => 'FAV-', 'alr_inf' => 10, 'alr_sup' => 5];
         Numerotation::create($num);
         // dd($user);
         return to_route('connexion')->with('success', 'Compte créé avec succès');
@@ -175,9 +173,9 @@ class UserController extends Controller
         $credencials = ['email' => $request->email, 'password' => $request->password];
         if (Auth::attempt($credencials)) {
             $request->session()->regenerate();
-            if(Auth::user()->status==='test'){
+            if (Auth::user()->status === 'test') {
                 return to_route('payement');
-            }else{
+            } else {
                 return to_route('home');
             };
         } else {
@@ -259,20 +257,20 @@ class UserController extends Controller
         return to_route('connexion')->with('success', 'Le mot de passe a été changé avec succès');
     }
 
-    public function contact(Request $request){
-        $data=[
-            'nom'=>$request->nom,
-            'telephone'=>$request->telephone,
-            'message'=>$request->message
+    public function contact(Request $request)
+    {
+        $data = [
+            'nom' => $request->nom,
+            'telephone' => $request->telephone,
+            'message' => $request->message
         ];
         // dump($data);
         // dd($request->post());
-        Mail::send('emails.contact',['data'=>$data],function($message) use ($request){
+        Mail::send('emails.contact', ['data' => $data], function ($message) use ($request) {
             $message->from($request->email);
             $message->to("contact@worfac.com");
             $message->subject($request->subject);
         });
-        return to_route('contact')->with('success','Message envoye');
+        return to_route('contact')->with('success', 'Message envoye');
     }
-
 }

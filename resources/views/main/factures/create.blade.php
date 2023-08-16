@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
     <div class="row mt2" style="">
     <div class="col-md-2 col-5 mt-3">
         <div class="form-floating">
-          <input id="Ref"   class="form-control" value="FC-8800-6">
+          <input id="Ref" class="form-control" value="{{$ref}}">
           <label for="floatingInputGrid"  class='h5'>Réf : </label>
         </div>
     </div>

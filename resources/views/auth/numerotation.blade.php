@@ -3,7 +3,7 @@
 @section('content')
 <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;"> Paramètres   Numérotation :</h1></center>  
 <body>
-    <form method="POST" action="" style="margin-left: 20%;width:70%;">
+    <form method="POST" action="{{route('numerotation.update',Auth::id())}}" style="margin-left: 20%;width:70%;">
         @csrf
         @method('PUT')
        <div class="row">

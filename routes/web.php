@@ -100,7 +100,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::get('/getListe/{id}',[AchatController::class,'getListe']);
     Route::resource('/user',UserController::class);
     Route::post('/facturer/{id}',[FactureController::class,'facturer'])->name('facturer');
-    Route::get('/numerotation',[NumerotationController::class,'index'])->name('numerotation');
+    Route::resource('/numerotation',NumerotationController::class);
     Route::resource('/admin',AdminController::class);
     Route::get('/admin/active/{id}',[AdminController::class,'activer'])->name('user.active');
     Route::get('/admin/desactive/{id}',[AdminController::class,'desactiver'])->name('user.desactive');

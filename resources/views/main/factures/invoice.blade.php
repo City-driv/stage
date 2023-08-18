@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <table>
-            <thead>
+            <thead style="background: coral">
                 <tr>
                     <th>Entreprise</th>
                     <th>Montant Total TVA</th>
@@ -20,14 +20,15 @@
             <tbody>
                 <tr>
                     <td>{{$name}}</td>
-                    <td>{{$tva}}</td>
-                    <td>{{$tht}}</td>
-                    <td>{{$ttc}}</td>
+                    <td>{{$tva}} DH</td>
+                    <td>{{$tht}} DH</td>
+                    <td>{{$ttc}} DH</td>
                 </tr>
             </tbody>
         </table>
         <table>
-            <thead>
+            <tr><td style="text-align: center" colspan="4">Liste document Sortie</td></tr>
+            <thead style="background: rgb(146, 193, 219)">
                 <tr>
                     <th>ref</th>
                     <th>Montant Tva</th>
@@ -40,13 +41,13 @@
                     <th>IF</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align: center">
                 @foreach ($factures as $fc)
                     <tr>
                         <td>{{$fc->ref}}</td>
-                        <td>{{$fc->ttva}}</td>
-                        <td>{{$fc->tht}}</td>
-                        <td>{{$fc->ttc}}</td>
+                        <td>{{$fc->ttva}} DH</td>
+                        <td>{{$fc->tht}} DH</td>
+                        <td>{{$fc->ttc}} DH</td>
                         <td>{{$fc->mode_paiement}}</td>
                         <td>{{$fc->date_facture}}</td>
                         <td>{{$fc->type_fact}}</td>

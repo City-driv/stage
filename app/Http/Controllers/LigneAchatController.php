@@ -21,6 +21,7 @@ class LigneAchatController extends Controller
         }else {
             $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->get();
         }
+
         if (isset($_GET['type']) && $_GET['type']=='f') {
             if (isset($_GET['date1']) && $_GET['date2']!=='') {
                 $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->where('type','Facture')->when($_GET['date1'], function ($query){
@@ -34,6 +35,7 @@ class LigneAchatController extends Controller
         $TOTAL=$Achats->sum('total');
         $REMISE=$Achats->sum('remiseGlobal');
         $ligne_achat=LigneAchat::whereIn('achat_id',$achatIds)->get();
+        dd($achatIds);
         return view('main.factures.mvEntre',compact('ligne_achat','TOTAL','REMISE'));
     }
 

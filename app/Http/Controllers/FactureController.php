@@ -150,7 +150,6 @@ class FactureController extends Controller
 
     public function create()
     {
-
         $user = User::where('id', Auth::id())->first();
         $clients = $user->clients;
         $articles = $user->articles->filter(function ($article) {
@@ -230,7 +229,6 @@ class FactureController extends Controller
             $ar->quantite = $ar->quantite - $pr['Qtee'];
             $ar->save();
         }
-
         return response()->json(['message' => $request->user, 'ref' => $request->ref, 'client' => $request->client, 'fact' => $fact_id]);
     }
 
@@ -325,7 +323,14 @@ class FactureController extends Controller
 
     public function test()
     {
-        $produits = Article::all();
-        return view('main.factures.test', compact('produits'));
+        $invoices = Facture::get();
+        
+        return  view('main.factures.invoice', [
+            'factures' => $invoices,
+            'name' => 'big hero',
+            'ttc' => '10020',
+            'tva' => '5200',
+            'tht' => '58784',
+        ]);;
     }
 }

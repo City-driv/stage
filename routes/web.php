@@ -104,6 +104,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::resource('/admin',AdminController::class);
     Route::get('/admin/active/{id}',[AdminController::class,'activer'])->name('user.active');
     Route::get('/admin/desactive/{id}',[AdminController::class,'desactiver'])->name('user.desactive');
+    Route::post('/admin/updateUser/{user}',[AdminController::class,'updateUser'])->name('admin.update.user');
 });
 
 

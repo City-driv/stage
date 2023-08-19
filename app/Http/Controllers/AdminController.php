@@ -27,6 +27,15 @@ class AdminController extends Controller
         DB::table('users')->where('id', $id)->update(['status' => 'test']);
         return to_route('admin.index')->with('success', 'Compte bien Desactiver');
     }
+
+    public function updateUser(User $user,Request $request)
+    {
+        $user->fill($request->post())->save();
+        // dd($request->post());
+        return to_route('admin.index')->with('success','Compte a été bien modifié ');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

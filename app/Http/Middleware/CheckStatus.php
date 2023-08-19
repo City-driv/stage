@@ -15,7 +15,7 @@ class CheckStatus
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->status === 'test') {
+        if (auth()->user()->status === 'test' || auth()->user()->status === 'inactive') {
             return to_route('payement');
         };
         return $next($request);

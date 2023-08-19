@@ -324,7 +324,7 @@ class FactureController extends Controller
     public function test()
     {
         $invoices = Facture::get();
-        
+        // dd($invoices);
         return  view('main.factures.invoice', [
             'factures' => $invoices,
             'name' => 'big hero',

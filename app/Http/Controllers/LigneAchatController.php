@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AchatsExport;
 use App\Models\Achat;
 use App\Models\LigneAchat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LigneAchatController extends Controller
 {
@@ -14,6 +16,22 @@ class LigneAchatController extends Controller
      */
     public function index()
     {
+        $startDate = null;
+        $endDate = null;
+      
+
+    if (isset($_GET['excel'])) {
+        $userId = Auth::id();
+        $invoiceType = $_GET['type'];
+        if (isset($_GET['date1']) && $_GET['date2']!=='') {
+            $startDate = $_GET['date1'];
+            $endDate = $_GET['date2'];
+        }
+        // dd($_GET['type'] . ' // ' . $userId);
+        return Excel::download(new AchatsExport($userId, $invoiceType, $startDate, $endDate), 'invoice.xlsx');
+        // return Excel::download(new FacturesExport ($userId, $invoiceType), 'invoices.xlsx');
+    }
+
         if (isset($_GET['date1']) && $_GET['date2']!=='') {
             $Achats=Achat::select('id','remiseGlobal','total')->where('user_id',Auth::id())->when($_GET['date1'], function ($query){
                 return $query->whereBetween('date', [$_GET['date1'], $_GET['date2']]);
@@ -35,7 +53,6 @@ class LigneAchatController extends Controller
         $TOTAL=$Achats->sum('total');
         $REMISE=$Achats->sum('remiseGlobal');
         $ligne_achat=LigneAchat::whereIn('achat_id',$achatIds)->get();
-        dd($achatIds);
         return view('main.factures.mvEntre',compact('ligne_achat','TOTAL','REMISE'));
     }
 

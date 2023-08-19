@@ -65,12 +65,33 @@ margin-top:10px;
             <td>Action</td>
         </tr>
         <tr class="h5">
-           <td>{{Auth::user()->entreprise_name}}t</td>
+           <td>{{Auth::user()->entreprise_name}}</td>
            <td>{{$TTVA}} DH</td>
            <td>{{$THT}} DH</td>
            <td>{{$TTC}} DH</td>
-                  <td><button style="" class="exp" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>
-           </tr>
+           <td>
+            @if (isset($_GET['type']))
+                @php
+                    $x='facture'
+                @endphp
+            @else
+                @php
+                    $x='mvs'
+                @endphp
+            @endif
+            {{-- <form action="{{route('mv.sortie',['type'=>$x,'excel'=>'excel'])}}" method="get"> --}}
+                <form action="{{route('mv.sortie',['type'=>$x,'excel'=>'excel'])}}" method="get">
+                @csrf
+                @if (isset($_GET['date1']))
+                  <input type="hidden" name="date1" value="{{$_GET['date1']}}">
+                  <input type="hidden" name="date2" value="{{$_GET['date2']}}">
+                @endif
+                <input type="hidden" name="excel" value="excel">
+                <input type="text" hidden name="type" value="{{$x}}">
+                  <button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button>
+                </td>
+                </form>
+        </tr>
     </table>
 
         <center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Articles Sortie :</h1></center>

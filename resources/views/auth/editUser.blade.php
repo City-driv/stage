@@ -2,10 +2,12 @@
 @section('title','WORFAC: Parametres')
 @section('content')
 
-<center><h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;"> Paramètres  Société et Compte :</h1></center>  
-    @if (session()->has('success'))
-        <div class="alert alert-success">{{session('success')}}</div>
-    @endif 
+<center>
+    <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;"> Paramètres  Société et Compte :</h1>
+</center>  
+    {{-- @if (session()->has('success'))
+    <div class="alert alert-success">{{session('success')}}</div>
+    @endif --}}
     {{-- @dump($id) --}}
     <div style="margin-left: 20%;width:70%;">
     <form action="{{route('user.update',$user->id)}}" method="post" enctype="multipart/form-data">
@@ -20,7 +22,7 @@
         <input type='text' class='form-control'  name='name' readonly value='{{$user->name}}' id='n1'  />
             <label for='n2'  style='font-size:14px;font-weight:700;'  class='form-label'>Forme juridique :</label>
         <select class="form-control" name="fj" style="" id="n2">
-                    <option selected value="{{$user->name}}">{{$user->fj}}</option>
+                    <option selected value="{{$user->fj}}">{{$user->fj}}</option>
                     <option  value="Auto-entrepreneur" >Auto-entrepreneur</option>
                     <option  value="Personne physique">Personne physique</option>
                     <option  value="L'entreprise individuelle">L'entreprise individuelle</option>
@@ -46,13 +48,12 @@
             <label for='if' style='font-size:14px;font-weight:700;' class='form-label'>N°IF:</label>
             <input type='text' class='form-control' name='if' value='{{$user->if}}'  />
             <label for='ce' style='font-size:14px;font-weight:700;' class='form-label'>N°ICE:</label>
-            <input type='Text' class='form-control' name='ice' value='{{$user->ice}}' id='ice' />
+            <input type='text' class='form-control' name='ice' value='{{$user->ice}}' id='ice' />
             </div>
             <div class='col-md-4 col-12 '>
             <div>
                 <label  style='font-size:14px;font-weight:700;' for='exampleInputPassword1' class='form-label'>N°Pattente:</label>
                 <input type='Text'  class='form-control' name='num_pattente' value='{{$user->num_pattente}}' id='exampleInputPassword1'/>
-                
                 <label style='display: none;' for='exampleInputPassword1'  style='font-size:14px;font-weight:700;' class='form-label'>
             </div>
             <label for='num_rc'  style='font-size:14px;font-weight:700;' class='form-label'>N° RC:</label>
@@ -71,18 +72,18 @@
                     <button type="submit" class="btn btn-success  mb-2"><i class="fas fa-file-download"></i> Enregistrer</button>
         </form>
 </div>
-<script>
-document.querySelector("input[type='file']").addEventListener("change",function(){
-    let Path=URL.createObjectURL(this.files[0]);
-    console.log(document.querySelector(".img"))
-    document.querySelector(".img").setAttribute("src",Path);
-})
-document.querySelector("#check").addEventListener("click",()=>{
-    if((document.querySelector("#check").checked))
-    document.querySelector(".pass").setAttribute("type","text")
-    else
-    document.querySelector(".pass").setAttribute("type","password")
-})
+<script>        
+    document.querySelector("input[type='file']").addEventListener("change",function(){
+        let Path=URL.createObjectURL(this.files[0]);
+        console.log(document.querySelector(".img"))
+        document.querySelector(".img").setAttribute("src",Path);
+    })
+    document.querySelector("#check").addEventListener("click",()=>{
+        if((document.querySelector("#check").checked))
+        document.querySelector(".pass").setAttribute("type","text")
+        else
+        document.querySelector(".pass").setAttribute("type","password")
+    })
 </script>
 
 @endsection

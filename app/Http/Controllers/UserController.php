@@ -144,7 +144,8 @@ class UserController extends Controller
             ]);
 
             $user = DB::table('users')->where('id', $id)->first(); // Fetch the updated user
-            return view('auth.editUser', ['user' => $user])->with('success', 'modified successfully');
+            return to_route('user.edit',$user->id)->with('success', 'Compte a été bien modifié');
+            // return view('auth.editUser', ['user' => $user])->with('success', 'Compte a été bien modifié');
         }
     }
 

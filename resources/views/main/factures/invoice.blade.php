@@ -8,8 +8,20 @@
 </head>
 <body>
     <div class="container">
+        @if (isset($startDate))
         <table>
-            <thead style="background: coral">
+            <tr>
+                <th>Date Debut :</th>
+                <th>{{ $startDate }}</th>
+            </tr>
+            <tr>
+                <th>Date Fin :</th>
+                <th>{{ $endDate }}</th>
+            </tr>
+        </table>
+        @endif
+        <table>
+            <thead style="background-color: deepskyblue">
                 <tr>
                     <th>Entreprise</th>
                     <th>Montant Total TVA</th>
@@ -28,7 +40,7 @@
         </table>
         <table>
             <tr><td style="text-align: center" colspan="4">Liste document Sortie</td></tr>
-            <thead style="background: rgb(146, 193, 219)">
+            <thead style="background-color: rgb(20, 243, 157)">
                 <tr>
                     <th>ref</th>
                     <th>Montant Tva</th>

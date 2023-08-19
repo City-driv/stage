@@ -67,8 +67,26 @@ margin-top:10px;
         <td>{{Auth::user()->entreprise_name}}</td>
         <td>{{$TOTAL}} DH</td>
         <td>{{$REMISE}} DH</td>
+        @if (isset($_GET['type']))
+            @php
+                $x='facture'
+            @endphp
+        @else
+            @php
+                $x='mve'
+            @endphp
+        @endif
         <td>
-            <button class="exp" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button>
+            <form action="{{route('mv.entre',['type'=>$x,'excel'=>'excel'])}}" method="get">
+                @csrf
+                @if (isset($_GET['date1']))
+                  <input type="hidden" name="date1" value="{{$_GET['date1']}}">
+                  <input type="hidden" name="date2" value="{{$_GET['date2']}}">
+                @endif
+                <input type="hidden" name="excel" value="excel">
+                <input type="text" hidden name="type" value="{{$x}}">
+                <button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button>
+            </form>
         </td>
     </tr>
     </table>

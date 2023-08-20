@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,7 +39,9 @@ class User extends Authenticatable
         'mobile',
         'site_web',
         'if',
-        'num_doc'
+        'num_doc',
+        'date_cr',
+        'date_exp'
     ];
 
     /**
@@ -80,4 +83,22 @@ class User extends Authenticatable
     {
         return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            if ($user->date_cr !==null && $user->date_exp!==null) {
+                $date_cr = new DateTime($user->date_cr); // Convertir la chaîne en objet DateTime
+                $date_exp = new DateTime($user->date_exp); // Convertir la chaîne en objet DateTime
+                $yearDifference = $date_cr->diff($date_exp)->y;
+                // Définir une condition où la date de création dépasse 1 an
+                if ($yearDifference >=1 ) {
+                    $user->update(['status' => 'inactive']);
+                }
+            }
+        });
+    }
+
 }

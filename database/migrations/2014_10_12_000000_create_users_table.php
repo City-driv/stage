@@ -32,7 +32,10 @@ return new class extends Migration
             $table->string('num_rc')->nullable();
             $table->string('cnss')->nullable();
             $table->string('img')->nullable();
+            $table->date('date_cr')->nullable()->default(now()->toDateString());
+            $table->date('date_exp')->nullable()->default(now()->addYear()->toDateString());
             $table->integer('num_doc')->nullable()->default(0);
+            $table->boolean('admin')->nullable()->default(false);
             $table->timestamps();
         });
     }

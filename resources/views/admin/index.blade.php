@@ -138,7 +138,7 @@ body{
     <h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Liste des Users:</h1>
 </center>
 <div class="table-wrapper">
-    <input type="datetime-local" >
+    {{-- {{ now()->addYear()->toDateString() }} --}}
             {{-- <table class="table table-responsive"> --}}
 {{-- <table class="table table-responsive text-center table-bordered border-primary"> --}}
     <table class="fl-table">
@@ -158,6 +158,7 @@ body{
         <th>adresse</th>
         <th>Num docs</th>
         <th>Date Creation</th>
+        <th>Date Expiration</th>
         <th>action</th>
       </tr>
     </thead>
@@ -169,7 +170,7 @@ body{
                     $c='#03A9F4';
                     if (($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000))
                      {$c='#ff0000a6';}
-                    if (($user->pack =='perso' && $user->num_doc >= 980) || ($user->pack =='starter' && $user->num_doc >= 2980))
+                    if (($user->pack =='perso' && $user->num_doc >= 980 && $user->num_doc < 1000) || ($user->pack =='starter' && $user->num_doc >= 2980 && $user->num_doc < 3000))
                     {$c='#ffcc00';}
                 @endphp
             <tr style="background:{{ $c }}">
@@ -219,7 +220,8 @@ body{
                 <td><input type="text" name="adresse" value="{{$user->adresse}}"></td>
                 <td><input type="text" name="num_doc" value="{{$user->num_doc}}" style="width: 30px;text-align:center"></td>
                 {{-- <td><span style="background: white;padding:2px">{{$user->formatted_created_at}}</span></td> --}}
-                <td><input type="date" name="formatted_created_at" value="{{$user->formatted_created_at}}"></td>
+                <td><input type="date" name="date_cr" value="{{$user->date_cr}}"></td>
+                <td><input type="date" name="date_exp" value="{{$user->date_exp}}"></td>
                 <td>
                   <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" style="font-size: 10px;background:white;color:#324960" data-bs-toggle="dropdown" aria-expanded="false">
@@ -233,9 +235,13 @@ body{
                           <a title="Desactiver_compte" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('user.desactive',$user->id)}}">Desactiver compte <i class="fa fa-times"></i></a>
                       </li>
                       <li>
+                          <a title="renouveler offre" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('user.renouveler.offre',$user->id)}}">Renouveler L'offre <i class="fa fa-refresh"></i></a>
+                      </li>
+                      <li>
                          <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  ><button style="display: contents" type="submit">Modifier</button> <i class="fas fa-edit"></i></a>
                       </li>
                     </form>
+
                       <li>
                         <form action="{{route('admin.destroy',$user->id)}}" method="post">
                          @csrf

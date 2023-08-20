@@ -33,11 +33,11 @@
    {{-- <button type="submit"  class="search"><i class="fas fa-search"></i>Chercher</button> --}}
 </form>
 </div>
-@if (session()->has('success'))
+{{-- @if (session()->has('success'))
     <div class="alert alert-success">
         {{session('success')}}
     </div>
-@endif
+@endif --}}
   <center>
     <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion Fournisseurs :</h1>
   </center>

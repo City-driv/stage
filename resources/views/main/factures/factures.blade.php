@@ -142,7 +142,7 @@ input[type=number] {
                             <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="facturer({{$f->id}})">Facturer <i class="fas fa-share"></i></a></li>
                           <li>
                         @endif
-                         <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
+                         <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{ route('facture.envoyer',$f->id) }}">Envoyer <i class="fas fa-envelope"></i></a>
                       </li>
                       <li>
                          <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="{{route('facture.edit',$f->id)}}">Modifier <i class="fas fa-edit"></i></a></li>

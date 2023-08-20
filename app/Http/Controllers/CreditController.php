@@ -68,9 +68,9 @@ class CreditController extends Controller
             'montant' => $request->p_avance,
             'date' => $request->date_credit,
             'observation' => $request->observation,
-            'mode_paiement' => $request->piece_jointe
+            'mode_paiement' => $request->mode_paiement
         ]);
-        return to_route('credit.index');
+        return to_route('credit.index')->with('success','Credit a été bien ajouté !');
     }
 
     /**

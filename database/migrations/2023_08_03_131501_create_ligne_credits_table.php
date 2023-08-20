@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('montant');
             $table->date('date');
             $table->string('observation')->nullable();
-            $table->string('mode_paiement');
+            $table->string('mode_paiement')->nullable();
             $table->timestamps();
         });
     }

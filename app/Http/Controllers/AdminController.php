@@ -34,7 +34,15 @@ class AdminController extends Controller
         // dd($request->post());
         return to_route('admin.index')->with('success','Compte a été bien modifié ');
     }
-
+    
+    public function updateUserOffre(User $user)
+    {
+        $NewDateExp= now()->addYears(1)->toDateString();
+        $user->update(['num_doc'=>0,'date_exp'=>$NewDateExp]);
+        //  dd($user);
+        return to_route('admin.index')->with('success','L\'offre a été bien renouvelée ');
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -83,7 +91,6 @@ class AdminController extends Controller
     {
         // dd('delete' .$id);
         $user=User::find($id);
-        // dd($user);
         $user->delete();
         return to_route('admin.index')->with('success','compte bien supprimer');
     }

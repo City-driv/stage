@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\FacturesExport;
+use App\Mail\InvoiceEmail;
 use App\Models\Article;
 use App\Models\Client;
 use App\Models\Facture;
@@ -11,6 +12,7 @@ use App\Models\Numerotation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FactureController extends Controller
@@ -318,6 +320,15 @@ class FactureController extends Controller
         Ligne_facture::where('facture_id', $facture->id)->delete();
         $facture->delete();
         return to_route('all.factures')->with('success', 'Facture supprimee');
+    }
+
+    public function factureEmail($id){
+        $facture=Facture::findOrFail($id);
+        $user=Auth::user()->email;
+        Mail::to($user)->send(new InvoiceEmail($facture));
+        // Mail::to('naliyof707@bagonew.com')->send(new InvoiceEmail($facture));
+
+        return back()->with('success','E-mail envoyé avec succès.');
     }
 
 

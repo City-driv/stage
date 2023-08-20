@@ -120,7 +120,7 @@ function chargerArticles(){
       <span style='margin-top: 10%;'> ${Produits[index].price} </span>
       </td>
       <td>   
-         <input  class="col-12 col-md-8 form-control Qte EQTE" onblur='ModifierRemise(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="100" min="1" class="" text="${Produits[index].id}" value=${Produits[index].remise}>      </td>
+         <input  class="col-12 col-md-8 form-control Qte EQTE" onkeyup='ModifierRemise(this.value,${Produits[index].id})' style='width:50px;height:relative;' type="number" max="100" min="1" class="" text="${Produits[index].id}" value=${Produits[index].remise}>      </td>
 
       <td >
       <div class='row' style="">

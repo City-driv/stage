@@ -30,7 +30,7 @@
     border: 1px solid black;
   }
   footer{
-    height: 8vh; 
+    height: 6.4vh; 
     font-size:15px;
     position: absolute;
     width: 100%;

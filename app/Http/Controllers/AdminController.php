@@ -8,12 +8,16 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CheckAdmin');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('created_at','desc')->get();
         return view('admin.index', compact(['users']));
     }
 

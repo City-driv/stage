@@ -239,9 +239,11 @@ function Valider(){
 
       ValiderVar=true
       }else
-      alert("selectionner une Produit")
+      swal("Ajouter facture!", "Veuillez selectionner un produit!", "info");
+      // alert("selectionner une Produit")
   }else
-  alert("La commande d'eja Valide svp vider commande")
+  swal("Ajouter facture!", "La commande d'eja Valide svp vider commande!", "info");
+  // alert("La commande d'eja Valide svp vider commande")
 }
 
 function Ajoute(){
@@ -293,7 +295,8 @@ document.getElementById('annuler').addEventListener('click',function(){
               })
         ValiderVar=true;
         }else
-        alert("selectionner une Produit")
+        swal("Ajouter facture!", "Veuillez selectionner un produit!", "info");
+        // alert("selectionner un Produit")
     }else
     swal("Ajouter facture!", "La commande d'eja Valide svp vider commande!", "info");
     // alert("La commande d'eja Valide svp vider commande")

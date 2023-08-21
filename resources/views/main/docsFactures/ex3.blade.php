@@ -228,20 +228,22 @@
   </div>
   {{-- <div class='col-12 text-center h6'> CENT TROIS DIRHAMS MAROCAINS  ET SOIXANTE-DIX  CENTIMES</div> --}}
   <div class='col-8 ms-5 '> </div>
-  <div class='col-12 text-center h5' style='text-align:right;'>Mode Paiement:Carte bancaire</div> 
-  <div class='signature'  style='display:none'>
-            <div class='row'>
-                  <div class='col-6'>
-                    <p>Signature Entreprise:
-                 <br>
-                  <img src='images/alt2.JPG'   style='opacity:1' class='signature' onerror=this.onerror=null; this.src='' /> </p>
-                  </div>
-                  <div class='col-6'>
-                    <p> signature Client: <br>
-                   <img style='margin-top:12px;'   style='opacity:1' src='images/alt2.JPG'  onerror='this.onerror=null; this.src='images/alt.jpg'' srcset=''></p>  
-                  </div>
-            </div>
-        </div> 
+  <div class='col-12 text-center h5' style='text-align:right;'>Mode Paiement:{{ $facture->mode_paiement }}</div> 
+  @if ($facture->type_fact=='bon_livraison' )
+    <div class='signature' >
+              <div class='row'>
+                    <div class='col-6'>
+                      <p>Signature Entreprise:
+                  <br>
+                    <img src='images/alt2.JPG'   style='opacity:1' class='signature' onerror=this.onerror=null; this.src='' /> </p>
+                    </div>
+                    <div class='col-6'>
+                      <p> signature Client: <br>
+                    <img style='margin-top:12px;'   style='opacity:1' src='images/alt2.JPG'  onerror='this.onerror=null; this.src='images/alt.jpg'' srcset=''></p>  
+                    </div>
+              </div>
+    </div> 
+  @endif
  </div>
  <div class='footer'>
    <div class='row'>

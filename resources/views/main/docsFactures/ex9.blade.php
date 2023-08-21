@@ -12,7 +12,14 @@
     height: 297mm; /* Hauteur du format A4 en millimètres */
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
-
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.4vh;
+    /* background-color: #333333; */
+}
 @media print {
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
@@ -84,11 +91,11 @@ tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
 .footer {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 6.4vh;
+    /* height: 6.4vh; */
     background-color: #521400;
 }
 /* .footer{
@@ -205,7 +212,8 @@ tr:nth-child(even){
              </div>
     <div class='col-8 h5 text-left'> </div>
    </div>
-   <div class='signature' style='display:none'>
+   @if ($facture->type_fact=='bon_livraison' )
+   <div class='signature' >
      <div class='row mt-3'>
          <div class='col-3'></div>
          <div class='col-3'>
@@ -217,6 +225,7 @@ tr:nth-child(even){
          </div>
      </div>
  </div>
+ @endif
    
  </div>
 </div>

@@ -12,7 +12,14 @@
     height: 297mm; /* Hauteur du format A4 en millimètres */
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
-
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.4vh;
+    /* background-color: #333333; */
+}
 @media print {
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */

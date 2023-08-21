@@ -16,7 +16,7 @@ class CreditController extends Controller
      */
     public function index()
     {
-        $credits = Credit::where('user_id', Auth::id())->get();
+        $credits = Credit::where('user_id', Auth::id())->orderBy('created_at','desc')->get();
         return view('main.credits.index', compact('credits'));
     }
 

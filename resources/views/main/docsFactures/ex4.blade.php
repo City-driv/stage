@@ -21,6 +21,8 @@
         width: 100%;
         height: 6vh;
         margin-top: 0;
+        background-color: #D3D3D3;
+        text-align: center;
     }
     
     .a4-page {
@@ -41,11 +43,14 @@
     <style>
         .example2{
             border-top-left-radius: 250px;
-            height: 101.5vh;
+            /* height: 101.5vh; */
+            min-height: 101.5vh;
             background-color: #f0f5f5;
             padding-left: 3%;
             border-bottom: 5vh solid  #0C91DA;
-            height: 201.5vh;border-bottom:0;            
+            /* height: 201.5vh; */
+            height: 100%;
+            border-bottom:0;            
                         
         }
         table{
@@ -131,7 +136,7 @@
          color:black;
      } */
      .footer {
-          position: fixed;
+          /* position: fixed; */
           bottom: 0;
           left: 0;
           width: 100%;
@@ -205,7 +210,7 @@
                     @endforeach
  <tr class='tr' style='background-color:#f0f5f5;'>
  <td class='libelle'  style='font-size:20px;color:#0C91DA;'> 
- Mode Paiement:Espéce</td>
+ Mode Paiement:{{ $facture->mode_paiement }}</td>
  <td></td>
  <td></td>
  <td colspan='2'>  TOTAL HT :</td>
@@ -237,17 +242,19 @@
  </table>
  {{-- <div class='row text-center'>DEUX CENT QUARANTE DIRHAMS MAROCAINS </div> --}}
 <div class='col-8 h6 mt-1 text-left'> </div>
-                <div class='signature'  style='display:none'>
-                    <div class='row'>
-                        <div class='col-6'>
-                          <p>Signature Entreprise:
-                       <br>
-                        </div>
-                        <div class='col-6'>
-                          <p> signature Client: <br>
-                        </div>
-                    </div>
-                </div>       
+@if ($facture->type_fact=='bon_livraison' )
+        <div class='signature'>
+            <div class='row'>
+                <div class='col-6'>
+                <p>Signature Entreprise:
+            <br>
+                </div>
+                <div class='col-6'>
+                <p> signature Client: <br>
+                </div>
+            </div>
+        </div>       
+@endif
               </div>
           </div>
       </div>

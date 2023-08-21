@@ -19,7 +19,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        height: 6vh;
+        height: 6.4vh;
         margin-top: 0;
     }
     
@@ -47,8 +47,9 @@ body {
     <style>
         .example2{
             border-top-right-radius: 250px;
-            height: 101.5vh;
-            height: 201.5vh;border-bottom:0;
+            min-height: 101.5vh;
+            /* height: 201.5vh; */
+            border-bottom:0;
             background-color: #f0f5f5;
             padding-left: 3%;
             border-bottom: 5vh solid  #a57a05;
@@ -136,7 +137,7 @@ body {
          color:black;
      } */
      .footer {
-          position: fixed;
+          /* position: fixed; */
           bottom: 0;
           left: 0;
           width: 100%;
@@ -172,7 +173,7 @@ body {
                <label for='' class='Dcmd'>Date : {{$facture->date_facture}}</label>
               </div>
               <div class='entreprise'>
-                  <label for='' class='adressL'>Address :</label><label for='' class='adress'>{{Auth::user()->adresse}}</label>
+                  <label for='' class='adressL'>Adresse :</label><label for='' class='adress'>{{Auth::user()->adresse}}</label>
                   <br>
                   <label for='' class='emailL'>Email :</label><label for='' class='email'>{{Auth::user()->email}}</label>
                   <br>
@@ -233,7 +234,8 @@ body {
  </table>
  <div class="row"></div>
 <div class='col-8 h6 mt-1 text-left'> </div>
-                <div class='signature'  style='display:none'>
+@if ($facture->type_fact=='bon_livraison' )
+                <div class='signature' >
                     <div class='row'>
                         <div class='col-6'>
                           <p>Signature Entreprise:
@@ -243,7 +245,8 @@ body {
                           <p> signature Client: <br>
                         </div>
                     </div>
-                </div>       
+                </div>   
+@endif    
               </div>
           </div>
       </div>

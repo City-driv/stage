@@ -10,7 +10,7 @@
     <style type='text/css' media='print'> 
        @page { size: A4;margin: 0mm; }
         html { background-color: #FFFFFF; margin: 0px;  }
-        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm;} 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -30,7 +30,7 @@
     border: 1px solid black;
   }
   footer{
-    height: 8vh; 
+    height: 6.4vh; 
     font-size:15px;
     position: absolute;
     width: 100%;

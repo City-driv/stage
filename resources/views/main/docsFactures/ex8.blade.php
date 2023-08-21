@@ -10,7 +10,39 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <link rel="icon" href="logo.png" />
     <style type="text/css" media="print"> 
-        @page { size: A4; /* auto is the initial value */ margin: 0mm; /* this affects the margin in the printer settings */ } html { background-color: #FFFFFF; margin: 0px; /* this affects the margin on the html before sending to printer */ } body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+    @media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        -webkit-print-color-adjust: exact;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 6vh;
+        margin-top: 0;
+    }
+    
+    .a4-page {
+        overflow: hidden; /* Éviter les débordements lors de l'impression */
+        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+    }
+
+}
+
+        @page { size: A4; margin: 0mm;  }
+        html { background-color: #FFFFFF; margin: 0px;}
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; }
+        .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6.4vh;
+    /* background-color: #333333; */
+} 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -21,11 +53,14 @@
         .example2{
             border-top-right-radius: 250px;
             border-top-left-radius: 250px;
-            height: 101.5vh;
-            height: 201.5vh;border-bottom:0;            background-color: #f0f5f5;
+            min-height: 101.5vh;
+
+            /* height: 101.5vh; */
+            /* height: 201.5vh; */
+            /* border-bottom:0; */
+            background-color: #f0f5f5;
             padding-left: 3%;
-            border-bottom: 5vh solid  #E91E63;
-                        
+            /* border-bottom: 5vh solid  #E91E63; */
         }
         table{
             background-color: rgb(233, 227, 233);
@@ -101,11 +136,13 @@
          margin-left:50%;
      }
      footer{
-         height:6vh;
+         height:6.4vh;
          padding-left:20px;
          position: absolute;
          width:100%;
-         margin-top: -6vh;margin-top: 95vh;         font-size:17px;
+         /* margin-top: -6vh; */
+         /* margin-top: 95vh; */
+         font-size:17px;
          background:#D3D3D3;
          color:black;
      }
@@ -197,16 +234,14 @@
  color: white; padding-left:5px;
   font-weight: bold;
  font-size: 15px;'>TOTAL TTC:</td>
- <td style='background-color:  #E91E63;
- color: white;
-  font-weight: bold;
- font-size: 15px;'>{{$facture->ttc}} DH</td>
+ <td style='background-color: #E91E63;color: white; font-weight: bold;font-size: 15px;'>{{$facture->ttc}} DH</td>
  
  </tr>
  </table>
  {{-- <div class='row text-center'> MILLE SIX CENT CINQUANTE TROIS DIRHAMS MAROCAINS  ET DIX CINQ CENTIMES</div> --}}
 <div class='col-8 h6 mt-1 text-left'> </div>
-                <div class='signature'  style='display:none'>
+@if ($facture->type_fact=='bon_livraison' )
+                <div class='signature'>
                     <div class='row'>
                         <div class='col-6'>
                           <p>Signature Entreprise:
@@ -216,7 +251,8 @@
                           <p> signature Client: <br>  
                         </div>
                     </div>
-                </div>       
+                </div>     
+@endif  
               </div>
           </div>
       </div>

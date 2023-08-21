@@ -55,31 +55,24 @@ class FactureController extends Controller
             if ($type == 'f') {
                 $t = 'Factures';
                 $x = 'facture';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture')->get();
             } elseif ($type == 'bl') {
                 $t = 'Bons Livraison';
                 $x = 'bon_livraison';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_livraison')->get();
             } elseif ($type == 'bc') {
                 $t = 'Bons de Commandes';
                 $x = 'bon_cmd';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon_cmd')->get();
             } elseif ($type == 'fv') {
                 $t = "Factures d'Avoirs";
-                $x = 'facture_d_avoir';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_d_avoir')->get();
+                $x = 'facture_d_avoir';;
             } elseif ($type == 'b') {
                 $t = 'Bons';
                 $x = 'bon';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','bon')->get();
             } elseif ($type == 'dv') {
                 $t = 'Devis';
                 $x = 'devis';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','devis')->get();
             } elseif ($type == 'fp') {
                 $t = 'Factures Proforma';
                 $x = 'facture_proforma';
-                // $factures=Facture::where('user_id',Auth::id())->where('type_fact','facture_proforma')->get();
             }
         } else {
             $factures = Facture::where('user_id', Auth::id())->get();
@@ -88,12 +81,12 @@ class FactureController extends Controller
         }
 
         if ($x == null) {
-            $factures = Facture::where('user_id', Auth::id())
+            $factures = Facture::where('user_id', Auth::id())->orderBy('created_at','desc')
                 ->when($startDate, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('date_facture', [$startDate, $endDate]);
                 })->get();
         } else {
-            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)
+            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at','desc')
                 ->when($startDate, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('date_facture', [$startDate, $endDate]);
                 })->get();
@@ -104,7 +97,7 @@ class FactureController extends Controller
             $year = date('Y');
             $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
             $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));
-            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)
+            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at','desc')
                 ->when($start_date, function ($query) use ($start_date, $end_date) {
                     return $query->whereBetween('date_facture', [$start_date, $end_date]);
                 })->get();

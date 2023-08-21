@@ -63,7 +63,7 @@ function ajouter(e){
 
     }
 
-    console.log(client);
+    // console.log(client);
 
     if (des !=='' && tva !== '' && qte!=='' && prix!=='') {
         let product={
@@ -71,7 +71,7 @@ function ajouter(e){
         }
         
         Products.push(product);
-        console.log(Products);
+        // console.log(Products);
         // console.log(product);
         
 
@@ -103,7 +103,7 @@ function ajouter(e){
     function removeProduit(){
         var index=$(this).closest('tr').index();
         // Products.splice(index,1);
-        console.log(Products)
+        // console.log(Products)
         // console.log(index);
         $(this).closest('tr').remove(); 
         updateTotalPrice();

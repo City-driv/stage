@@ -19,7 +19,7 @@ $.ajaxSetup({
 document.querySelectorAll(".modifier button")[0].addEventListener("click",(e)=>{
     e.preventDefault()
     let [fournisseur,Numero,dateFacture,total,remiseglobal,modePaiement,modeLivraison,type]=document.querySelectorAll(".modifier input,.modifier select");
-    console.log(Numero.value);
+    // console.log(Numero.value);
     $.ajax({
         type:'PUT',
         url : '/achat/'+ Facture.idFcature,
@@ -54,7 +54,7 @@ $('.Mbtn').on('click',function(){
             // Afficher les factures des client correspondants
             document.querySelector(".modifier").style.transform = "scale(1)";
 
-            console.log(response.facture);
+            // console.log(response.facture);
             let result=response.facture;
             // alert('get success');
             Facture = {

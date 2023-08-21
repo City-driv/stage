@@ -6,7 +6,7 @@ let pr = JSON.parse(document.querySelector("select[name='Article']").value);
 let idp = pr.id;
 pr['QteCmd'] = 1;
 pr['QteRecue'] = 0;
-console.log(pr);
+// console.log(pr);
 // CopyProduit.push(pr);
 if (Produits.length==0) {
     Produits.push(pr);
@@ -16,14 +16,14 @@ for (let index = 0; index < Produits.length; index++) {
         Produits.push(pr);
     }
 }
-console.log(Produits);
+// console.log(Produits);
 chargerInTable();
 });
 
 function chargerInTable() {
 document.querySelector("table tbody").innerHTML = "";
 for (let index = 0; index < Produits.length; index++) {
-console.log(Produits[index].description);
+// console.log(Produits[index].description);
 document.querySelector("table tbody").innerHTML +=`
     <tr>
         <td>${Produits[index].description}</td>
@@ -83,7 +83,7 @@ $('#Fachat').on('submit', function(e) {
     if (fr=='' ||num=='' ||date=='' ||total=='' ||remiseG=='' ||mode_livraison=='' || mode_paiement=='' || type=='' || piece_jointe=='' || Produits.length==0 ) {
       swal("Alert!", "Tout les champs sont obligatoires !", "error");
     }
-    console.log(piece_jointe);
+    // console.log(piece_jointe);
   
     var url = $(this).attr('action');
     var data = {
@@ -127,12 +127,12 @@ $('#Fachat').on('submit', function(e) {
         });
           
         //   console.log( JSON.parse(res.msg));
-          console.log(res.msg);
+          // console.log(res.msg);
         },
         error: function(xhr, status, error) {
           console.log(error);
         }
       });
-      console.log(data);
+      // console.log(data);
     }
   });

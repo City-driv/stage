@@ -53,7 +53,7 @@ let ValiderVar=false;
 function ajouterArt(){
     var select = document.getElementById("articles");
     var produit = JSON.parse(select.value);
-    console.log(produit);
+    // console.log(produit);
     var Pid=produit.id
     var existP=false;
     produit['MontantTva']=0;
@@ -71,8 +71,8 @@ function ajouterArt(){
     if (existP==false) {
         Produits.push(produit)
     }
-    console.log(produit);
-    console.log(Produits);
+    // console.log(produit);
+    // console.log(Produits);
     chargerArticles();
 }
 
@@ -136,7 +136,7 @@ function chargerArticles(){
     
     }
     Calculer()
-    console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
+    // console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
 }
 
 //suprimmer
@@ -224,7 +224,7 @@ function Calculer() {
       Tmontan+= parseFloat(monHT-monRemise)
       TTC+=Produits[index].TTc
   }
-  console.log(Produits)
+  // console.log(Produits)
   document.querySelector(".ht").innerHTML="Montant Brut HT :"+parseFloat(brutHT).toFixed(2)+" DH"
   document.querySelector(".tva").innerHTML="Montant TVA :"+parseFloat(Ttva).toFixed(2)+" DH"
   document.querySelector(".remise").innerHTML="Remise :"+parseFloat(remiseMon).toFixed(2)+" DH"
@@ -287,7 +287,7 @@ document.getElementById('annuler').addEventListener('click',function(){
                   document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
                   document.getElementById('wht').setAttribute('href','https://api.whatsapp.com/send?text=http://127.0.0.1:8000/facture/'+res.fact);
 
-                  console.log(res.fact)
+                  // console.log(res.fact)
                 },
                 error: function (xhr, status, error) {
                 console.log(error);

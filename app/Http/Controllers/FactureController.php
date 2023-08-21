@@ -329,16 +329,16 @@ class FactureController extends Controller
     }
 
 
-    public function test()
-    {
-        $invoices = Facture::get();
-        // dd($invoices);
-        return  view('main.factures.invoice', [
-            'factures' => $invoices,
-            'name' => 'big hero',
-            'ttc' => '10020',
-            'tva' => '5200',
-            'tht' => '58784',
-        ]);;
-    }
+    // public function test()
+    // {
+    //     $invoices = Facture::get();
+    //     // dd($invoices);
+    //     return  view('main.factures.invoice', [
+    //         'factures' => $invoices,
+    //         'name' => 'big hero',
+    //         'ttc' => '10020',
+    //         'tva' => '5200',
+    //         'tht' => '58784',
+    //     ]);;
+    // }
 }

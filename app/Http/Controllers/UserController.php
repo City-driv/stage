@@ -28,6 +28,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $artDis = Article::where('user_id', $id)->where('quantite', '>', 0)->get();
         $num = Numerotation::where('user_id', $id)->first();
+        $vnum= $num->created_at !== $num->updated_at;
         $inf = $num->alr_inf;
         $sup = $num->alr_sup;
         $artAlert = Article::where('user_id', $id)->where('quantite', '<', $inf)->where('quantite', '>', $sup)->get();
@@ -35,7 +36,7 @@ class UserController extends Controller
         $nba = Article::where('user_id', $id)->count();
         $nbc = Client::where('user_id', $id)->count();
         $nbd = Facture::where('user_id', $id)->count();
-        return view('main.home', ['artD' => $artDis, 'artA' => $artAlert, 'artE' => $artEpuise, 'nba' => $nba, 'nbc' => $nbc, 'nbd' => $nbd]);
+        return view('main.home', ['artD' => $artDis, 'artA' => $artAlert, 'artE' => $artEpuise, 'nba' => $nba, 'nbc' => $nbc, 'nbd' => $nbd,'vnum'=>$vnum]);
     }
 
     /**

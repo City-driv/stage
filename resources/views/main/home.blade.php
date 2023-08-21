@@ -31,8 +31,52 @@
                  </div>
                  <div class='col-11 col-md-7'>
                      <div class='row etape'>
-                         
-                       <button><a href='{{route('user.edit',Auth::id())}}'>1- Paramètrez les informations de votre société</a></button><button><a href='numeration.php'>2- Paramétrez la continuité de votre numérotation</a></button> <button style='background-color:green;'><a class='text-white' href='{{route('all.factures')}}'><i class='fas fa-check-square'></i>  Première facture de vente créée</a></button><button style='background-color:green;'><a class='text-white' href='{{route('article.index')}}'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a></button><button style='background-color:green;'><a class='text-white' href='{{route('clients.index')}}'><i class='fas fa-check-square'></i>  Contacs clients Importer</a></button></div>
+                      @if (Auth::user()->created_at===Auth::user()->updated_at)
+                        <button>
+                          <a href='{{route('user.edit',Auth::id())}}'>1- Paramètrez les informations de votre société</a>
+                        </button>    
+                      @else
+                        <button style="background-color: green">
+                          <a class='text-white' href='{{route('user.edit',Auth::id())}}'><i class='fas fa-check-square'></i> Paramètrez les informations de votre société</a>
+                        </button>
+                      @endif
+                      @if ($vnum)
+                        <button style="background-color: green">
+                          <a class='text-white' href='{{ route('numerotation.index') }}'><i class='fas fa-check-square'></i> Paramétrez la continuité de votre numérotation</a>
+                        </button>  
+                      @else
+                        <button>
+                          <a href='{{ route('numerotation.index') }}'>2- Paramétrez la continuité de votre numérotation</a>
+                        </button>
+                      @endif
+                      @if ($nbd>0)
+                        <button style='background-color:green;'>
+                          <a class='text-white' href='{{route('all.factures')}}'><i class='fas fa-check-square'></i>  Première facture de vente créée</a>
+                        </button>
+                      @else
+                        <button>
+                          <a href='{{route('all.factures')}}'>3- Première facture de vente créée</a>
+                        </button>  
+                      @endif
+                      @if ($nba > 0)
+                        <button style='background-color:green;'>
+                          <a class='text-white' href='{{route('article.index')}}'><i class='fas fa-check-square'></i> catalogue d'articles Importer</a>
+                        </button>
+                      @else
+                        <button >
+                          <a href='{{route('article.index')}}'>4- catalogue d'articles Importer</a>
+                        </button>
+                      @endif
+                      @if ($nbc > 0)
+                        <button style='background-color:green;'>
+                          <a class='text-white' href='{{route('clients.index')}}'><i class='fas fa-check-square'></i>  Contacs clients Importer</a>
+                        </button>
+                      @else
+                        <button >
+                          <a href='{{route('clients.index')}}'>5- Contacs clients Importer</a>
+                        </button>
+                      @endif
+                    </div>
                  </div>
                </div>
            </div>

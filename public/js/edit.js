@@ -1,5 +1,5 @@
 
-console.log(jsonData.articlesJ[0]);
+// console.log(jsonData.articlesJ[0]);
 
 
 // Create a variable to store the search input.
@@ -52,7 +52,7 @@ window.addEventListener('load', function() {
     // Par exemple :
     const ft=jsonData.articlesJ;
     for (let x=0; x< ft.length ;x++){
-        console.log(ft[x]);
+        // console.log(ft[x]);
         let product={};
         product['description']=ft[x].art.description;
         product['Qtee']=ft[x].quantite;
@@ -66,7 +66,7 @@ window.addEventListener('load', function() {
         product['TTc']=0;
         Produits.push(product);
         
-        console.log(product);
+        // console.log(product);
 
     }
     chargerArticles();
@@ -81,7 +81,7 @@ let ValiderVar=false;
 function ajouterArt(){
     var select = document.getElementById("articles");
     var produit = JSON.parse(select.value);
-    console.log(produit);
+    // console.log(produit);
     var Pid=produit.id
     var existP=false;
     produit['MontantTva']=0;
@@ -99,8 +99,8 @@ function ajouterArt(){
     if (existP==false) {
         Produits.push(produit)
     }
-    console.log(produit);
-    console.log(Produits);
+    // console.log(produit);
+    // console.log(Produits);
     chargerArticles();
 }
 
@@ -170,7 +170,7 @@ function chargerArticles(){
     // }
     }
     Calculer()
-    console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
+    // console.log('ttc =' +TTC +'/'+ brutHT+'/ ttva = '+Ttva );
 }
 
 //suprimmer
@@ -271,7 +271,7 @@ function Calculer() {
       Tmontan+= parseFloat(monHT-monRemise)
       TTC+=Produits[index].TTc
   }
-  console.log(Produits)
+  // console.log(Produits)
   document.querySelector(".ht").innerHTML="Montant Brut HT :"+parseFloat(brutHT).toFixed(2)+" DH"
   document.querySelector(".tva").innerHTML="Montant TVA :"+parseFloat(Ttva).toFixed(2)+" DH"
   document.querySelector(".remise").innerHTML="Remise :"+parseFloat(remiseMon).toFixed(2)+" DH"
@@ -355,9 +355,9 @@ document.getElementById('annuler').addEventListener('click',function(){
                   alert('submited successfully');
                 //   console.log(Produits);
                   document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
-                  console.log(res.request)
-                  console.log(res.facture)
-                  console.log(res.fid);
+                  // console.log(res.request)
+                  // console.log(res.facture)
+                  // console.log(res.fid);
                 },
                 error: function (xhr, status, error) {
                 console.log(error);

@@ -268,7 +268,7 @@ body{
                 <li><a href="{{route('user.edit',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
                 <li><a href="{{route('numerotation.index')}}"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
                 @if (Auth::user()->admin)
-                    <li><a href="{{route('admin.index')}}"><i class="fas fa-sort-numeric-up-alt"></i> Admin</a></li>
+                    <li><a href="{{route('admin.index')}}"><i class="fas fa-cogs"></i> Admin</a></li>
                 @endif
             </ul>
             </div>

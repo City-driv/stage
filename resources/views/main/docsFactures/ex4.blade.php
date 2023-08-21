@@ -240,7 +240,7 @@
  
  </tr>
  </table>
- {{-- <div class='row text-center'>DEUX CENT QUARANTE DIRHAMS MAROCAINS </div> --}}
+ <div class='row text-center'> {{ $ntw }} DIRHAMS </div>
 <div class='col-8 h6 mt-1 text-left'> </div>
 @if ($facture->type_fact=='bon_livraison' )
         <div class='signature'>

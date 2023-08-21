@@ -120,9 +120,9 @@
           <td>{{$facture->ttva}}  DH</td>
           <td class='ligne1' colspan='4'>{{$facture->ttc}}  DH</td>
         </tr>
-        {{-- <tr>
-          <td colspan='6'> CENT NEUVE DIRHAMS MAROCAINS  ET QUARANTE QUATRE CENTIMES</td>
-        </tr> --}}
+        <tr>
+          <td colspan='6'>  {{ $ntw }} DIRHAMS</td>
+        </tr>
         
       </table>
       <div class='col-8 h6 ms-5 mt-1 text-left'> </div>

@@ -207,7 +207,7 @@ tr:nth-child(even){
              </div>   
             </div>
         </div>
-        {{-- <div class='col-11 text-center h9 mt-2' style='font-size:14px;font-weight:600;'> MILLE QUATRE CENT QUATRE-VINGT TROIS DIRHAMS MAROCAINS  ET SOIXANTE-DIX  CENTIMES</div> --}}
+        <div class='col-11 text-center h9 mt-2' style='font-size:14px;font-weight:600;'>  {{ $ntw }} DIRHAMS</div>
             <div class='col-8 h5'>
              </div>
     <div class='col-8 h5 text-left'> </div>

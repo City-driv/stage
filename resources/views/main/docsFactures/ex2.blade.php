@@ -211,7 +211,7 @@ tr:nth-child(even){
                   style='color: white; background-color: #333333;'>{{$facture->ttc}}  DH</div>    
             </div>
         </div>
-        {{-- <div class='col-11 text-center h9 mt-2' style='font-size:14px;font-weight:600;'>DEUX MILLE SIX CENT QUATRE-VINGT-DIX SEPT DIRHAMS MAROCAINS  ET CINQUANTE ZÉRO CENTIMES </div> --}}
+        <div class='col-11 text-center h9 mt-2' style='font-size:14px;font-weight:600;'> {{ $ntw }} DIRHAMS </div>
     <div class='col-8 h5 text-left'> </div>
    </div>
    @if ($facture->type_fact=='bon_livraison' )

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
-
+use NumberToWords\NumberToWords;
 class FactureController extends Controller
 {
     /**
@@ -242,9 +242,13 @@ class FactureController extends Controller
     public function show(Facture $facture)
     {
         $ex = $facture->exemple;
+        $numberToWords = new NumberToWords();
+        $numberTransformer = $numberToWords->getNumberTransformer('fr');
+        $ntw=strtoupper($numberTransformer->toWords($facture->ttc));
+        // dd($ntw . ' dirhams');
         // dump($ex);
         $Ligne_fact = Ligne_facture::where('facture_id', $facture->id)->get();
-        return view('main.docsFactures.' . $ex, compact('facture', 'Ligne_fact'));
+        return view('main.docsFactures.' . $ex, compact('facture', 'Ligne_fact','ntw'));
     }
 
     /**

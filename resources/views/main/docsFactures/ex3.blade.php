@@ -226,7 +226,7 @@
       
       </div>
   </div>
-  {{-- <div class='col-12 text-center h6'> CENT TROIS DIRHAMS MAROCAINS  ET SOIXANTE-DIX  CENTIMES</div> --}}
+  <div class='col-12 text-center h6'>  {{ $ntw }} DIRHAMS</div>
   <div class='col-8 ms-5 '> </div>
   <div class='col-12 text-center h5' style='text-align:right;'>Mode Paiement:{{ $facture->mode_paiement }}</div> 
   @if ($facture->type_fact=='bon_livraison' )

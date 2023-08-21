@@ -151,9 +151,9 @@ footer {
         {{-- <tr>
             <td>{{$Ligne_fact->articles}}</td>
         </tr> --}}
-        {{-- <tr>
-          <td colspan='6'> CENT TROIS DIRHAMS MAROCAINS  ET SOIXANTE-DIX  CENTIMES</td>
-        </tr> --}}
+        <tr>
+          <td colspan='6'> {{ $ntw }} DIRHAMS</td>
+        </tr>
        
       </table>
       <div class='col-8 h6 ms-5 mt-1 text-left'> </div>

@@ -102,7 +102,7 @@ Route::middleware(['auth','check_user'])->group(function () {
     Route::post('/facturer/{id}',[FactureController::class,'facturer'])->name('facturer');
     Route::get('/facture/envoyer/{id}',[FactureController::class,'factureEmail'])->name('facture.envoyer');
     Route::resource('/numerotation',NumerotationController::class);
-    Route::resource('/admin',AdminController::class);
+    Route::resource('/admin',AdminController::class)->middleware('CheckAdmin');
     Route::get('/admin/active/{id}',[AdminController::class,'activer'])->name('user.active');
     Route::get('/admin/desactive/{id}',[AdminController::class,'desactiver'])->name('user.desactive');
     Route::post('/admin/updateUser/{user}',[AdminController::class,'updateUser'])->name('admin.update.user');

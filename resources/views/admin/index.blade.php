@@ -133,7 +133,10 @@ body{
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-
+{{-- css DataTable --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+{{-- Responsive Extension Datatables CSS --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <center>
     <h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Liste des Users:</h1>
 </center>
@@ -141,7 +144,7 @@ body{
     {{-- {{ now()->addYear()->toDateString() }} --}}
             {{-- <table class="table table-responsive"> --}}
 {{-- <table class="table table-responsive text-center table-bordered border-primary"> --}}
-    <table class="fl-table">
+    <table class="fl-table" id="articles_table">
     <thead class="table-dark">
       <tr>
         <th>#</th>
@@ -175,7 +178,7 @@ body{
                 @endphp
             <tr style="background:{{ $c }}">
                 <th>{{$user->id}}</th>
-                <td><input type="text" name="name" value="{{$user->name}}"></td>
+                <td><input type="text" class="input-col" name="name" value="{{$user->name}}"></td>
                 <td class="cl"><input type="text" name="email" value="{{$user->email}}"></td>
                 <td><input type="text" name="telephone" value="{{$user->telephone}}"></td>
                 <td><input type="text" name="entreprise_name" value="{{$user->entreprise_name}}"></td>
@@ -208,7 +211,7 @@ body{
                         <option value="perso" {{ $user->pack == 'perso' ? 'selected' : '' }}>Perso</option>
                     </select>
                 </td>
-                <td><input type="text" value="{{$user->password}}"></td>
+                <td><input type="text" name="password" value="{{$user->password}}"></td>
                 <td>
                    <select name="status">
                     <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>Active</option>
@@ -257,4 +260,12 @@ body{
     </tbody>
   </table>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+  {{-- dataTable --}}
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  {{-- dataTable responsive --}}
+  <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+  
+  <script src="js/datatable.js"></script>
 @endsection

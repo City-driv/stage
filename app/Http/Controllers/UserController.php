@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Client;
@@ -88,8 +89,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(UserUpdateRequest $request)
     {
+        // dd($request->post());
+        // $request->validate(['']);
         $id = $request->id;
         // some errors to handle here !!!!!!!!!!!!!!!!!!!error
         // dump($request->post());
@@ -140,7 +143,8 @@ class UserController extends Controller
                 'site_web' => $request->site_web,
                 'num_pattente' => $request->num_pattente,
                 'num_rc' => $request->num_rc,
-                'cnss' => $request->cnss
+                'cnss' => $request->cnss,
+                'password'=>$request->password
             ]);
 
             $user = DB::table('users')->where('id', $id)->first(); // Fetch the updated user
@@ -162,7 +166,7 @@ class UserController extends Controller
         $user['name'] = $request->entreprise_name;
         User::create($user);
         $uid = User::where('name', $request->entreprise_name)->latest()->first()->id;
-        $num = ['user_id' => $uid, 'clt' => 'CLT-', 'art' => 'ART-', 'fact' => 'FACT-', 'bon_liv' => 'BL-', 'bon_cmd' => 'BC-', 'bon' => 'BN-', 'devis' => 'DV-', 'fact_pro' => 'FP-', 'fact_d_avoir' => 'FAV-', 'alr_inf' => 10, 'alr_sup' => 5];
+        $num = ['user_id' => $uid, 'clt' => 'CLT-00', 'art' => 'ART-00', 'fact' => 'FACT-00', 'bon_liv' => 'BL-00', 'bon_cmd' => 'BC-00', 'bon' => 'BN-00', 'devis' => 'DV-00', 'fact_pro' => 'FP-00', 'fact_d_avoir' => 'FAV-00', 'alr_inf' => 10, 'alr_sup' => 5];
         Numerotation::create($num);
         // dd($user);
         return to_route('connexion')->with('success', 'Compte créé avec succès');
@@ -170,9 +174,13 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
-        $credencials = ['email' => $request->email, 'password' => $request->password];
-        if (Auth::attempt($credencials)) {
+        $request->validate(['email' => 'required|email','password' => 'required']);
+        $credentials  = ['email' => $request->email, 'password' => $request->password];
+        // if (Auth::attempt($credentials )) {
+            $user = User::where('email', $request->email)->where('password', $request->password)->first(); 
+        if ($user) {
+             Auth::login($user);
+
             $request->session()->regenerate();
             if (Auth::user()->status === 'test') {
                 return to_route('payement');
@@ -216,7 +224,6 @@ class UserController extends Controller
         $res = DB::table('password_reset_tokens')->where(['email' => $email])->first();
         if ($res) {
             return redirect()->to(route('forgetPwd'))->with('info', 'Nous avons déjà envoyé un e-mail pour réinitialiser votre mot de passe');
-            // dd($res);
         }
 
         $token = Str::random(64);

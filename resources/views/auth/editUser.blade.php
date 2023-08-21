@@ -5,6 +5,15 @@
 <center>
     <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;"> Paramètres  Société et Compte :</h1>
 </center>  
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     {{-- @if (session()->has('success'))
     <div class="alert alert-success">{{session('success')}}</div>
     @endif --}}
@@ -19,7 +28,7 @@
         <div class='col-md-6 col-12'>
         <input type='email' class='form-control' name='email' value='{{$user->email}}' readonly id='exampleInputEmail1' />
         <label for='n1'  style='font-size:14px;font-weight:700;'  class='form-label'>Nom entreprise :</label>
-        <input type='text' class='form-control'  name='name' readonly value='{{$user->name}}' id='n1'  />
+        <input type='text' class='form-control'  name='entreprise_name' readonly value='{{$user->name}}' id='n1'  />
             <label for='n2'  style='font-size:14px;font-weight:700;'  class='form-label'>Forme juridique :</label>
         <select class="form-control" name="fj" style="" id="n2">
                     <option selected value="{{$user->fj}}">{{$user->fj}}</option>

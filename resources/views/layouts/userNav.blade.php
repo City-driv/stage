@@ -199,7 +199,6 @@ body{
                      <ul>
                          <li><a href="{{route('clients.create')}}"><i class="fas fa-plus-square"></i> Nouveau Client</a></li>
                          <li><a href="{{route('clients.index')}}"><i class="fas fa-tasks"></i> Gestion  des Clients</a></li>
-                         {{-- <li><a href="{{route('clients.index')}}"><i class="fas fa-file-excel"></i> Import Clients</a></li> --}}
                          <li><a href="{{route('fournisseur.create')}}"><i class="fas fa-plus-square"></i> Nouveau Fournisseur</a></li>
                          <li><a href="{{route('fournisseur.index')}}"><i class="fas fa-th-list"></i> Gestion des fournisseurs</a></li>
                          <li><a href="{{route('fournisseur.liste')}}"><i class="fas fa-list-ul"></i> Liste des fournisseurs</a></li>
@@ -209,7 +208,6 @@ body{
                <ul>
                        <li><a href="{{route('article.create')}}"><i class="fas fa-plus-square"></i> Nouveau Article</a></li>
                         <li><a href="{{route('article.index')}}"><i class="fas fa-tasks"></i> Gestion  des Articles</a></li> 
-                        {{-- <li><a href="{{route('article.index')}}"><i class="fas fa-file-excel"></i> Import articles</a></li> --}}
                         <li><a href="{{route('etat.stock')}}"><i class="fas fa-battery-half"></i> état stock</a></li>
                         
                     </ul>
@@ -269,6 +267,9 @@ body{
                 @endphp
                 <li><a href="{{route('user.edit',$id)}}"><i class="fas fa-business-time"></i> Société et Compte</a></li>
                 <li><a href="{{route('numerotation.index')}}"><i class="fas fa-sort-numeric-up-alt"></i> Numérotation</a></li>
+                @if (Auth::user()->admin)
+                    <li><a href="{{route('admin.index')}}"><i class="fas fa-sort-numeric-up-alt"></i> Admin</a></li>
+                @endif
             </ul>
             </div>
                <div class="btn-disabled"><a href="{{route('logout')}}"><button  class="button" type="submit"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button></a>   </div>
@@ -276,7 +277,8 @@ body{
             
     </div> 
     @if (session()->has('success'))
-    <div class="alert alert-success">
+    <div style="color: #ffffff;background-color: #00ef83e8;border-color: #d3daff;font-size: 17px;text-align: center;
+    width: fit-content;margin: auto;" class="alert alert-success">
         {{session('success')}}
     </div>
     @endif

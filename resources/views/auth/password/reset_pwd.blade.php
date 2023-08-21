@@ -38,14 +38,12 @@
 </head>
 <body style=" background-color:#e4e4e4;
 font-family:system-ui;">
-    {{-- <form method="POST" action="/newPassword.php" class="login" method="post"> --}}
       <div class="row mt-4">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-1 col-xs-1"></div>
         <div class="col-xl-4 col-lg-4 col-md-4  col-sm-10 col-xs-10">
             <div class="row">
-               <div class="col-12 text-center fw-bold"  style="font-size:70px;  
-                       background: -webkit-linear-gradient(#ff3c00, rgb(204 204 253));                -webkit-background-clip: text; font-family:cursive; font-weight: 900; -webkit-text-fill-color: transparent;">
-                <a href="index.php">
+               <div class="col-12 text-center fw-bold"  style="font-size:70px;background: -webkit-linear-gradient(#ff3c00, rgb(204 204 253));-webkit-background-clip: text; font-family:cursive; font-weight: 900; -webkit-text-fill-color: transparent;">
+                <a href="/">
                       WORFAC 
                    </a> 
                 </div>
@@ -54,8 +52,7 @@ font-family:system-ui;">
                                               color: white;
                                               border-radius:4px;">
                           <div class="col-12">
-                          Choisissez un nouveau mot de passe
-                          Le mot de passe doit contenir au moins 8 caractères et contenir des lettres et des chiffres.
+                            Veuillez sélectionner un mot de passe ne comportant pas moins de 8 caractères, incluant à la fois des lettres et des chiffres.
                           </div>
                         </div>
                         @error('password')
@@ -66,7 +63,6 @@ font-family:system-ui;">
                     <div class="row bg-white">
                         <input type="hidden" name="token" value="{{$token}}"">
                         <input type="email" hidden name="email" value="{{$email}}"">
-                        
                         <div class="col-1"></div>
                         <label  class="col-10 mt-3">Nouveau mot de passe</label>
                         <div class="col-1"></div>
@@ -79,9 +75,9 @@ font-family:system-ui;">
                         <div class="col-1"></div>
                         <input type="password"  required placeholder="Confirmer le nouveau mot de passe"  name="password_confirmation" class="col-10 mb-3 pass">
                         <div class="col-1"></div>
-                         <div class="col-1" style="font-weight: 900;font-size:25px;"></div>
-                          <button class=" col-10 pt-2 pb-2 mb-4 rounded btn2"  type="submit">Enregistrer le nouveau mot de passe</button>
-                          <div class="col-1"></div>
+                        <div class="col-1" style="font-weight: 900;font-size:25px;"></div>
+                        <button class=" col-10 pt-2 pb-2 mb-4 rounded btn2"  type="submit">Enregistrer le nouveau mot de passe</button>
+                        <div class="col-1"></div>
                     </div>
                     </form>
                     </div>
@@ -97,6 +93,5 @@ font-family:system-ui;">
     </div>  
 
  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- {{-- <script src="newPassword.js?t=1491313943549"></script> --}}
 </body>
 </html>

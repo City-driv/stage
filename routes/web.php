@@ -49,7 +49,6 @@ Route::controller(UserController::class)->group(function () {
     Route::middleware('guest')->group(function () {
     Route::post('/signup', 'inscription')->name('enregistrer');
     Route::post('/login/post', 'login')->name('login');
-    
     Route::get('/forgetPwd', 'forgetPwd')->name('forgetPwd');
     Route::post('/forgetPwd', 'forgetPwdPost')->name('forgetPwd.post');
     Route::get('/resetPwd/{token}/{email}', 'resetPwd')->name('resetPwd');

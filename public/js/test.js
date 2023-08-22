@@ -303,6 +303,17 @@ document.getElementById('annuler').addEventListener('click',function(){
       
    })
 
+   $('#imprime').on('click',function(){
+      if (ValiderVar) {
+        $e=document.getElementById('imprime');
+        var url = $e.getAttribute('href');
+        var newWindow = window.open(url, '_blank').print();
+    
+        // alert($e.getAttribute('href'));
+      } else {
+        swal('Ajouter facture!',"Veuillez valider facture d'abord!",'info');
+      }
+   })
    
 
    //vider

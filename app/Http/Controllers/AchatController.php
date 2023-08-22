@@ -50,6 +50,7 @@ class AchatController extends Controller
         Achat::create($request->post());
         $Aid=Achat::where('user_id',$uid)->latest()->first()->id;
         $produits=json_decode($request->Produits);
+        if (count($produits)>0) {
         foreach ($produits as  $pr){
             LigneAchat::create([
                 'achat_id'=>$Aid,
@@ -62,6 +63,7 @@ class AchatController extends Controller
             $ar->quantite = $ar->quantite + $pr->QteRecue;
             $ar->save();
         }
+    }
 
         return response()->json(['message'=>'data inserted successfully']);
     }

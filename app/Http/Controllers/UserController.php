@@ -14,7 +14,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -134,6 +133,8 @@ class UserController extends Controller
                 $request['im'] = Auth::user()->img;
             }
             DB::table('users')->where('id', $id)->update([
+                'email' =>  $request->email,
+                'entreprise_name'=>$request->entreprise_name,
                 'fj' => $request->fj,
                 'telephone' => $request->telephone,
                 'ice' => $request->ice,
@@ -165,6 +166,7 @@ class UserController extends Controller
     {
         $user = $request->validated();
         $user['name'] = $request->entreprise_name;
+        $user['date_cr']=now()->toDateString();
         User::create($user);
         $uid = User::where('name', $request->entreprise_name)->latest()->first()->id;
         $num = ['user_id' => $uid, 'clt' => 'CLT-00', 'art' => 'ART-00', 'fact' => 'FACT-00', 'bon_liv' => 'BL-00', 'bon_cmd' => 'BC-00', 'bon' => 'BN-00', 'devis' => 'DV-00', 'fact_pro' => 'FP-00', 'fact_d_avoir' => 'FAV-00', 'alr_inf' => 10, 'alr_sup' => 5];
@@ -261,7 +263,7 @@ class UserController extends Controller
         if (!$updatePwd) {
             return to_route('forgetPwd')->with('info', 'Ce lien a expiré, demandez à nouveau de réinitialiser le mot de passe');
         }
-        User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+        User::where('email', $request->email)->update(['password' => $request->password]);
         DB::table('password_reset_tokens')->where(['token' => $request->token])->delete();
         return to_route('connexion')->with('success', 'Le mot de passe a été changé avec succès');
     }
@@ -280,6 +282,6 @@ class UserController extends Controller
             $message->to("contact@worfac.com");
             $message->subject($request->subject);
         });
-        return to_route('contact')->with('success', 'Message envoye');
+        return to_route('contact')->with('success', 'Message envoyé');
     }
 }

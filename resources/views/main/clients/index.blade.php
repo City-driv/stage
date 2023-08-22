@@ -5,18 +5,20 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 {{-- Responsive Extension Datatables CSS --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
 <center>
     <h1 style="color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion des Clients :</h1>
  </center>  
-
-{{-- @if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
+<center>
+@if (session('danger'))
+<div class="alert alert-danger">
+    {{ session('danger') }}
 </div>
-@endif --}}
-
+@endif
+</center>
 <div  style="overflow-x:auto; margin: 10%;" class="row tbl">
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -35,10 +37,10 @@
             <form class="row g-3" method="POST" action="{{route('import.excel.client')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-auto">
-                  <input type="file" accept='.xlsx,.xls'  class="form-control" name="excelFileCl" >
+                  <input id="clt" type="file" accept='.xlsx,.xls'  class="form-control" name="excelFileCl" >
                 </div>
                 <div class="col-auto">
-                  <button type="submit" class="btn btn-success mb-3"><i class="fas fa-file-excel" aria-hidden="true"></i>Importer Clients</button>
+                  <button type="submit"  class="btn btn-success mb-3"><i class="fas fa-file-excel" aria-hidden="true"></i>Importer Clients</button>
                 </div>
             </form>
         </div>

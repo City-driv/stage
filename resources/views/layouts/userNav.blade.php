@@ -278,7 +278,7 @@ body{
     </div> 
     @if (session()->has('success'))
     <div style="color: #ffffff;background-color: #00ef83e8;border-color: #d3daff;font-size: 17px;text-align: center;
-    width: fit-content;margin: auto;" class="alert alert-success">
+    width: fit-content;margin: auto;" class="alert alert-success"><i class='fas fa-check-square'></i>
         {{session('success')}}
     </div>
     @endif

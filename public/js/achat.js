@@ -80,9 +80,9 @@ $('#Fachat').on('submit', function(e) {
     let type = document.getElementById('type').value;
     let piece_jointe = $('#pj')[0].files[0];
   
-    if (fr=='' ||num=='' ||date=='' ||total=='' ||remiseG=='' ||mode_livraison=='' || mode_paiement=='' || type=='' || piece_jointe=='' || Produits.length==0 ) {
-      swal("Alert!", "Tout les champs sont obligatoires !", "error");
-    }
+    // if (fr=='' ||num=='' ||date=='' ||total=='' ||remiseG=='' ||mode_livraison=='' || mode_paiement=='' || type=='' || piece_jointe=='' || Produits.length==0 ) {
+    //   swal("Alert!", "Tout les champs sont obligatoires !", "error");
+    // }
     // console.log(piece_jointe);
   
     var url = $(this).attr('action');
@@ -98,20 +98,30 @@ $('#Fachat').on('submit', function(e) {
       type: type
     };
   
-    if (Produits.length > 0) {
+    if (Produits.length > 0 || Produits.length==0) {
       var fd = new FormData();
       // Append data 
-      fd.append('file', piece_jointe);
-      data['piece_jointe'] = piece_jointe;
+      if (piece_jointe) {
+        fd.append('file', piece_jointe);
+        data['piece_jointe'] = piece_jointe;
+      }
       fd.append('fournisseur_id', fr);
       fd.append('numero', num);
       fd.append('date', date);
       fd.append('total', total);
-      fd.append('remiseGlobal', remiseG);
-      fd.append('mode_paiement', mode_paiement);
-      fd.append('mode_livraison', mode_livraison);
+      if (remiseG) {
+        fd.append('remiseGlobal', remiseG);
+      }
+      if (mode_paiement) {
+        fd.append('mode_paiement', mode_paiement);
+      }
+      if (mode_livraison) {
+        fd.append('mode_livraison', mode_livraison);
+      }
       fd.append('type', type);
-      fd.append('Produits', JSON.stringify(Produits));
+      if (Produits) {
+        fd.append('Produits', JSON.stringify(Produits));
+      }
   
       $.ajax({
         type: 'POST',

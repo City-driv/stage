@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string('ice')->nullable();
             $table->string('if')->nullable();
             $table->string('photo')->nullable();
-            $table->string('adresse');
-            $table->string('telephone');
+            $table->string('adresse')->nullable();
+            $table->string('telephone')->nullable();
             $table->string('mobile')->nullable();
             $table->string('code_postale')->nullable();
             $table->string('pays')->nullable();
             $table->string('num_compte')->nullable();
             $table->string('nom_banque')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('site_internet')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

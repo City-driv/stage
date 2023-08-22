@@ -46,11 +46,13 @@ class CreditController extends Controller
             'client_id' => 'required',
             'p_marchandise' => 'required',
             'ref' => 'required',
-            'motif' => 'required',
+            // 'motif' => 'required',
             'date_credit' => 'required'
         ], [
             'client_id.required' => 'Veuillez choisir un client', 'p_marchandise.required' => 'Prix marchandise obligatoire',
-            'ref.required' => 'Veuillez choisir un Ref', 'motif.required' => 'Veuillez entrer un motif', 'date_credit.required' => 'Date credit obligatoire'
+            'ref.required' => 'Veuillez choisir un Ref',
+            // 'motif.required' => 'Veuillez entrer un motif',
+            'date_credit.required' => 'Date credit obligatoire'
         ]);
         // dd($request->post());
         if ($request->hasFile('piece_jointe')) {

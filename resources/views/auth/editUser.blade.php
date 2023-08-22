@@ -26,9 +26,9 @@
             <label for='exampleInputEmail1' style='font-size:14px;font-weight:700; class='form-label' >Email :</label>
         <div class='row'>
         <div class='col-md-6 col-12'>
-        <input type='email' class='form-control' name='email' value='{{$user->email}}' readonly id='exampleInputEmail1' />
+        <input type='email' class='form-control' name='email' value='{{$user->email}}' {{ $user->admin==0 ? 'readonly' :'' }}  id='exampleInputEmail1' />
         <label for='n1'  style='font-size:14px;font-weight:700;'  class='form-label'>Nom entreprise :</label>
-        <input type='text' class='form-control'  name='entreprise_name' readonly value='{{$user->name}}' id='n1'  />
+        <input type='text' class='form-control'  name='entreprise_name'{{ $user->admin==0 ? 'readonly' :'' }} value='{{$user->entreprise_name}}' id='n1'  />
             <label for='n2'  style='font-size:14px;font-weight:700;'  class='form-label'>Forme juridique :</label>
         <select class="form-control" name="fj" style="" id="n2">
                     <option selected value="{{$user->fj}}">{{$user->fj}}</option>

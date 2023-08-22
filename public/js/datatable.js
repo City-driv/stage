@@ -25,3 +25,10 @@ function Ajoute(){
 function annuler(){
     document.querySelector(".AjouteClient").style.transform="scale(0)"
 }
+
+$('#clt').on('click',function(){
+    swal('Importer clients','Assurez-vous que le fichier Excel contient les lignes \n ["name", "adresse", "téléphone", "ice", "if", "ville"] \n telle qu\'elles sont écrites.','info');
+})
+$('#art').on('click',function(){
+    swal('Importer articles','Assurez-vous que le fichier Excel contient les lignes \n ["description", "price", "quantite", "tva"] \n telle qu\'elles sont écrites.','info');
+})

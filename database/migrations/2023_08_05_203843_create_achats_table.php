@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('numero');
             $table->date('date');
             $table->float('total');
-            $table->float('remiseGlobal');
-            $table->string('mode_paiement');
-            $table->string('mode_livraison');
-            $table->string('type');
-            $table->string('piece_jointe');
+            $table->float('remiseGlobal')->nullable()->default(0);
+            $table->string('mode_paiement')->nullable();
+            $table->string('mode_livraison')->nullable();
+            $table->string('type')->nullable();
+            $table->string('piece_jointe')->nullable();
             $table->timestamps();
         });
     }

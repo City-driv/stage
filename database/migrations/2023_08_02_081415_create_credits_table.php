@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('ref');
             $table->float('p_marchandise');
-            $table->float('p_avance');
+            $table->float('p_avance')->nullable()->default(0);
             $table->float('p_reste');
-            $table->string('motif');
+            $table->string('motif')->nullable();
             $table->string('mode_paiment')->nullable();
             $table->date('date_credit');
             $table->string('piece_jointe')->nullable();
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->timestamps();
         });
     }

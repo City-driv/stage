@@ -31,7 +31,7 @@
     <div class="col-md-4 col-12 h5">Total :<br/>
           <input type="number" name="total" id="total" class="form-control"></div>
     <div class="col-md-4 col-12 h5">Remise Global (DH):<br/>
-          <input type="number" name="remiseglobal" id="remise" class="form-control"></div>
+          <input type="number" name="remiseglobal" id="remise" value="0" class="form-control"></div>
     <div class="col-md-4 col-12 h5 ">Mode paiement :<br/>
           <select style="" name="modePaiement" class="form-select form-select-lg mb-3" id="modePaiement">
               <option value="">Au choix du client</option>
@@ -63,7 +63,7 @@
           </select>
     </div>
      <div class="col-md-4 col-12 h5">Piece à jointe :<br/>
-     <input type="file" required accept='.png, .jpg, .jpeg, .pdf,.doc,.docx,.xlsx,.xls,.csv' name="file" class="form-control" id="pj" /><div class="h6" style="font-size:13px:color:gray;">image,pdf,doc,docx,xlsx,xls,csv</div></div>
+     <input type="file"  accept='.png, .jpg, .jpeg, .pdf,.doc,.docx,.xlsx,.xls,.csv' name="file" class="form-control" id="pj" /><div class="h6" style="font-size:13px:color:gray;">image,pdf,doc,docx,xlsx,xls,csv</div></div>
 </div>
 <select name="Article" class="form-select form-select-lg mb-3" id="">
     <option>selectionner Article :</option>

@@ -148,17 +148,17 @@ body{
     <thead class="table-dark">
       <tr>
         <th>#</th>
-        <th>Name</th>
+        <th>Entreprise name</th>
         <th>Email</th>
         <th>telephone</th>
-        <th>Entreprise name</th>
-        <th>ice</th>
-        <th>if</th>
+        {{-- <th>Entreprise name</th> --}}
+        {{-- <th>ice</th> --}}
+        {{-- <th>if</th> --}}
         <th>fj</th>
         <th>pack</th>
         <th>password</th>
         <th>status</th>
-        <th>adresse</th>
+        {{-- <th>adresse</th> --}}
         <th>Num docs</th>
         <th>Date Creation</th>
         <th>Date Expiration</th>
@@ -167,23 +167,33 @@ body{
     </thead>
     <tbody id="ttbody">
         @foreach ($users as $user)
-            <form action="{{ route('admin.update.user',$user->id) }}" method="post">
-                @csrf
+            
                 @php
                     $c='#03A9F4';
-                    if (($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000))
-                     {$c='#ff0000a6';}
+                    if ($user->status=='active') {
+                        $c='#9cf359bf';
+                    } else {
+                        $c='#ff0000a6';
+                    }
+                    // if (($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000))
+                    //  {$c='#ff0000a6';}
                     if (($user->pack =='perso' && $user->num_doc >= 980 && $user->num_doc < 1000) || ($user->pack =='starter' && $user->num_doc >= 2980 && $user->num_doc < 3000))
                     {$c='#ffcc00';}
+                    if ($user->status=='test') {
+                        $c='#03A9F4';
+                    }
+                    
                 @endphp
             <tr style="background:{{ $c }}">
+                <form action="{{ route('admin.update.user',$user->id) }}" method="post" id="form_{{ $user->id }}">
+                    @csrf
                 <th>{{$user->id}}</th>
-                <td><input type="text" class="input-col" name="name" value="{{$user->name}}"></td>
+                <td><input type="text" class="input-col" name="entreprise_name" value="{{$user->entreprise_name}}"></td>
                 <td class="cl"><input type="text" name="email" value="{{$user->email}}"></td>
                 <td><input type="text" name="telephone" value="{{$user->telephone}}"></td>
-                <td><input type="text" name="entreprise_name" value="{{$user->entreprise_name}}"></td>
-                <td><input type="text" name="ice" value="{{$user->ice}}"> </td>
-                <td><input type="text" name="if" value="{{$user->if}}"> </td>
+                {{-- <td><input type="text" name="entreprise_name" value="{{$user->entreprise_name}}"></td> --}}
+                {{-- <td><input type="text" name="ice" value="{{$user->ice}}"> </td> --}}
+                {{-- <td><input type="text" name="if" value="{{$user->if}}"> </td> --}}
                 <td>
                     <select style="max-width: 100px" name="fj">
                         <option selected value="{{$user->fj}}">{{$user->fj !==null ? $user->fj : 'Forme juridique' }}</option>
@@ -220,7 +230,7 @@ body{
                    </select>
                     {{-- <input type="text" value="{{$user->status}}">  --}}
                 </td>
-                <td><input type="text" name="adresse" value="{{$user->adresse}}"></td>
+                {{-- <td><input type="text" name="adresse" value="{{$user->adresse}}"></td> --}}
                 <td><input type="text" name="num_doc" value="{{$user->num_doc}}" style="width: 30px;text-align:center"></td>
                 {{-- <td><span style="background: white;padding:2px">{{$user->formatted_created_at}}</span></td> --}}
                 <td><input type="date" name="date_cr" value="{{$user->date_cr}}"></td>
@@ -241,9 +251,9 @@ body{
                           <a title="renouveler offre" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('user.renouveler.offre',$user->id)}}">Renouveler L'offre <i class="fa fa-refresh"></i></a>
                       </li>
                       <li>
-                         <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  ><button style="display: contents" type="submit">Modifier</button> <i class="fas fa-edit"></i></a>
+                         <a class="dropdown-item" title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  ><button style="display: contents" type="submit">Modifier</button> <i class="fas fa-edit"></i></a>
+                        </form>
                       </li>
-                    </form>
 
                       <li>
                         <form action="{{route('admin.destroy',$user->id)}}" method="post">

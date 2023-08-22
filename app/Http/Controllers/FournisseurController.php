@@ -47,7 +47,7 @@ class FournisseurController extends Controller
         // dd($request->post());
 
         Fournisseur::create($request->post());
-        return to_route('fournisseur.index')->with('success', 'Fournisseur bien ajoutée');
+        return to_route('fournisseur.index')->with('success', 'Fournisseur bien ajouté');
     }
 
     /**

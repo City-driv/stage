@@ -77,8 +77,16 @@ class ArticleController extends Controller
     public function import(Request $request)
     {
         $request->validate(['excelfile' => 'required|mimes:xlsx, xls']);
-        Excel::import(new ArticlesImport, $request->file('excelfile'));
-        return to_route('article.index')->with('success', 'articles importees');
+        $importedData=Excel::toArray(new ArticlesImport, $request->file('excelfile'));
+        $expectedHeaders = ["description", "price", "quantite", "tva"];
+        $actualHeaders = array_keys($importedData[0][0]); // Assuming the first row is the header
+        if ($expectedHeaders == $actualHeaders) {
+            Excel::import(new ArticlesImport, $request->file('excelfile'));
+        } else {
+            return to_route('article.index')->with('danger', 'Erreur lors de l\'importation de fichier : Un ou plusieurs champs sont manquants ou mal nommés.');
+        }
+        
+        return to_route('article.index')->with('success', 'Fichier importé avec succès.');
     }
 
     public function stock()

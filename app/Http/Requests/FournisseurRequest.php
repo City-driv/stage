@@ -25,9 +25,9 @@ class FournisseurRequest extends FormRequest
             'code_fournisseur'=>'required',
             'type_fournisseur'=>'required',
             'nom_entreprise'=>'required',
-            'adresse'=>'required',
-            'email'=>'required',
-            'telephone'=>'required',
+            // 'adresse'=>'required',
+            // 'email'=>'required',
+            // 'telephone'=>'required',
         ];
     }
     public function messages()
@@ -36,9 +36,9 @@ class FournisseurRequest extends FormRequest
             'code_fournisseur.required' => 'Le code de fournisseur est obligatoire',
             'type_fournisseur.required' => 'Le type de fournisseur est obligatoire',
             "nom_entreprise.required"=>"Veuillez entrer le nom d'entreprise",
-            "adresse.required"=>"Veuillez entrer l'adresse ",
-            "email.required"=>"Veuillez entrer un email",
-            "telephone.required"=>"Veuillez entrer un numéro de téléphone",
+            // "adresse.required"=>"Veuillez entrer l'adresse ",
+            // "email.required"=>"Veuillez entrer un email",
+            // "telephone.required"=>"Veuillez entrer un numéro de téléphone",
         ];
     }
 }

@@ -44,9 +44,9 @@ class ClientController extends Controller
         // dd($request->post());
         $request->validate([
             'name' => 'required',
-            'adresse' => 'required',
-            'telephone' => 'required',
-            'ville' => 'required'
+            // 'adresse' => 'required',
+            // 'telephone' => 'required',
+            // 'ville' => 'required'
         ]);
         // $request['if']=212121;
         $request['user_id'] = Auth::id();
@@ -97,9 +97,9 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'adresse' => 'required',
-            'telephone' => 'required',
-            'ville' => 'required'
+            // 'adresse' => 'required',
+            // 'telephone' => 'required',
+            // 'ville' => 'required'
         ]);
         $client->fill($request->post())->save();
         return to_route('clients.index')->with('success', 'Client modifier');
@@ -120,8 +120,20 @@ class ClientController extends Controller
     public function importCl(Request $request)
     {
         $request->validate(['excelFileCl' => 'required|mimes:xlsx, xls']);
-        Excel::import(new ClientsImport, $request->file('excelFileCl'));
+        $importedData = Excel::toArray(new ClientsImport, $request->file('excelFileCl'));
 
-        return to_route('clients.index')->with('success', 'Clients importées');
+            // Check the header row for specific column names
+            $expectedHeaders = ["name", "adresse", "telephone", "ice", "if", "ville"];
+            $actualHeaders = array_keys($importedData[0][0]); // Assuming the first row is the header
+           
+            if ($expectedHeaders == $actualHeaders) {
+                // The headers match the expected columns
+                 Excel::import(new ClientsImport, $request->file('excelFileCl'));
+            } else {
+                // The headers don't match the expected columns
+                return to_route('clients.index')->with('danger', 'Erreur lors de l\'importation de la ligne : Un ou plusieurs champs sont manquants ou mal nommés.');
+            }
+
+        return to_route('clients.index')->with('success', 'Fichier importé avec succès.');
     }
 }

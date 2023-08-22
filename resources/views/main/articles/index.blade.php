@@ -5,9 +5,17 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 {{-- Responsive Extension Datatables CSS --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <center><h1 style=" overflow-y: hidden; color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Gestion des articles :</h1></center>
+<center>
+  @if (session('danger'))
+  <div class="alert alert-danger">
+      {{ session('danger') }}
+  </div>
+  @endif
+</center>
 <div class="container  w-full md:w-4/5   mx-auto px-2">
     <div class="d-flex justify-content-between">
     <div class="col-12 fs-1 col-md-2">
@@ -17,7 +25,7 @@
         <form class="row g-3" method="POST" action="{{route('import.excel')}}" enctype="multipart/form-data">
             @csrf
             <div class="col-auto">
-              <input type="file" accept='.xlsx,.xls,' class="form-control" name="excelfile" >
+              <input type="file" id="art" accept='.xlsx,.xls,' class="form-control" name="excelfile" >
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-success mb-3"><i class="fas fa-file-excel" aria-hidden="true"></i>Importer Articles</button>

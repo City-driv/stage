@@ -10,59 +10,59 @@
     @if (isset($startDate))
     <table>
         <tr>
-            <th>Date Debut :</th>
-            <th>{{ $startDate }}</th>
+            <th colspan="2">Date Debut :</th>
+            <th colspan="2">{{ $startDate }}</th>
         </tr>
         <tr>
-            <th>Date Fin :</th>
-            <th>{{ $endDate }}</th>
+            <th colspan="2">Date Fin :</th>
+            <th colspan="2">{{ $endDate }}</th>
         </tr>
     </table>
     @endif
     <table>
         <thead>
             <tr>
-                <th>Entreprise</th>
-                <th>Montant Total</th>
-                <th>Remise Global</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Entreprise</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Montant Total</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Remise Global</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ $name }}</td>
-                <td>{{ $TOTAL }}</td>
-                <td>{{ $REMISE }}</td>
+                <td colspan="2" style="text-align: center">{{ $name }}</td>
+                <td colspan="2" style="text-align: center">{{ $TOTAL }}</td>
+                <td colspan="2" style="text-align: center">{{ $REMISE }}</td>
             </tr>
         </tbody>
     </table>
     <table>
        <thead>
             <tr>
-                <th>Fournisseur</th>
-                <th>Numero</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Remise Global</th>
-                <th>Mode Paiement</th>
-                <th>Mode Livraison</th>
-                <th>Type</th>
-                <th>ICE</th>
-                <th>FJ</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Fournisseur</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Numero</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Date</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Total</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Remise Global</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Mode Paiement</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Mode Livraison</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">Type</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">ICE</th>
+                <th colspan="2" style="text-align: center;background-color:blueviolet;color:aqua">FJ</th>
             </tr>
        </thead>
         <tbody>
             @foreach ($achats as $achat)
             <tr>
-                <td>{{ $achat->fournisseur->nom_entreprise }}</td>
-                <td>{{ $achat->numero }}</td>
-                <td>{{ $achat->date }}</td>
-                <td>{{ $achat->total }}</td>
-                <td>{{ $achat->remiseGlobal }}</td>
-                <td>{{ $achat->mode_paiement }}</td>
-                <td>{{ $achat->mode_livraison }}</td>
-                <td>{{ $achat->type }}</td>
-                <td>{{ $achat->fournisseur->ice }}</td>
-                <td>{{ $achat->fournisseur->fj }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->fournisseur->nom_entreprise }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->numero }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->date }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->total }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->remiseGlobal }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->mode_paiement }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->mode_livraison }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->type }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->fournisseur->ice }}</td>
+                <td colspan="2" style="text-align: center">{{ $achat->fournisseur->fj }}</td>
             </tr>
             @endforeach
         </tbody>

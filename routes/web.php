@@ -113,4 +113,4 @@ Route::middleware(['auth','check_user'])->group(function () {
 // Route::get('test',function(){return view('main.docsFactures.ex1');});
 // Route::get('test3',function(){return view('main.factures.mvSortie');});
 
-// Route::get('test2',[FactureController::class,'test']);
+Route::get('test2',[FactureController::class,'test']);

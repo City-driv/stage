@@ -18,11 +18,12 @@
         -webkit-print-color-adjust: exact;
     }
     footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         width: 100%;
         height: 6vh;
         margin-top: 0;
+        z-index: -9999;
     }
     
     .a4-page {
@@ -138,7 +139,7 @@
      footer{
          height:6.4vh;
          padding-left:20px;
-         position: absolute;
+         /* position: absolute; */
          width:100%;
          /* margin-top: -6vh; */
          /* margin-top: 95vh; */

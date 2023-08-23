@@ -8,17 +8,25 @@
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
     <link rel="icon" href="logo.png" />
     <style type='text/css' media='print'> 
+    /* confirmed */
        .a4-page {
     height: 297mm; /* Hauteur du format A4 en millimètres */
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
 footer {
-    position: absolute;
+    /* margin-top: 50px; */
+    position: fixed;
     bottom: 0;
-    left: 0;
+    /* left: 0; */
     width: 100%;
-    height: 6.4vh;
+    height: 60px;
+    z-index: -9999;
     /* background-color: #333333; */
+}
+.containerr{
+  padding: 20px;
+  background-color: white
+  /* margin-bottom: 100%; */
 }
 @media print {
     .a4-page {
@@ -35,6 +43,11 @@ footer {
     <style>
        body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
   }
   body::after {
   content: "";
@@ -59,24 +72,27 @@ footer {
   footer{
     /* height: 8vh;  */
     font-size:15px;
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     /* padding-left:15px; */
     /* padding-right:15px; */
-    /* margin-top: 93.2vh; */
+    margin-top: auto;
     /* margin-top: 192.6vh; */
     height: 6.4vh;
     font-family:cursive;
     background:#6EC6F7;
   }
   
-  .tr{
-      }
+  .containerr{
+    display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
     </style>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
 </head>
 <body>
- 
+ <div class="containerr">
   <div class=''>
     <div class='row' style='border-bottom: 1px solid #06486D;'>
       <div class='col-9 h1 text-center' style='border-top: 0;font-size:75px;font-familly:cursive;background: -webkit-linear-gradient(#00185E,#06486D);-webkit-background-clip: text;-webkit-text-fill-color: transparent;
@@ -160,7 +176,7 @@ footer {
     </div>
   </div>
 </div>
-
+</div>
 <footer>
 <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
 </footer>

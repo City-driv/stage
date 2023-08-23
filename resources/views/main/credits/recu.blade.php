@@ -65,7 +65,7 @@
                   <h5>Somme en toutes lettres</h5>
                   <div class='col-2'></div>
               <label for='' class='col-12 h6 pt-1 pb-1' style=' text-align: center;background:#D0D0D0;background: -webkit-linear-gradient(to bottom, #F8F8F8, #D0D0D0);  /* Chrome 10-25, Safari 5.1-6 */
-              background: linear-gradient(to bottom, #F8F8F8, #D0D0D0); '> DIRHAMS  </label>
+              background: linear-gradient(to bottom, #F8F8F8, #D0D0D0); '> {{ $mnt }} DIRHAMS  </label>
               </div>
               <div class='col-2'></div>
               <div class='col-10'>
@@ -128,7 +128,7 @@
                   <h5>Somme en toutes lettres</h5>
                   <div class='col-2'></div>
               <label for='' class='col-12 h6 pt-1 pb-1' style=' text-align: center;background:#D0D0D0;background: -webkit-linear-gradient(to bottom, #F8F8F8, #D0D0D0);  /* Chrome 10-25, Safari 5.1-6 */
-              background: linear-gradient(to bottom, #F8F8F8, #D0D0D0); '> DIRHAMS  </label>
+              background: linear-gradient(to bottom, #F8F8F8, #D0D0D0); '> {{ $mnt }} DIRHAMS  </label>
               </div>
               <div class='col-2'></div>
               <div class='col-10'>

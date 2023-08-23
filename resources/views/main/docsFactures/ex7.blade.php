@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <link rel="icon" href="logo.png" />
     <style type="text/css" media="print"> 
+    /* confirmed */
     @media print {
     body {
         margin: 0;
@@ -16,11 +17,14 @@
         -webkit-print-color-adjust: exact;
     }
     footer {
-        position: absolute;
+        position: fixed;    
         bottom: 0;
         width: 100%;
-        height: 6.4vh;
+        height: 6vh;
         margin-top: 0;
+        background-color: #D3D3D3;
+        text-align: center;
+        z-index: -99999;
     }
     
     .a4-page {

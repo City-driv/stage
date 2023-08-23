@@ -353,6 +353,7 @@ document.getElementById('annuler').addEventListener('click',function(){
                 dataType:'json',
                 success:function(res){
                   alert('submited successfully');
+                  window.history.back();
                 //   console.log(Produits);
                   document.getElementById('imprime').setAttribute('href','/facture/'+ res.fact);
                   // console.log(res.request)

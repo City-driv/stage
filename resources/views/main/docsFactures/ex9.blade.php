@@ -13,12 +13,18 @@
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 0;
+    /* left: 0; */
     width: 100%;
     height: 6.4vh;
-    /* background-color: #333333; */
+    background-color: #333333;
+    z-index: -9999999;
+}
+.containerr{
+  /* padding: 20px; */
+  /* margin-bottom: 100%; */
+  background-color: rgb(255, 255, 255);
 }
 @media print {
     .a4-page {
@@ -37,6 +43,11 @@
       .nomE{
     color: #521400;
 }
+.containerr{
+    display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
 .nomE{
   font-size: 43px;    font-family: cursive;
     font-weight: 900;
@@ -92,10 +103,10 @@ tr:nth-child(even){
 }
 .footer {
     /* position: absolute; */
-    bottom: 0;
-    left: 0;
+    /* bottom: 0; */
+    /* left: 0; */
     width: 100%;
-    /* height: 6.4vh; */
+    height: 6.4vh;
     background-color: #521400;
 }
 /* .footer{
@@ -133,6 +144,7 @@ tr:nth-child(even){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+<div class="containerr">
  <div class='container-fluid'>
 <div class='row pt-4' >
   <div class='col-6'>
@@ -229,6 +241,8 @@ tr:nth-child(even){
    
  </div>
 </div>
+</div>
+
     <div class="footer">
        <div class="row">
        <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Credit;
 use App\Models\Ligne_credit;
 use Illuminate\Http\Request;
-
+use NumberToWords\NumberToWords;
 class LigneCreditController extends Controller
 {
     /**
@@ -51,7 +51,10 @@ class LigneCreditController extends Controller
      */
     public function show(Ligne_credit $ligne_credit)
     {
-        return view('main.credits.recu',['payement'=>$ligne_credit]);
+        $numberToWords = new NumberToWords();
+        $numberTransformer = $numberToWords->getNumberTransformer('fr');
+        $ntw=strtoupper($numberTransformer->toWords($ligne_credit->montant));
+        return view('main.credits.recu',['payement'=>$ligne_credit,'mnt'=>$ntw]);
     }
 
     /**

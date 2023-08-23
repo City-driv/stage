@@ -8,17 +8,24 @@
     <link rel="icon" href="logo.png" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <style type="text/css" media="print"> 
+    /* confirmed */
         .a4-page {
     height: 297mm; /* Hauteur du format A4 en millimètres */
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 0;
+    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
+    z-index: -9999999;
+}
+.container{
+  /* padding: 20px; */
+  /* margin-bottom: 100%; */
+  background-color: white;
 }
 @media print {
     .a4-page {
@@ -34,6 +41,18 @@
    }
    </style>
     <style>
+        body{
+            margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+        }
+        .container{
+    display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  }
       .nomE{
     color: #333333;
 }
@@ -93,8 +112,8 @@ tr:nth-child(even){
 }
 .footer {
     /* position: absolute; */
-    bottom: 0;
-    left: 0;
+    /* bottom: 0; */
+    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
@@ -135,6 +154,7 @@ tr:nth-child(even){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+<div class="container">
  <div class='container-fluid'>
 <div class='row pt-4' >
   <div class='col-6'>
@@ -230,6 +250,8 @@ tr:nth-child(even){
  @endif
    
  </div>
+</div>
+
 </div>
     <div class="footer">
        <div class="row">

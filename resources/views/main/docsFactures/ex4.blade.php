@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <link rel="icon" href="logo.jfif" />
     <style type="text/css" media="print"> 
+    /* confirmed */
+
       @media print {
     body {
         margin: 0;
@@ -15,19 +17,22 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
+    /* confirmed */
     footer {
-        position: absolute;
+        position: fixed;    
         bottom: 0;
         width: 100%;
         height: 6vh;
         margin-top: 0;
         background-color: #D3D3D3;
         text-align: center;
+        z-index: -99999;
     }
     
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
-        page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+        page-break-before: always;
+         /* Commencer chaque page sur une nouvelle feuille */
     }
 
 }

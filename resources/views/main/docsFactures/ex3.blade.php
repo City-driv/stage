@@ -27,12 +27,17 @@
         -webkit-print-color-adjust: exact;
     }
     footer {
-        position: absolute;
+        position: fixed;
         bottom: 0;
+        margin-top: 0;
         width: 100%;
         height: 6vh;
         margin-top: 0;
     }
+    .container{
+  padding: 20px;
+  margin-bottom: 20px;
+}
     
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
@@ -43,7 +48,7 @@
    </style>
     <style>
       .example4{
-        height: 91vh;
+        /* height: 91vh; */
       }
         .entreprise{
          background: linear-gradient(to left, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -57,7 +62,7 @@
             height: 10vh;
             color: white;
             border-top: 7px solid #137A5C;
-            position: absolute;
+            /* position: absolute; */
             /* margin-top:101.5vh;   */
                 }
       .logo{
@@ -155,6 +160,7 @@
 
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+  <div class="container">
      <div class='example4'>
 <div class='row text-center'>
    <div class='entreprise pt-2'>
@@ -245,6 +251,8 @@
     </div> 
   @endif
  </div>
+</div>
+<br><br>
  <div class='footer'>
    <div class='row'>
      <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>

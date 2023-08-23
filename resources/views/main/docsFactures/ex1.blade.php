@@ -100,7 +100,7 @@ footer {
       <div class='row'>
         <div class='col-12 h6'>Date:</div>
         <div class='col-12 h6'>Client :</div>
-        <div class='col-12 h6 pt-2'>Adress:</div>
+        <div class='col-12 h6 pt-2'>Adresse:</div>
       </div>
     </div>
     <div class='col-4 text-center'>

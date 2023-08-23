@@ -34,11 +34,14 @@ class FactureController extends Controller
         if (isset($_GET['excel'])) {
             $userId = Auth::id();
             $invoiceType = $_GET['type'];
-            if (isset($_GET['trimestre']) && $_GET['trimestre'] !== '') {
+            if (isset($_GET['trimestre']) && $_GET['trimestre'] !== '' && $_GET['trimestre'] !== null ) {
                 $tr = intval($_GET['trimestre']); // Convert to integer
                 $year = date('Y');
                 $startDate = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
                 $endDate = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));
+            }elseif ((isset($_GET['date1']) && isset($_GET['date2'])) && ($_GET['date1']!=='' && $_GET['date2']!=='')) {
+                $startDate = $_GET['date1'];
+                $endDate = $_GET['date2'];
             }
             // dd($_GET['type'] . ' // ' . $userId);
             return Excel::download(new FacturesExport($userId, $invoiceType, $startDate, $endDate), 'invoice.xlsx');

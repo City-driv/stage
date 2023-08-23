@@ -164,7 +164,7 @@
     <div class='row'>
         <div class='col-6 infos'>
             <div class='type'>{{Auth::user()->entreprise_name}}</div>
-            <label class='Bill' style='font-size:20px;font-family:fantasy;padding-left:10px;color:#E91E63'> Facture à</label><br>
+            <label class='Bill' style='font-size:20px;font-family:fantasy;padding-left:10px;color:#E91E63'> {{$facture->type_fact}} à</label><br>
             <label class='NomC' style='padding-left:10px;'>{{$facture->clientFact->name}}</label><br>
             <label class='teleC' style='padding-left:10px;'> {{$facture->clientFact->telephone}}</label><br>
             <label class='adressC' style='padding-left:10px;'>{{$facture->clientFact->adresse}} </label> 

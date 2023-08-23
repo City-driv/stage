@@ -168,7 +168,7 @@
      <div class='col-1'></div>
          <div class='col-3'>
          <div class='client'>
-           <label class='Bill'>Facture à</label><br>
+           <label class='Bill'>{{$facture->type_fact}} à</label><br>
               <label class='NomC'>{{$facture->clientFact->name}}</label><br>
             <label class='teleC'> {{$facture->clientFact->telephone}}</label><br>
             <label class='adressC'>{{$facture->clientFact->adresse}}</label>

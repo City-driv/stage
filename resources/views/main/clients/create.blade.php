@@ -28,7 +28,7 @@
        @error('telephone')
            <span class="text-danger">{{$message}}</span>
        @enderror
-       <input name="telephone" type="tel" value="{{old('telephone')}}"  style="width: 50%;" class="form-control" placeholder="+212631933957" /><br>
+       <input name="telephone" type="tel" value="{{old('telephone')}}"  style="width: 50%;" class="form-control"  /><br>
        <label for="ice" class="h2">
            ICE:
        </label>

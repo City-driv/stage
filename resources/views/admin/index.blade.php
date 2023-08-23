@@ -177,7 +177,7 @@ body{
                     }
                     // if (($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000))
                     //  {$c='#ff0000a6';}
-                    if (($user->pack =='perso' && $user->num_doc >= 980 && $user->num_doc < 1000) || ($user->pack =='starter' && $user->num_doc >= 2980 && $user->num_doc < 3000))
+                    if (($user->pack =='perso' && $user->num_doc >= 980 && $user->num_doc < 1000) || ($user->pack =='starter' && $user->num_doc >= 2980 && $user->num_doc < 3000)|| ($user->pack =='demo' && $user->num_doc >= 6 && $user->num_doc < 10))
                     {$c='#ffcc00';}
                     if ($user->status=='test') {
                         $c='#03A9F4';

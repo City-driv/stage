@@ -27,7 +27,7 @@ class UpdateUserStatus
                     $date_exp = new DateTime($user->date_exp);
                     // $yearDifference = $date_cr->diff($date_exp)->y;
         
-                    if (($date_cr >= $date_exp) || ($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000)) {
+                    if (($user->date_cr >= $user->date_exp) || ($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000) || ($user->pack =='demo' && $user->num_doc >= 10) ) {
                         $userModel = User::find($user->id); // Charger le modèle complet depuis la base de données
                         $userModel->status = 'inactive';
                         $userModel->save();

@@ -22,7 +22,7 @@
         @endif
         <table>
             <thead style="background-color: deepskyblue">
-                <tr>
+                <tr style="width: fit-content">
                     <th>Entreprise</th>
                     <th>Montant Total TVA</th>
                     <th>Montant Total THT</th>

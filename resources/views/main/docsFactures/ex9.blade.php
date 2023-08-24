@@ -43,7 +43,7 @@
 .containerr{
     display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 90vh;
   }
 .nomE{
   font-size: 43px;    font-family: cursive;
@@ -228,7 +228,7 @@ tr:nth-child(even){
 </div>
 </div>
 
-    <div class="footer">
+    <div class="footer" id="foot">
        <div class="row">
        <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
            <div class="col-6 div text-center" style=" color: #521400;
@@ -236,6 +236,22 @@ tr:nth-child(even){
                Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}</div>
        </div>
    </div>
+   {{-- <script>
+    // Obtenez la hauteur du conteneur
+    var containerHeight = document.getElementById("c1").offsetHeight;
+    // Sélectionnez le footer
+    var footer = document.getElementById("foot");
+    // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
+    if (containerHeight < 1120) {
+        footer.style.position = "fixed";
+        footer.style.bottom = "0";
+        footer.style.width = "100%";
+        footer.style.height = "30px";
+        footer.style.marginTop = "0";
+        footer.style.zIndex = "1";
+        console.log(containerHeight);
+    }
+    </script> --}}
       
 </body>
 </html>

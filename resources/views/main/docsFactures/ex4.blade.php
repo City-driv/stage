@@ -29,7 +29,7 @@
         z-index: -99999;
     }
     .containerr{
-        background-color: #f0f5f5;
+        /* background-color: #f0f5f5; */
     }
     
     .a4-page {
@@ -53,8 +53,8 @@
     <style>
         .example2{
             border-top-left-radius: 250px;
-            /* height: 101.5vh; */
-            min-height: 101.5vh;
+            /* min-height: 100vh; */
+            /* min-height: 101.5vh; */
             background-color: #f0f5f5;
             padding-left: 3%;
             border-bottom: 5vh solid  #0C91DA;
@@ -147,7 +147,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body style="background-color: #0C91DA;">
-<div class="containerr">
+<div class="containerr" id="c1">
 <div class='example2'>
 <header>
     <div class='row'>
@@ -265,6 +265,21 @@
     <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i></label>
     Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
     </footer>
-
+<script>
+        // Obtenez la hauteur du conteneur
+        var containerHeight = document.getElementById("c1").offsetHeight;
+        // Sélectionnez le footer
+        var footer = document.getElementById("foot");
+        // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
+        if (containerHeight < 1120) {
+            footer.style.position = "fixed";
+            footer.style.bottom = "0";
+            footer.style.width = "100%";
+            footer.style.height = "40px";
+            footer.style.marginTop = "0";
+            footer.style.zIndex = "1";
+            console.log(containerHeight);
+        }
+</script> 
 </body>
 </html>

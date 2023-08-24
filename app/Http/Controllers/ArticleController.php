@@ -78,7 +78,7 @@ class ArticleController extends Controller
     {
         $request->validate(['excelfile' => 'required|mimes:xlsx, xls']);
         $importedData=Excel::toArray(new ArticlesImport, $request->file('excelfile'));
-        $expectedHeaders = ["description", "price", "quantite", "tva"];
+        $expectedHeaders = ["description", "prix", "quantite", "tva"];
         $actualHeaders = array_keys($importedData[0][0]); // Assuming the first row is the header
         if ($expectedHeaders == $actualHeaders) {
             Excel::import(new ArticlesImport, $request->file('excelfile'));

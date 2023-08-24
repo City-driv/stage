@@ -33,6 +33,7 @@
         width: 100%;
         height: 6vh;
         margin-top: 0;
+        z-index: -9999;
     }
     .containerr{
   /* padding: 20px; */
@@ -155,7 +156,7 @@
 
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-  <div class="containerr">
+  <div class="containerr" id="c1">
      <div class='example4'>
 <div class='row text-center'>
    <div class='entreprise pt-2'>
@@ -246,8 +247,8 @@
   @endif
  </div>
 </div>
-<br><br>
- <div class='footer'>
+{{-- <br><br> --}}
+ <div class='footer' id="foot">
    <div class='row'>
      <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
          <i class='fas fa-envelope'>{{Auth::user()->email}}</i>
@@ -259,7 +260,22 @@
      </div>
    </div>
  </div>
-      
+ <script>
+  // Obtenez la hauteur du conteneur
+  var containerHeight = document.getElementById("c1").offsetHeight;
+  // Sélectionnez le footer
+  var footer = document.getElementById("foot");
+  // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
+  if (containerHeight < 1120) {
+      footer.style.position = "fixed";
+      footer.style.bottom = "0";
+      footer.style.width = "100%";
+      footer.style.height = "80px";
+      footer.style.marginTop = "0";
+      footer.style.zIndex = "1";
+      console.log(containerHeight);
+  }
+  </script>
 
 </body>
 </html>

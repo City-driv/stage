@@ -18,7 +18,7 @@ class ArticlesImport implements ToModel,WithHeadingRow
     {
         return new Article([
             'description' =>$row['description'],
-            'price' =>$row['price'],
+            'price' =>$row['prix'],
             'quantite' =>$row['quantite'],
             'tva'=>$row['tva'],
             'user_id'=>Auth::user()->id

@@ -119,7 +119,7 @@
           <button type="submit" class="btn btn-success col-md-9 col-12" ><i class="far fa-check-circle"></i> Modifier</button>
           {{-- <button type="button" class="btn btn-success col-md-9 col-12  " onclick="Valider()"><i class="far fa-check-circle"></i> Valider</button> --}}
         </form>
-          <a href="#" onclick="window.open('{{route('facture.show',$f->id)}}','popup','width=1000,height=1000').print(); return false;" id="imprime" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
+          <a href="#" onclick="window.open('{{route('facture.show',$facture->id)}}','popup','width=1000,height=1000').print(); return false;" id="imprime" ><button type="button" value="" class="btn btn-secondary imprimer col-md-9 col-12 mt-2"><i class="fas fa-print"></i> Imprimer</button></a>
           <button type="button"onclick="whtsp()"  data-action="share/whatsapp/share"  class="btn btn-success col-md-9 col-12 mt-2" style='background-color:#075e54;color:white;border:0;' onclick=""><i class="fab fa-whatsapp"></i>
           Whatsapp</button>
       </div>

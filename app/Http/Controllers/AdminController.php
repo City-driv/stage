@@ -28,7 +28,7 @@ class AdminController extends Controller
     }
     public function desactiver($id)
     {
-        DB::table('users')->where('id', $id)->update(['status' => 'test']);
+        DB::table('users')->where('id', $id)->update(['status' => 'inactive']);
         return to_route('admin.index')->with('success', 'Compte bien Desactiver');
     }
 

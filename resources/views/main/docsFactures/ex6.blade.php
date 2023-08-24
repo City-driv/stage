@@ -22,12 +22,12 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 60px;
+    height: 6.4vh;
     z-index: -9999;
     /* background-color: #333333; */
 }
 .containerr{
-  padding: 20px;
+  /* padding: 20px; */
   background-color: white
   /* margin-bottom: 100%; */
 }
@@ -45,7 +45,7 @@ footer {
     border: 1px solid black;
   }
   footer{
-    /* height: 6.4vh;  */
+    height: 6.4vh; 
     font-size:15px;
     /* position: absolute; */
     width: 100%;

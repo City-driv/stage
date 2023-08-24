@@ -291,6 +291,8 @@ document.getElementById('annuler').addEventListener('click',function(){
                 },
                 error: function (xhr, status, error) {
                 console.log(error);
+                swal("Facture ajouter!", "Veuillez rafraîchir la page et ressaisir la facture, s'il vous plaît !", "danger");
+
                 }
               })
         ValiderVar=true;

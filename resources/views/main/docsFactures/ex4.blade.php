@@ -28,6 +28,9 @@
         text-align: center;
         z-index: -99999;
     }
+    .containerr{
+        background-color: #f0f5f5;
+    }
     
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
@@ -38,7 +41,9 @@
 }
          @page { size: A4;margin: 0mm; }
         html { background-color: #FFFFFF; margin: 0px;  }
-        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
+        body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; 
+        background-color: #f0f5f5;
+            /* margin you want for the content */ } 
         body {
     -webkit-print-color-adjust:exact;
     border: none !important;
@@ -76,10 +81,10 @@
        font-family: fantasy;
         }
         .ligne1{
-       border-bottom: 5px solid #f0f5f5;
+         border-bottom: 5px solid #f0f5f5;
          background-color:  #0C91DA;
          color: white;
-          font-weight: bold;
+         font-weight: bold;
          font-size: 20px;
          text-align: center;
         
@@ -87,25 +92,25 @@
         td{
          border:1px solid black;   
         }
-        .Total{
+     .Total{
          text-align: center;
      }
      .Qte,.PRHT,.tva,.Ttva,.THT{
          text-align: center;}
-         .tr{
-             height:40px;
-             font-family:sans-serif;
-            line-height: 20px;
-            font-size:13px;
-             background-color: #D3D3D3;
-         }.tr .libelle{
-             padding-left:10px;
-         } 
-         .TotalTTC{
-            background-color: #0C91DA;  
-            color: white;
-         font-size: 20px;
-         }
+     .tr{
+         height:40px;
+         font-family:sans-serif;
+        line-height: 20px;
+        font-size:13px;
+         background-color: #D3D3D3;
+     }.tr .libelle{
+         padding-left:10px;
+     } 
+     .TotalTTC{
+        background-color: #0C91DA;  
+        color: white;
+     font-size: 20px;
+     }
          
      .signature{
          color: black;
@@ -131,27 +136,18 @@
      .py{
          margin-left:50%;
      }
-     /* footer{
-         height:6vh;
-         padding-left:20px;
-         position: absolute;
-         width:100%;
-         margin-top: -6vh;display:none;         font-size:17px;
-         background:#D3D3D3;
-         color:black;
-     } */
-     .footer {
-          /* position: fixed; */
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 6.4vh;
-          background-color: #D3D3D3;
+     footer {
+         bottom: 0;
+         left: 0;
+         width: 100%;
+         height: 6.4vh;
+         background-color: #D3D3D3;
       }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body style="background-color: #0C91DA;">
+<div class="containerr">
 <div class='example2'>
 <header>
     <div class='row'>
@@ -264,9 +260,11 @@
           </div>
       </div>
     </div>
+</div>
     <footer>
     <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i></label>
-    Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</footer>
+    Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
+    </footer>
 
 </body>
 </html>

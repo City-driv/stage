@@ -16,15 +16,12 @@
 .footer {
     position: fixed;
     bottom: 0;
-    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
     z-index: -9999999;
 }
-.container{
-  /* padding: 20px; */
-  /* margin-bottom: 100%; */
+.containerr{
   background-color: white;
 }
 @media print {
@@ -33,7 +30,7 @@
         page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
     }
 }
-        body {
+body {
     -webkit-print-color-adjust:exact;
     border: none !important;
     padding-top:5px;
@@ -41,19 +38,19 @@
    }
    </style>
     <style>
-        body{
-            margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  min-height: 100vh;
+ body{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
         }
-        .container{
+.containerr{
     display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
   }
-      .nomE{
+.nomE{
     color: #333333;
 }
 .nomE{
@@ -111,38 +108,23 @@ tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
 .footer {
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
 }
-/* .footer{
-    
-    margin: auto;
-  position: absolute;
-  margin-top: 95vh;
-    top: 0; left: 0;
-  width: 100%;
-  height:6.4vh;
- background-color: #333333;
- margin-top: 190vh;height:8vh;} */
 .footer .col-6{
     
-     color: white;
+  color: white;
   font-size: 25px;
   font-family: cursive;
   text-align: center;
 }
 .div {
     background-color:#FDD835 ;
-    /* height:6.4vh; */
-     margin-top: 190vh;
-     /* height:8vh;    */
+    margin-top: 190vh;
 }
 .div i{
-        color: black;
+  color: black;
   font-size: 15px;
   font-family: cursive; 
   text-align: left; 
@@ -154,7 +136,7 @@ tr:nth-child(even){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-<div class="container">
+<div class="containerr">
  <div class='container-fluid'>
 <div class='row pt-4' >
   <div class='col-6'>
@@ -257,7 +239,7 @@ tr:nth-child(even){
        <div class="row">
            <div class="col-6 text-center">merci pour votre Confiance</div>
            <div class="col-6 div text-center" style=" color: #333333;font-size: 14px;font-family: cursive;">
-               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}}
+               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}
             </div>
        </div>
    </div>

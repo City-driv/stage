@@ -47,15 +47,10 @@ footer {
     border: 1px solid black;
   }
   footer{
-    /* height: 6.4vh;  */
+    height: 6.4vh; 
     font-size:15px;
-    /* position: absolute; */
     width: 100%;
-    /* margin-top: 91.4vh; */
-    /* padding-left:15px; */
-    /* padding-right:15px; */
     margin-top: auto;
-    /* margin-top: 192.6vh;     */
     font-family:cursive;
     background:#E8E8E8;
     
@@ -152,7 +147,7 @@ footer {
 </div>
 </div>
 <footer>
-  <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
+  <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>
 </footer>
 
 </body>

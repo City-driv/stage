@@ -141,7 +141,6 @@ body {
          color:black;
      } */
      .footer {
-          /* position: fixed; */
           bottom: 0;
           left: 0;
           width: 100%;
@@ -257,7 +256,7 @@ body {
     </div>
     <footer class="footer">
         <label for=''  class=''><i style='color:#5E2E00;' class='fas fa-sitemap'></i> </label>
-        Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}
+        Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
     </footer>
                    
 </body>

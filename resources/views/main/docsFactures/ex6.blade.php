@@ -19,10 +19,8 @@
     margin: 0;  
 }
 footer {
-    /* margin-top: 50px; */
     position: fixed;
     bottom: 0;
-    /* left: 0; */
     width: 100%;
     height: 60px;
     z-index: -9999;
@@ -149,7 +147,7 @@ footer {
 </div>
 </div>
 <footer>
-  <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}} /Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
+  <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}} /Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>
   </footer>
 </body>
 </html>

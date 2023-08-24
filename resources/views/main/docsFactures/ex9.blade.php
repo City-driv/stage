@@ -15,15 +15,12 @@
 .footer {
     position: fixed;
     bottom: 0;
-    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
     z-index: -9999999;
 }
 .containerr{
-  /* padding: 20px; */
-  /* margin-bottom: 100%; */
   background-color: rgb(255, 255, 255);
 }
 @media print {
@@ -102,23 +99,11 @@ tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
 .footer {
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* left: 0; */
     width: 100%;
     height: 6.4vh;
     background-color: #521400;
 }
-/* .footer{
-    
-    margin: auto;
-  position: absolute;
-  margin-top: 97vh;
-  top: 0; left: 0;
-  width: 100%;
-  height:6.4vh;
- background-color: #521400;
- margin-top: 160vh;height:8vh;      } */
+
 .footer .col-6{
     
      color: white;
@@ -132,7 +117,7 @@ tr:nth-child(even){
    
 }
 .div i{
-        color: black;
+  color: black;
   font-size: 15px;
   font-family: cursive; 
   text-align: left; 
@@ -248,7 +233,7 @@ tr:nth-child(even){
        <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
            <div class="col-6 div text-center" style=" color: #521400;
             font-size: 14px;font-family: cursive;text-align: center;">
-               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}}</div>
+               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}</div>
        </div>
    </div>
       

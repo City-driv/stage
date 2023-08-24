@@ -42,7 +42,6 @@
     left: 0;
     width: 100%;
     height: 6.4vh;
-    /* background-color: #333333; */
 } 
         body {
     -webkit-print-color-adjust:exact;
@@ -55,13 +54,8 @@
             border-top-right-radius: 250px;
             border-top-left-radius: 250px;
             min-height: 101.5vh;
-
-            /* height: 101.5vh; */
-            /* height: 201.5vh; */
-            /* border-bottom:0; */
             background-color: #f0f5f5;
             padding-left: 3%;
-            /* border-bottom: 5vh solid  #E91E63; */
         }
         table{
             background-color: rgb(233, 227, 233);
@@ -139,10 +133,7 @@
      footer{
          height:6.4vh;
          padding-left:20px;
-         /* position: absolute; */
          width:100%;
-         /* margin-top: -6vh; */
-         /* margin-top: 95vh; */
          font-size:17px;
          background:#D3D3D3;
          color:black;
@@ -177,11 +168,11 @@
                <label for='' class='Dcmd'>Date : {{$facture->date_facture}}</label>
               </div>
               <div class='entreprise'>
-                  <label for='' class='adressL'>Address :</label><label for='' class='adress'>{{$facture->clientFact->adresse}}</label>
+                  <label for='' class='adressL'>Address :</label><label for='' class='adress'>{{Auth::user()->adresse}}</label>
                   <br>
-                  <label for='' class='emailL'>Email :</label><label for='' class='email'>{{$facture->clientFact->email}}</label>
+                  <label for='' class='emailL'>Email :</label><label for='' class='email'>{{Auth::user()->email}}</label>
                   <br>
-                  <label for='' class='teleL'>Telephone:</label><label for='' class='tele'>{{$facture->clientFact->telephone}}</label>
+                  <label for='' class='teleL'>Telephone:</label><label for='' class='tele'>{{Auth::user()->telephone}}</label>
               </div>
         </div>
     </div>
@@ -258,7 +249,7 @@
           </div>
       </div>
     </div><footer>
-    <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</footer>
+    <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</footer>
       
 </body>
 </html>

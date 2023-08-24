@@ -26,7 +26,7 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
-    footer {
+    .footer {
         position: fixed;
         bottom: 0;
         margin-top: 0;
@@ -34,9 +34,9 @@
         height: 6vh;
         margin-top: 0;
     }
-    .container{
-  padding: 20px;
-  margin-bottom: 20px;
+    .containerr{
+  /* padding: 20px; */
+  /* margin-bottom: 20px; */
 }
     
     .a4-page {
@@ -46,10 +46,7 @@
 
 }
    </style>
-    <style>
-      .example4{
-        /* height: 91vh; */
-      }
+   <style>
         .entreprise{
          background: linear-gradient(to left, #232526, #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
          color: white;
@@ -62,9 +59,7 @@
             height: 10vh;
             color: white;
             border-top: 7px solid #137A5C;
-            /* position: absolute; */
-            /* margin-top:101.5vh;   */
-                }
+              }
       .logo{
            width: 15%;
            height: 80px;
@@ -160,7 +155,7 @@
 
 </head>
 <body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-  <div class="container">
+  <div class="containerr">
      <div class='example4'>
 <div class='row text-center'>
    <div class='entreprise pt-2'>
@@ -178,7 +173,6 @@
               <label class='NomC'>{{$facture->clientFact->name}}</label><br>
             <label class='teleC'> {{$facture->clientFact->telephone}}</label><br>
             <label class='adressC'>{{$facture->clientFact->adresse}}</label>
-            
             <label class='adressC text-center'></label>
 
             </div>
@@ -256,10 +250,12 @@
  <div class='footer'>
    <div class='row'>
      <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
-         <i class='fas fa-envelope'>{{Auth::user()->email}}</i></div>  
-     <div class='col-4 mt-1 text-center'><i class='fas fa-map-marker-alt'></i></div>
+         <i class='fas fa-envelope'>{{Auth::user()->email}}</i>
+        <i class="fas fa-globe">{{Auth::user()->site_web}}</i>
+        </div>  
+     <div class='col-4 mt-1 text-center'><i class='fas fa-map-marker-alt'>{{Auth::user()->adresse}}</i></div>
      <div class='col-4 mt-1 text-center'>
-       <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}    </i>
+       <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} / IF {{Auth::user()->if}}   </i>
      </div>
    </div>
  </div>

@@ -145,9 +145,9 @@
          <div class="h1 text-center">Modifier Paiement</div>
           <div class="h3">Montant :</div>
           
-          <input type="number" id="Mmnt" class="form-control">
+          <input type="number" id="Mmnt" name="montant" class="form-control">
           <div class="h3">Date :</div>
-          <input type="date" id="Mdate_mnt" class="form-control">
+          <input type="date" name="date" id="Mdate_mnt" class="form-control">
           <div class="h3">Mode de paiement:</div>
           <select name="mode_paiement" id="Mmdp" class="form-control">
           <option value="">Au choix du client</option>
@@ -163,7 +163,7 @@
           <div class="h3">Observation :</div>
           <textarea name="observation" id="Mobservation" class="form-control" cols="15" rows="6"></textarea>
           <br>
-          <button class="mt-2 btn btn-primary" id="btnModifier"><i class="fas fa-plus-circle"></i>Modifier</button>
+          <button class="mt-2 btn btn-primary" type="submit" id="btnModifier"><i class="fas fa-plus-circle"></i>Modifier</button>
           <button class="mt-2 btn btn-danger annule" id="annule"><i class="fas fa-backspace"></i>Annuler</button>
         </form>
         </div>
@@ -237,7 +237,7 @@ function Liste(id){
         success: function(response) {
             // Afficher les factures des client correspondants
             var result = response.payments;
-            alert('success');
+            // alert('success');
             if (result.length > 0) {
               //  console.log(response.factures);
                 $.each(result, function(index, lg) {

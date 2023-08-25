@@ -10,7 +10,7 @@
     <style type='text/css' media='print'> 
         /* confirmed */
 
-        @page { size: A4;margin: 0mm; }
+        @page { size: A4;margin: 11mm; }
         html { background-color: #FFFFFF; margin: 0px;  }
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {

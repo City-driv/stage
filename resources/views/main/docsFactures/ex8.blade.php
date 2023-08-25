@@ -33,7 +33,7 @@
 
 }
 
-        @page { size: A4; margin: 0mm;  }
+        @page { size: A4; margin: 10mm;  }
         html { background-color: #FFFFFF; margin: 0px;}
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; }
         body {
@@ -263,7 +263,7 @@ if (containerHeight < 1120) {
     footer.style.position = "fixed";
     footer.style.bottom = "0";
     footer.style.width = "100%";
-    footer.style.height = "30px";
+    footer.style.height = "60px";
     footer.style.marginTop = "0";
     footer.style.zIndex = "1";
     console.log(containerHeight);

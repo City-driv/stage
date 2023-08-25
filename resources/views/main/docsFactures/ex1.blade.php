@@ -19,7 +19,7 @@ footer {
     height: 60px;
     padding: 20px;
     margin-top: 50px !important;
-    /* z-index: -9999; */
+    z-index: -9999;
     /* background-color: #333333; */
 }
 .containerr{
@@ -31,9 +31,14 @@ footer {
     .c1 {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
         page-break-before: always; /* Commencer chaque page sur une nouvelle feuille */
+        /* max-width: 400px; */
+        box-sizing: border-box;
+    }
+    table{
+
     }
 }
-@page { size: A4; margin: 0mm;  }
+@page { size: A4; margin: 10mm;  }
         html { background-color: #FFFFFF; margin: 0px;}
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; }
       body {
@@ -184,14 +189,10 @@ footer {
 </footer>
 <style type="text/css" media="print"> 
         @media print {
-            footer {
-                z-index: 1; /* Afficher le pied de page pendant l'impression */
-        margin-top: 150px !important;
-
-
-            }
+          
             .containerr {
                 page-break-before: always; /* Forcer un saut de page avant chaque conteneur */
+                margin-bottom: 30px;
             }
 
             /* Autres styles d'impression ici */

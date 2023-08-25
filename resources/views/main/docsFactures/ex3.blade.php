@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
 
     <style type="text/css" media="print"> 
-         @page { size: A4;margin: 0mm; }
+         @page { size: A4;margin: 10mm; }
         html { background-color: #FFFFFF; margin: 0px;  }
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {
@@ -234,13 +234,10 @@
     <div class='signature' >
               <div class='row'>
                     <div class='col-6'>
-                      <p>Signature Entreprise:
-                  <br>
-                    <img src='images/alt2.JPG'   style='opacity:1' class='signature' onerror=this.onerror=null; this.src='' /> </p>
+                      <p>Signature Entreprise: </p>
                     </div>
                     <div class='col-6'>
-                      <p> signature Client: <br>
-                    <img style='margin-top:12px;'   style='opacity:1' src='images/alt2.JPG'  onerror='this.onerror=null; this.src='images/alt.jpg'' srcset=''></p>  
+                      <p> signature Client: </p>  
                     </div>
               </div>
     </div> 

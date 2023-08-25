@@ -35,7 +35,7 @@
 }
 @page {
     size: A4;
-    margin: 0;
+    margin: 10mm;
 }
 html {
     background-color: #FFFFFF;
@@ -270,7 +270,7 @@ body {
         footer.style.position = "fixed";
         footer.style.bottom = "0";
         footer.style.width = "100%";
-        footer.style.height = "40px";
+        footer.style.height = "60px";
         footer.style.marginTop = "0";
         footer.style.zIndex = "1";
         console.log(containerHeight);

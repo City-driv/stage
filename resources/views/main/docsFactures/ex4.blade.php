@@ -39,7 +39,7 @@
     }
 
 }
-         @page { size: A4;margin: 0mm; }
+         @page { size: A4;margin: 10mm; }
         html { background-color: #FFFFFF; margin: 0px;  }
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; 
         background-color: #f0f5f5;

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use NumberToWords\NumberToWords;
+
 class FactureController extends Controller
 {
     /**
@@ -34,12 +35,12 @@ class FactureController extends Controller
         if (isset($_GET['excel'])) {
             $userId = Auth::id();
             $invoiceType = $_GET['type'];
-            if (isset($_GET['trimestre']) && $_GET['trimestre'] !== '' && $_GET['trimestre'] !== null ) {
+            if (isset($_GET['trimestre']) && $_GET['trimestre'] !== '' && $_GET['trimestre'] !== null) {
                 $tr = intval($_GET['trimestre']); // Convert to integer
                 $year = date('Y');
                 $startDate = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
                 $endDate = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));
-            }elseif ((isset($_GET['date1']) && isset($_GET['date2'])) && ($_GET['date1']!=='' && $_GET['date2']!=='')) {
+            } elseif ((isset($_GET['date1']) && isset($_GET['date2'])) && ($_GET['date1'] !== '' && $_GET['date2'] !== '')) {
                 $startDate = $_GET['date1'];
                 $endDate = $_GET['date2'];
             }
@@ -84,12 +85,12 @@ class FactureController extends Controller
         }
 
         if ($x == null) {
-            $factures = Facture::where('user_id', Auth::id())->orderBy('created_at','desc')
+            $factures = Facture::where('user_id', Auth::id())->orderBy('created_at', 'desc')
                 ->when($startDate, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('date_facture', [$startDate, $endDate]);
                 })->get();
         } else {
-            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at','desc')
+            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at', 'desc')
                 ->when($startDate, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('date_facture', [$startDate, $endDate]);
                 })->get();
@@ -100,7 +101,7 @@ class FactureController extends Controller
             $year = date('Y');
             $start_date = date('Y-m-d', strtotime($year . '-01-01 +' . (($tr - 1) * 3) . ' months'));
             $end_date = date('Y-m-d', strtotime($year . '-01-01 +' . ($tr * 3) . ' months -1 day'));
-            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at','desc')
+            $factures = Facture::where('user_id', Auth::id())->where('type_fact', $x)->orderBy('created_at', 'desc')
                 ->when($start_date, function ($query) use ($start_date, $end_date) {
                     return $query->whereBetween('date_facture', [$start_date, $end_date]);
                 })->get();
@@ -247,11 +248,12 @@ class FactureController extends Controller
         $ex = $facture->exemple;
         $numberToWords = new NumberToWords();
         $numberTransformer = $numberToWords->getNumberTransformer('fr');
-        $ntw=strtoupper($numberTransformer->toWords($facture->ttc));
+        $ntw = strtoupper($numberTransformer->toWords($facture->ttc));
+        // $ntw='qwerty';
         // dd($ntw . ' dirhams');
         // dump($ex);
         $Ligne_fact = Ligne_facture::where('facture_id', $facture->id)->get();
-        return view('main.docsFactures.' . $ex, compact('facture', 'Ligne_fact','ntw'));
+        return view('main.docsFactures.' . $ex, compact('facture', 'Ligne_fact', 'ntw'));
     }
 
     /**
@@ -322,13 +324,14 @@ class FactureController extends Controller
         return to_route('all.factures')->with('success', 'Facture supprimee');
     }
 
-    public function factureEmail($id){
-        $facture=Facture::findOrFail($id);
-        $user=Auth::user()->email;
+    public function factureEmail($id)
+    {
+        $facture = Facture::findOrFail($id);
+        $user = Auth::user()->email;
         Mail::to($user)->send(new InvoiceEmail($facture));
         // Mail::to('naliyof707@bagonew.com')->send(new InvoiceEmail($facture));
 
-        return back()->with('success','E-mail envoyé avec succès.');
+        return back()->with('success', 'E-mail envoyé avec succès.');
     }
 
 

@@ -10,11 +10,11 @@
     @if (isset($startDate))
     <table>
         <tr>
-            <th colspan="2">Date Debut :</th>
+            <th colspan="2" style="text-align: center;background-color:red;color:aqua">Date Debut :</th>
             <th colspan="2">{{ $startDate }}</th>
         </tr>
         <tr>
-            <th colspan="2">Date Fin :</th>
+            <th colspan="2" style="text-align: center;background-color:red;color:aqua">Date Fin :</th>
             <th colspan="2">{{ $endDate }}</th>
         </tr>
     </table>

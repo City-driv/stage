@@ -142,6 +142,9 @@ class FactureController extends Controller
     {
         return view('main.devis.devis');
     }
+    public function t(){
+        return User::all();
+    }
     public function forme_p()
     {
         return view('main.facture-proforma.facture-proforma');

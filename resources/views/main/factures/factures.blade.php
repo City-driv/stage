@@ -129,7 +129,7 @@ input[type=number] {
                     <ul class="dropdown-menu">
                       <li>
                         <a id="imp" title="Enregistrer/Imprimer" style="color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('facture.show',$f->id)}}"  class="dropdown-item"
-                          onclick="window.open('{{route('facture.show',$f->id)}}','popup','width=1000,height=1000').print(); return false;">Enregistrer/Imprimer <i class="fas fa-print"></i></a>
+                          onclick="window.open('{{route('facture.show',$f->id)}}','popup','width=1000,height=1000').print(); return window.close();">Enregistrer/Imprimer <i class="fas fa-print"></i></a>
                       </li>
                       <li>
                           <a class="dropdown-item" title="Aprecu" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('facture.show',$f->id)}}">Aperçu <i class="far fa-eye"></i></a>

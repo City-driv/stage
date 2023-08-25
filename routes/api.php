@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+Route::get('listes-us',[FactureController::class,'t']);
 // Route::post('/facture/store',[FactureController::class,'store']);

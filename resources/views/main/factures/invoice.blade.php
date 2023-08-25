@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        @if (isset($startDate))
+        @if (isset($startDate) && $startDate!=='')
         <table>
             <tr>
                 <th colspan="2" style="text-align: center;background-color:red;color:aqua">Date Debut :</th>

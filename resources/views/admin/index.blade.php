@@ -188,8 +188,8 @@ body{
                 <form action="{{ route('admin.update.user',$user->id) }}" method="post" id="form_{{ $user->id }}">
                     @csrf
                 <th>{{$user->id}}</th>
-                <td><input type="text" class="input-col" name="entreprise_name" value="{{$user->entreprise_name}}"></td>
-                <td class="cl"><input type="text" name="email" value="{{$user->email}}"></td>
+                <td><input type="text" class="input-col" name="entreprise_name" value="{{$user->entreprise_name}}"> <span style="display: none">{{$user->entreprise_name}}</span></td>
+                <td class="cl"><input type="text" name="email" value="{{$user->email}}"><span style="display: none">{{$user->email}}</span></td>
                 <td><input type="text" name="telephone" value="{{$user->telephone}}"></td>
                 {{-- <td><input type="text" name="entreprise_name" value="{{$user->entreprise_name}}"></td> --}}
                 {{-- <td><input type="text" name="ice" value="{{$user->ice}}"> </td> --}}

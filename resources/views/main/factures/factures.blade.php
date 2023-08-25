@@ -209,6 +209,10 @@ input[type=number] {
             @if (isset($_GET['trimestre']))
               <input type="hidden" name="trimestre" value="{{$_GET['trimestre']}}">
             @endif
+            @if (isset($_GET['date1']) && isset($_GET['date2']) )
+              <input type="date" class="form-control"  name="date1" style="display:none" value="{{$_GET['date1']}}"/>
+              <input type="date" class="form-control" style="display:none"  name="date2" value="{{$_GET['date2']}}"/>
+            @endif
             <input type="hidden" name="excel" value="excel">
             <input type="text" hidden name="type" value="{{$x}}">
               <button style="border:2px solid green;border-radius:5px;padding:5px;" type="submit" name="exp"><i class="fas fa-file-excel" style="color:green"></i></button></td>

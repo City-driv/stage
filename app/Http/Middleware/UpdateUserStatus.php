@@ -22,10 +22,10 @@ class UpdateUserStatus
             $user = auth()->user();
             if ($user->admin==0) {
                 if ($user->date_cr !== null && $user->date_exp !== null) {
-                    // $date_cr = new DateTime($user->date_cr);
-                    $date_cr = now();
-                    $date_exp = new DateTime($user->date_exp);
-                    // $yearDifference = $date_cr->diff($date_exp)->y;
+                    // // $date_cr = new DateTime($user->date_cr);
+                    // $date_cr = now();
+                    // $date_exp = new DateTime($user->date_exp);
+                    // // $yearDifference = $date_cr->diff($date_exp)->y;
         
                     if (($user->date_cr >= $user->date_exp) || ($user->pack =='perso' && $user->num_doc >= 1000) || ($user->pack =='starter' && $user->num_doc >= 3000) || ($user->pack =='demo' && $user->num_doc >= 10) ) {
                         $userModel = User::find($user->id); // Charger le modèle complet depuis la base de données

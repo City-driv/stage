@@ -40,17 +40,17 @@
                         <a class="dropdown-item" title="Aprecu" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{route('garantie.show',$gr->id)}}">Aperçu <i class="far fa-eye"></i></a>
                     </li>
                     <li>
-                        <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Partager <i class="  fab fa-whatsapp"></i></a></li>
-                    <li>
+                        <a title="Partager" class="dropdown-item" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="{{'https://api.whatsapp.com/send?text='.route('garantie.show',$gr->id)}}">Partager <i class="  fab fa-whatsapp"></i></a></li>
+                    {{-- <li>
                         <a class="dropdown-item"  title="Envoyer" style=" padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;"  href="#">Envoyer <i class="fas fa-envelope"></i></a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="dropdown-item"  title="Modifier" style="padding-left;5px;color: black;text-decoration:none;font-size:19px;font-familly:cursive;" id="modifier"  href="{{route('garantie.edit',$gr->id)}}">Modifier <i class="fas fa-edit"></i></a></li>
                     <li>
                     <form action="{{route('garantie.destroy',$gr->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                            <a title="Supprimer" class="dropdown-item" style="padding-left;5px;color: red;text-decoration:none;font-size:19px;font-familly:cursive;color:red;" ><button type="submit" >Supprimer <i class="far fa-trash-alt"></i></button> </a></li>
+                            <a title="Supprimer" class="dropdown-item" style="padding-left;5px;color: red;text-decoration:none;font-size:19px;font-familly:cursive;color:red;" ><button class="btn" style="font-size: 18px;padding: 0;color: red;" type="submit" >Supprimer <i class="far fa-trash-alt"></i></button> </a></li>
                     </form>
                 </ul>
                 </div>   

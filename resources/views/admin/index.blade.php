@@ -21,9 +21,9 @@ body{
 /* Table Styles */
 
 .table-wrapper{
-    margin: 20px;
+    /* margin: 20px; */
     box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-    overflow-x: scroll;
+    overflow-x: auto;
     min-height: 100vh;
 }
 .fl-table {

@@ -18,14 +18,14 @@
     border: none !important;
     margin: 0;  
 }
-footer {
+/* footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 6.4vh;
     z-index: -9999;
     /* background-color: #333333; */
-}
+} */
 .containerr{
   /* padding: 20px; */
   background-color: white
@@ -44,21 +44,18 @@ footer {
     text-align: center;
     border: 1px solid black;
   }
-  footer{
-    height: 6.4vh; 
-    font-size:15px;
-    /* position: absolute; */
-    width: 100%;
-    /* margin-top: 91.4vh; */
-    /* padding-left:15px; */
-    /* padding-right:15px; */
-    margin-top: auto;
-    font-family:cursive;
-    background:rgb(255, 248, 151);
-    /* margin-top: 192vh; */
-    }
-  .tr{
-      }
+ 
+    tfoot{
+    display: table-footer-group;
+    bottom: 0;
+  }
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255, 248, 151);
+}
     </style>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
 </head>
@@ -139,15 +136,24 @@ footer {
         <tr>
           <td colspan='6'>  {{ $ntw }} DIRHAMS</td>
         </tr>
-        
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <br><br>
+              <footer>
+                <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>
+              </footer>
+            </td>
+          </tr>
+        </tfoot>
       </table>
       <div class='col-8 h6 ms-5 mt-1 text-left'> </div>
     </div>
   </div>
 </div>
 </div>
-<footer>
+{{-- <footer>
   <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}} /Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>
-  </footer>
+  </footer> --}}
 </body>
 </html>

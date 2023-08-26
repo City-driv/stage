@@ -14,14 +14,14 @@
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
 
-.footer {
+/* .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 6.4vh;
     background-color: #333333;
     z-index: -9999999;
-}
+} */
 .containerr{
   background-color: white;
 }
@@ -110,9 +110,20 @@ tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
 .footer {
-    width: 100%;
-    height: 6.4vh;
-    background-color: #333333;
+    /* width: 100%; */
+    /* height: 6.4vh; */
+    /* background-color: #333333; */
+}
+tfoot{
+    display: table-footer-group;
+    bottom: 0;
+  }
+.footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #333333;
 }
 .footer .col-6{
     
@@ -198,6 +209,20 @@ tr:nth-child(even){
                     <td class='Total'>{{ ($lf->ttc )}} DH</td>
                 </tr>
                 @endforeach
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="footer">
+                                <div class="row">
+                                    <div class="col-6 text-center">merci pour votre Confiance</div>
+                                    <div class="col-6 div text-center" style=" color: #333333;font-size: 14px;font-family: cursive;">
+                                        Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}
+                                     </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
               </table>
    </div>
    <div class='row mt-2'  style='padding-left: 30px;'>
@@ -237,14 +262,14 @@ tr:nth-child(even){
 </div>
 
 </div>
-    <div class="footer">
+    {{-- <div class="footer">
        <div class="row">
            <div class="col-6 text-center">merci pour votre Confiance</div>
            <div class="col-6 div text-center" style=" color: #333333;font-size: 14px;font-family: cursive;">
                Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}
             </div>
        </div>
-   </div>
+   </div> --}}
       
 </body>
 </html>

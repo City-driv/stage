@@ -16,7 +16,7 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
-    footer {
+    /* footer {
         position: fixed;    
         bottom: 0;
         width: 100%;
@@ -25,7 +25,7 @@
         background-color: #D3D3D3;
         text-align: center;
         z-index: -99999;
-    }
+    } */
     
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
@@ -35,7 +35,8 @@
 }
 @page {
     size: A4;
-    margin: 10mm;
+    margin-top: 10mm;
+    margin-bottom: 0mm;
 }
 html {
     background-color: #FFFFFF;
@@ -140,13 +141,27 @@ body {
          background:#D3D3D3;
          color:black;
      } */
-     .footer {
+     /* .footer {
           bottom: 0;
           left: 0;
           width: 100%;
           height: 6.4vh;
           background-color: #D3D3D3;
-      }
+      } */
+      tfoot{
+    display: table-footer-group;
+    bottom: 0;
+  }
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  /* padding-top: 10px; */
+  text-align: center;
+  background-color: #D3D3D3;
+}  
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -159,7 +174,7 @@ body {
             @php
                 $img=asset('profiles/'.Auth::user()->img);
             @endphp
-          <img style='width: 100px;height: 100px; background-size: 100px 100px;'  src={{$img}} class='rounded-circle logo' alt='...'>
+          <img style='width: 100px;height: 90px; background-size: 100px 100px;'  src={{$img}} class='rounded-circle logo' alt='...'>
           <br><h1 class='Nom'>{{Auth::user()->entreprise_name}}</h1>
         </div>
     </div>
@@ -235,6 +250,17 @@ body {
     <td style='background-color:  #a57a05;color: white;font-weight: bold;font-size: 15px;'>{{$facture->ttc}} DH</td>
  
  </tr>
+ <tfoot>
+    <tr>
+        <td colspan="6">
+            <br><br>
+            <footer class="footer" id="foot">
+                <label for=''  class=''><i style='color:#5E2E00;' class='fas fa-sitemap'></i> </label>
+                Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
+            </footer>
+        </td>
+    </tr>
+ </tfoot>
  </table>
  <div class="row"></div>
 <div class='col-8 h6 mt-1 text-left'> </div>
@@ -255,12 +281,12 @@ body {
           </div>
       </div>
     </div>
-    <footer class="footer" id="foot">
+    {{-- <footer class="footer" id="foot">
         <label for=''  class=''><i style='color:#5E2E00;' class='fas fa-sitemap'></i> </label>
         Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
-    </footer>
+    </footer> --}}
 </div>
-<script>
+{{-- <script>
     // Obtenez la hauteur du conteneur
     var containerHeight = document.getElementById("c1").offsetHeight;
     // Sélectionnez le footer
@@ -275,7 +301,7 @@ body {
         footer.style.zIndex = "1";
         console.log(containerHeight);
     }
-    </script>
+    </script> --}}
                    
 </body>
 </html>

@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
 
     <style type="text/css" media="print"> 
-         @page { size: A4;margin: 10mm; }
+         @page { size: A4;margin-top: 10mm;margin-bottom: 0mm }
         html { background-color: #FFFFFF; margin: 0px;  }
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */ } 
         body {
@@ -26,7 +26,7 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
-    .footer {
+    /* .footer {
         position: fixed;
         bottom: 0;
         margin-top: 0;
@@ -34,7 +34,7 @@
         height: 6vh;
         margin-top: 0;
         z-index: -9999;
-    }
+    } */
     .containerr{
   /* padding: 20px; */
   /* margin-bottom: 20px; */
@@ -54,13 +54,27 @@
          font-size:33px;
          border-bottom:  4px solid #137A5C;
         }
-        .footer{
+        /* .footer{
             background-color: rgb(72, 72, 72);
             width: 100%;
             height: 10vh;
             color: white;
             border-top: 7px solid #137A5C;
-              }
+              } */
+              tfoot{
+    display: table-footer-group;
+    bottom: 0;
+  }
+.footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  background-color: rgb(72, 72, 72);
+  border-top: 7px solid #137A5C;
+  color: #FFFFFF;
+}
       .logo{
            width: 15%;
            height: 80px;
@@ -103,7 +117,7 @@
        border: 20px solid white;
      }
      tr:nth-child(odd){
-         border-top: 5px solid white;
+       border-top: 5px solid white;
        background-color: rgb(233, 231, 231);
 
      }
@@ -213,7 +227,25 @@
                 <td class='Total'>{{($lf->ttc )}} DH</td>
             </tr>           
         @endforeach
-        
+        <tfoot>
+          <tr>
+            <td colspan="6">
+              <br>
+              <div class='footer' id="foot">
+                <div class='row'>
+                  <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
+                      <i class='fas fa-envelope'>{{Auth::user()->email}}</i>
+                     <i class="fas fa-globe">{{Auth::user()->site_web}}</i>
+                     </div>  
+                  <div class='col-4 mt-1 text-center'><i class='fas fa-map-marker-alt'>{{Auth::user()->adresse}}</i></div>
+                  <div class='col-4 mt-1 text-center'>
+                    <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} / IF {{Auth::user()->if}}   </i>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
      </div>
      <div class='Payment'  style='margin-left:26%'>
@@ -245,7 +277,7 @@
  </div>
 </div>
 {{-- <br><br> --}}
- <div class='footer' id="foot">
+ {{-- <div class='footer' id="foot">
    <div class='row'>
      <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
          <i class='fas fa-envelope'>{{Auth::user()->email}}</i>
@@ -256,8 +288,8 @@
        <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} / IF {{Auth::user()->if}}   </i>
      </div>
    </div>
- </div>
- <script>
+ </div> --}}
+ {{-- <script>
   // Obtenez la hauteur du conteneur
   var containerHeight = document.getElementById("c1").offsetHeight;
   // Sélectionnez le footer
@@ -272,7 +304,7 @@
       footer.style.zIndex = "1";
       console.log(containerHeight);
   }
-  </script>
+  </script> --}}
 
 </body>
 </html>

@@ -33,7 +33,7 @@
 
 }
 
-        @page { size: A4; margin: 10mm;  }
+        @page { size: A4; margin-top: 10mm;margin-bottom: 0mm;  }
         html { background-color: #FFFFFF; margin: 0px;}
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; }
         body {
@@ -123,7 +123,7 @@
      .py{
          margin-left:50%;
      }
-     footer{
+     /* footer{
          height:6.4vh;
          padding-left:20px;
          width:100%;
@@ -136,7 +136,21 @@
         height: 6vh;
         margin-top: 0;
         z-index: -9999;
-     }
+     } */
+     tfoot{
+    display: table-footer-group;
+    bottom: 0;
+  }
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  /* padding-top: 10px; */
+  text-align: center;
+  background-color: #D3D3D3;
+}
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -229,6 +243,16 @@
  <td style='background-color: #E91E63;color: white; font-weight: bold;font-size: 15px;'>{{$facture->ttc}} DH</td>
  
  </tr>
+ <tfoot>
+    <tr>
+        <td colspan="6">
+            <br><br>
+            <footer>
+                <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
+            </footer>
+        </td>
+    </tr>
+ </tfoot>
  </table>
  <div class='row text-center'>  {{ $ntw }} DIRHAMS</div>
 <div class='col-8 h6 mt-1 text-left'> </div>
@@ -250,10 +274,11 @@
       </div>
     </div>
 </div>
-    <footer>
-    <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</footer>
+    {{-- <footer>
+    <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
+    </footer> --}}
       
-<script>
+{{-- <script>
 // Obtenez la hauteur du conteneur
 var containerHeight = document.getElementById("c1").offsetHeight;
 // Sélectionnez le footer
@@ -268,6 +293,6 @@ if (containerHeight < 1120) {
     footer.style.zIndex = "1";
     console.log(containerHeight);
 }
-</script>
+</script> --}}
 </body>
 </html>

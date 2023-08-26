@@ -10,18 +10,7 @@
     <style type='text/css' media='print'> 
     /* confirmed */
       
-footer {
-    /* margin-top: 50px; */
-    position: fixed;
-    bottom: 0;
-    /* left: 0; */
-    width: 100%;
-    height: 60px;
-    padding: 20px;
-    margin-top: 50px !important;
-    z-index: -9999;
-    /* background-color: #333333; */
-}
+/*  */
 .containerr{
   /* padding: 20px; */
   background-color: white
@@ -38,7 +27,7 @@ footer {
 
     }
 }
-@page { size: A4; margin: 10mm;  }
+@page { size: A4; margin-top: 10mm;margin-bottom: 0mm;  }
         html { background-color: #FFFFFF; margin: 0px;}
         body { border: solid 1px blue ; margin: 10mm 15mm 10mm 15mm; }
       body {
@@ -76,25 +65,20 @@ footer {
     text-align: center;
     border: 1px solid #06486D;
   }
-  footer{
-    /* height: 8vh;  */
-    font-size:15px;
-    /* position: absolute; */
-    width: 100%;
-    /* padding-left:15px; */
-    /* padding-right:15px; */
-    margin-top: auto;
-    /* margin-top: 192.6vh; */
-    height: 6.4vh;
-    font-family:cursive;
-    background:#6EC6F7;
+ 
+  tfoot{
+    display: table-footer-group;
+    bottom: 0;
+    margin-top: 12px;
   }
-/*   
-  .containerr{
-    display: flex;
-  flex-direction: column;
-  /* min-height: 100vh; */
-  } */
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #48B7F5;
+}
+
     </style>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
 </head>
@@ -177,6 +161,15 @@ footer {
         <tr>
           <td colspan='6'> {{ $ntw }} DIRHAMS</td>
         </tr>
+        <tfoot>
+          <tr>
+            <td colspan="7">
+              <br>
+            <footer class="custom-footer">
+              <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
+              </footer></td>
+          </tr>
+         </tfoot>
        
       </table>
       <div class='col-8 h6 ms-5 mt-1 text-left'> </div>
@@ -184,9 +177,9 @@ footer {
   </div>
 </div>
 </div>
-<footer>
+{{-- <footer>
 <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
-</footer>
+</footer> --}}
 <style type="text/css" media="print"> 
         @media print {
           

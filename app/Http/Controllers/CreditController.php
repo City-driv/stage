@@ -97,7 +97,7 @@ class CreditController extends Controller
     public function update(Request $request, Credit $credit)
     {
         $credit->fill($request->post())->save();
-        return to_route('credit.index')->with('success', 'credit modifiee');
+        return to_route('credit.index')->with('success', 'credit modifié');
     }
 
     /**
@@ -107,7 +107,7 @@ class CreditController extends Controller
     {
         Ligne_credit::where('credit_id', $credit->id)->delete();
         $credit->delete();
-        return to_route('credit.index')->with('success', 'credit supprimee');
+        return to_route('credit.index')->with('success', 'credit supprimé');
     }
 
     public function liste()

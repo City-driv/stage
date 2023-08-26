@@ -62,7 +62,7 @@ class ClientController extends Controller
         //     'ville'=>$request->ville,
         //     'user_id'=>'1'
         // ]);
-        return to_route('clients.index')->with('success', 'Nouveau client ajoutee');
+        return to_route('clients.index')->with('success', 'Nouveau client ajouté');
     }
 
     /**
@@ -102,7 +102,7 @@ class ClientController extends Controller
             // 'ville' => 'required'
         ]);
         $client->fill($request->post())->save();
-        return to_route('clients.index')->with('success', 'Client modifier');
+        return to_route('clients.index')->with('success', 'Client modifié');
     }
 
     /**
@@ -114,7 +114,7 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return to_route('clients.index')->with('success', 'Client supprimer');
+        return to_route('clients.index')->with('success', 'Client supprimé');
     }
 
     public function importCl(Request $request)

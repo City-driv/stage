@@ -80,7 +80,7 @@ class FournisseurController extends Controller
             }
         }
         $fournisseur->fill($request->post())->save();
-        return to_route('fournisseur.index')->with('success','Fournisseur bien modifier');
+        return to_route('fournisseur.index')->with('success','Fournisseur bien modifié');
     }
 
     /**
@@ -92,7 +92,7 @@ class FournisseurController extends Controller
             File::delete('Fimgs/' . $fournisseur->photo);
         }
         $fournisseur->delete();
-        return to_route('fournisseur.index')->with('success', 'fournisseur supprimer');
+        return to_route('fournisseur.index')->with('success', 'fournisseur supprimé');
     }
 
     public function liste()

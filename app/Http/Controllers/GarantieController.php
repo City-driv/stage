@@ -48,7 +48,7 @@ class GarantieController extends Controller
 
         $request['user_id'] = Auth::id();
         Garantie::create($request->post());
-        return to_route('garantie.index')->with('success', 'Garantie ajoutee');
+        return to_route('garantie.index')->with('success', 'Garantie ajouté');
     }
 
     /**
@@ -87,7 +87,7 @@ class GarantieController extends Controller
             'email.required' => 'Veuillez entrer un email'
         ]);
         $garantie->fill($request->post())->save();
-        return to_route('garantie.index')->with('success', 'Garantie Modifier');
+        return to_route('garantie.index')->with('success', 'Garantie Modifié');
     }
 
     /**
@@ -96,6 +96,6 @@ class GarantieController extends Controller
     public function destroy(Garantie $garantie)
     {
         $garantie->delete();
-        return view('main.garanties.index')->with('success', 'garantie supprimer');
+        return view('main.garanties.index')->with('success', 'garantie supprimé');
     }
 }

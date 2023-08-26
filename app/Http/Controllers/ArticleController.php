@@ -37,7 +37,7 @@ class ArticleController extends Controller
     {
         $request['user_id'] = Auth::user()->id;
         Article::create($request->post());
-        return to_route('article.index')->with('success', 'Article bien ajoutee');
+        return to_route('article.index')->with('success', 'Article bien ajouté');
     }
 
     /**
@@ -62,7 +62,7 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->post())->save();
-        return to_route('article.index')->with('success', 'Article bien modifiee');
+        return to_route('article.index')->with('success', 'Article bien modifié');
     }
 
     /**
@@ -71,7 +71,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return to_route('article.index')->with('success', 'Article supprimer');
+        return to_route('article.index')->with('success', 'Article supprimé');
     }
 
     public function import(Request $request)

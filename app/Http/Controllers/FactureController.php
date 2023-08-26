@@ -324,7 +324,7 @@ class FactureController extends Controller
         // dd($facture);
         Ligne_facture::where('facture_id', $facture->id)->delete();
         $facture->delete();
-        return to_route('all.factures')->with('success', 'Facture supprimee');
+        return to_route('all.factures')->with('success', 'Facture supprimé');
     }
 
     public function factureEmail($id)

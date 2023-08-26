@@ -57,7 +57,7 @@ class NumerotationController extends Controller
     public function update(Request $request, Numerotation $numerotation)
     {
         $numerotation->fill($request->post())->save();
-        return to_route('numerotation.index')->with('success','numerotation bien modifiee');
+        return to_route('numerotation.index')->with('success','numerotation bien modifié');
     }
 
     /**

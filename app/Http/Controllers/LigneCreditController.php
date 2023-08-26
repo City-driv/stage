@@ -71,7 +71,7 @@ class LigneCreditController extends Controller
     public function update(Request $request, Ligne_credit $ligne_credit)
     {
         $ligne_credit->fill($request->post())->save();
-        return to_route('credit.index')->with('success', 'Payement modifiee');
+        return to_route('credit.index')->with('success', 'Payement modifié');
     }
 
     /**

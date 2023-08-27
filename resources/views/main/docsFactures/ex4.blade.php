@@ -256,7 +256,7 @@ footer{
  </tr>
  <tfoot>
     <tr>
-        <td colspan="6">
+        <td colspan="6" style="background: #f0f5f5">
             <br><br>
             <footer>
                 <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i></label>

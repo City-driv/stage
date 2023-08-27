@@ -161,7 +161,7 @@ tfoot{
           <div class='col-3' style=' background-color: #521400;
           border-right: 20px solid transparent;
           border-top: 50px solid #50AF4C;'></div>
-          <div class='col-6 text-center type'>{{$facture->type_fact}}</div>
+          <div class='col-6 text-center type' style="font-size: 25px;">{{$facture->type_fact}}</div>
           <div class='col-3' style=' background-color: #521400;
           border-left: 20px solid transparent;
           border-top: 50px solid #50AF4C;'></div>
@@ -198,8 +198,8 @@ tfoot{
                 @endforeach
                 <tfoot>
                     <tr>
-                        <td>
-                            <br>
+                        <td colspan="6" >
+                            <br><br>
                             <div class="footer" id="foot">
                                 <div class="row">
                                 <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
@@ -217,7 +217,7 @@ tfoot{
        <div class='col-6 h5'>
         </div>
         <div class='col-5 h6' style='margin-left: 10px;'>
-        <div class='row'>
+        <div class='row' style="padding: 20px;">
         
             <div  style='display:block'  class='col-6 mt-2'>Montant Tva :</div>
             <div  style='display:block'  class='col-6 mt-2 text-center'>{{$facture->ttva}}  DH</div>

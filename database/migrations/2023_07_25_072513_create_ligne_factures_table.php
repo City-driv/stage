@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantite')->default(1);
             $table->integer('remise')->default(0);
             $table->integer('tva')->default('20');
-            $table->float('ttc');
+            $table->double('ttc', 15, 2);
             $table->timestamps();
         });
     }

@@ -138,7 +138,7 @@ footer{
         </tr>
         <tfoot>
           <tr>
-            <td colspan="6">
+            <td colspan="6" style="border: none">
               <br><br>
               <footer>
                 <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>

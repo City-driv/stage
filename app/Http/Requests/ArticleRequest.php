@@ -28,5 +28,14 @@ class ArticleRequest extends FormRequest
             'quantite'=>'required'
         ];
     }
+    public function messages()
+    {
+        return [
+            'description.required' => 'La description est obligatoire',
+            'price.required' => 'Le prix d\'article est obligatoire',
+            "tva.required"=>"Veuillez entrer le tva",
+            "quantite.required"=>"Veuillez entrer la quantite ",
+        ];
+    }
     
 }

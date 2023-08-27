@@ -211,7 +211,8 @@ tfoot{
                 @endforeach
                 <tfoot>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="6" style="background: white">
+                            <br><br>
                             <div class="footer">
                                 <div class="row">
                                     <div class="col-6 text-center">merci pour votre Confiance</div>

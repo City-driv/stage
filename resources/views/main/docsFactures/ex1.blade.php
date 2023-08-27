@@ -76,6 +76,7 @@ footer{
   width: 100%;
   bottom: 0;
   left: 0;
+  height: 60px;
   background-color: #48B7F5;
 }
 
@@ -163,8 +164,8 @@ footer{
         </tr>
         <tfoot>
           <tr>
-            <td colspan="7">
-              <br>
+            <td colspan="7" style="border: none">
+              <br><br>
             <footer class="custom-footer">
               <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
               </footer></td>

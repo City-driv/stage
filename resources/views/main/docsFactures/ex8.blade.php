@@ -245,7 +245,7 @@ footer{
  </tr>
  <tfoot>
     <tr>
-        <td colspan="6">
+        <td colspan="6" style="background: #f0f5f5">
             <br><br>
             <footer>
                 <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}

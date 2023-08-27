@@ -229,7 +229,7 @@
         @endforeach
         <tfoot>
           <tr>
-            <td colspan="6">
+            <td colspan="6" style="background: white">
               <br>
               <div class='footer' id="foot">
                 <div class='row'>

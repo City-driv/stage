@@ -236,7 +236,7 @@
             let select=document.querySelector("select")
             let inputes=document.querySelectorAll("input[type='number']")
             let [tva,mtva,ht,ttc]=inputes
-            console.log(tva,mtva)
+            // console.log(tva,mtva)
 
             inputes[0].addEventListener("keyup",()=>{
               mtva.value=parseFloat(parseFloat(tva.value)/100*parseFloat(ht.value)).toFixed(2)

@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>WORFAC 5</title>
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
-    <link rel="icon" href="logo.png" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <style type='text/css' media='print'> 
         /* confirmed */
 
@@ -37,15 +37,7 @@
     text-align: center;
     border: 1px solid black;
   }
-  /* footer{
-    height: 6.4vh; 
-    font-size:15px;
-    width: 100%;
-    margin-top: auto;
-    font-family:cursive;
-    background:#E8E8E8;
-    
-  } */
+
   tfoot{
     display: table-footer-group;
     bottom: 0;
@@ -155,9 +147,7 @@ footer{
   </div>
 </div>
 </div>
-{{-- <footer>
-  <div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél : {{Auth::user()->telephone}} / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}</div>
-</footer> --}}
+
 
 </body>
 </html>

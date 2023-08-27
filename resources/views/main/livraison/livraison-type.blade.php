@@ -11,13 +11,13 @@
       overflow-x: hidden;
     }
   </style>
-  <center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>Choisier votre BON LIVRAISON preferé:</h1></center>
+  <center><h1 style='color:black;background: -webkit-linear-gradient(rgb(255 205 45), rgb(255 87 87));-webkit-background-clip: text;-webkit-text-fill-color: transparent;'>choisir votre BON LIVRAISON preferé:</h1></center>
 <div class="container">
     <div class="row">
-      {{-- <label for="" class="col-12 fs-1">Choisier votre BON LIVRAISON preferé:</label> --}}
+      {{-- <label for="" class="col-12 fs-1">choisir votre BON LIVRAISON preferé:</label> --}}
        <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
              <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=2" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=2" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a target="_blank" href="{{asset('imgs/facts/bl1.PNG')}}" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -25,20 +25,9 @@
              </button> 
              <a href="/facture/create?t=bl&Ex=2" ><img src="{{asset('imgs/facts/bl1.PNG')}}" class="img-fluid rounded-start" alt="..."></a>
       </div>
-      {{-- <div style="display:none;" class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
-             <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a 
-              style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
-             <button  class="btn btn-primary  mb-2" type="submit">
-             <a href="{{asset('imgs/facts/e12f.PNG')}}" target="_blank" style="text-decoration:none;color:white">
-               <i class="fas fa-eye"></i> Aperçu
-             </a>
-             </button> 
-             <a   ><img src="{{asset('imgs/facts/e12f.PNG')}}" class="img-fluid rounded-start" alt="..."></a>
-      </div> --}}
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
               <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=3" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=3" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl2.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -48,7 +37,7 @@
       </div>    
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
               <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=4" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=4" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl3.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -58,7 +47,7 @@
       </div>
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
            <button style="margin-left:3px; " class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=5" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=5" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl4.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -69,7 +58,7 @@
       
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
               <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=6" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=6" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl5.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -79,7 +68,7 @@
       </div>    
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
               <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=7" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=7" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl6.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -89,7 +78,7 @@
       </div>
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
            <button style="margin-left:3px; " class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=8" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=8" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button  class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl7.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu
@@ -99,7 +88,7 @@
       </div>
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
                 <button style="margin-left:3px;"  class="btn btn-primary  mb-2" type="submit">
-                     <a href="/facture/create?t=bl&Ex=9" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a>
+                     <a href="/facture/create?t=bl&Ex=9" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a>
             </button>
             <button  class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl8.PNG')}}" target="_blank" style="text-decoration:none;color:white">
@@ -111,7 +100,7 @@
       
       <div class="col-md-4 col-12  a mt-2 border rounded-start border-warning">
              <button style="margin-left:3px;" class="btn btn-primary  mb-2" type="submit">
-             <a href="/facture/create?t=bl&Ex=1" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> Choisier</a></button>
+             <a href="/facture/create?t=bl&Ex=1" style="text-decoration:none;color:white"><i class="far fa-hand-pointer"></i> choisir</a></button>
              <button  class="btn btn-primary  mb-2" type="submit">
              <a href="{{asset('imgs/facts/bl9.PNG')}}" target="_blank" style="text-decoration:none;color:white">
                <i class="fas fa-eye"></i> Aperçu

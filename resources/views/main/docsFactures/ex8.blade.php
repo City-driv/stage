@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORFAC 8</title>
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="logo.png" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <style type="text/css" media="print"> 
     @media print {
     body {
@@ -17,14 +17,7 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
-    /* footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 6vh;
-        margin-top: 0;
-        z-index: -9999;
-    } */
+  
 
     .a4-page {
         overflow: hidden; /* Éviter les débordements lors de l'impression */
@@ -123,20 +116,7 @@
      .py{
          margin-left:50%;
      }
-     /* footer{
-         height:6.4vh;
-         padding-left:20px;
-         width:100%;
-         font-size:17px;
-         background:#D3D3D3;
-         color:black;
-         position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 6vh;
-        margin-top: 0;
-        z-index: -9999;
-     } */
+  
      tfoot{
     display: table-footer-group;
     bottom: 0;
@@ -274,25 +254,6 @@ footer{
       </div>
     </div>
 </div>
-    {{-- <footer>
-    <label for=''  class=''><i style='color:#870D37;' class='fas fa-sitemap'></i>Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
-    </footer> --}}
-      
-{{-- <script>
-// Obtenez la hauteur du conteneur
-var containerHeight = document.getElementById("c1").offsetHeight;
-// Sélectionnez le footer
-var footer = document.querySelector("footer");
-// Vérifiez si la hauteur du conteneur est supérieure à 270 mm
-if (containerHeight < 1120) {
-    footer.style.position = "fixed";
-    footer.style.bottom = "0";
-    footer.style.width = "100%";
-    footer.style.height = "60px";
-    footer.style.marginTop = "0";
-    footer.style.zIndex = "1";
-    console.log(containerHeight);
-}
-</script> --}}
+
 </body>
 </html>

@@ -56,7 +56,7 @@ background-color:#eee;
                                 <h5 class="font-size-16 mb-3">Billed To:</h5>
                                 <h5 class="font-size-15 mb-2">Preston Miller</h5>
                                 <p class="mb-1">4068 Post Avenue Newfolden, MN 56738</p>
-                                <p class="mb-1">PrestonMiller@armyspy.com</p>
+                                <p class="mb-1">test@test.com</p>
                                 <p>001-234-5678</p>
                             </div>
                         </div>
@@ -96,21 +96,7 @@ background-color:#eee;
                                     </tr>
                                 </thead><!-- end thead -->
                                 <tbody>
-                                    {{-- @foreach ($products as $item)
-                                        <tr>
-                                            <th scope="row">{{$item->des}}</th>
-                                            <td>
-                                                <div>
-                                                    <h5 class="text-truncate font-size-14 mb-1">{{$item->prix}}</h5>
-                                                    <p class="text-muted mb-0">Watch, Black</p>
-                                                </div>
-                                            </td>
-                                            <td>{{$item->qte}}</td>
-                                            <td>{{$item->tva}}</td>
-                                            <td class="text-end">{{$item->totalP}}</td>
-                                        </tr>
-                                    @endforeach --}}
-                                    <!-- end tr -->
+                                    
                                     
                                     <!-- end tr -->
                                     <tr>

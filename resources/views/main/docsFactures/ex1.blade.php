@@ -6,7 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>WORFAC 1</title>
     <script src='https://kit.fontawesome.com/f0841bede9.js' crossorigin='anonymous'></script>
-    <link rel="icon" href="logo.png" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <style type='text/css' media='print'> 
     /* confirmed */
       
@@ -156,9 +156,7 @@ footer{
           <td>{{$facture->ttva}}  DH</td>
           <td class='ligne1' colspan='4'>{{$facture->ttc}}  DH</td>
         </tr>
-        {{-- <tr>
-            <td>{{$Ligne_fact->articles}}</td>
-        </tr> --}}
+        
         <tr>
           <td colspan='6'> {{ $ntw }} DIRHAMS</td>
         </tr>
@@ -178,9 +176,7 @@ footer{
   </div>
 </div>
 </div>
-{{-- <footer>
-<div class='col-12 text-center'>Société :{{Auth::user()->entreprise_name}}:/Tél :{{Auth::user()->telephone}}  / Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}}</div>
-</footer> --}}
+
 <style type="text/css" media="print"> 
         @media print {
           

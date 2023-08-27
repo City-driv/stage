@@ -5,21 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORFAC 9</title>
-    <link rel="icon" href="logo.png" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
     <style type="text/css" media="print"> 
              .a4-page {
     height: 297mm; /* Hauteur du format A4 en millimètres */
     width: 210mm; /* Largeur du format A4 en millimètres */
 }
-/* .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 6.4vh;
-    background-color: #333333;
-    z-index: -9999999;
-} */
+
 .containerr{
   background-color: rgb(255, 255, 255);
 }
@@ -98,11 +91,7 @@ tr:nth-child(odd){
 tr:nth-child(even){
     background-color: rgb(250, 250, 250);
 }
-/* .footer {
-    width: 100%;
-    height: 6.4vh;
-    background-color: #521400;
-} */
+
 tfoot{
     display: table-footer-group;
     bottom: 0;
@@ -251,32 +240,6 @@ tfoot{
    
  </div>
 </div>
-</div>
-
-    {{-- <div class="footer" id="foot">
-       <div class="row">
-       <div class="col-6 pt-3 pb-2">merci pour votre Confiance</div>
-           <div class="col-6 div text-center" style=" color: #521400;
-            font-size: 14px;font-family: cursive;text-align: center;">
-               Forme juridique:{{Auth::user()->fj}}/ICE:{{Auth::user()->ice}} /IF:{{Auth::user()->if}}</div>
-       </div>
-   </div> --}}
-   {{-- <script>
-    // Obtenez la hauteur du conteneur
-    var containerHeight = document.getElementById("c1").offsetHeight;
-    // Sélectionnez le footer
-    var footer = document.getElementById("foot");
-    // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
-    if (containerHeight < 1120) {
-        footer.style.position = "fixed";
-        footer.style.bottom = "0";
-        footer.style.width = "100%";
-        footer.style.height = "30px";
-        footer.style.marginTop = "0";
-        footer.style.zIndex = "1";
-        console.log(containerHeight);
-    }
-    </script> --}}
-      
+</div>     
 </body>
 </html>

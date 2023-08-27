@@ -49,10 +49,6 @@
       
    }
   </style>
-  {{-- @if (session()->has('success'))
-    <div class="alert alert-success">{{session('success')}}</div>
-  @endif   --}}
-   {{-- <form method="POST" action="/contact.php" class="login" method="post"> --}}
     <form action="{{route('contact.post')}}" method="post" class="login">
       @csrf
 <div class="row">

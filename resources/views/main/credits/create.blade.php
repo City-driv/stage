@@ -154,19 +154,6 @@
           });
       });
 
-      // var pm=$('#pm');
-      // var pa=$('#pa')
-      // $('#pm').on('keyup',calcule);
-      // $('#pa').on('keyup',calcule);
-
-      // function calcule(){
-      //    var pmr=parseFloat(pm.val());
-      //    var par=parseFloat(pa.value);
-      //    var rest=parseFloat(pm=-pa);
-      //    console.log('le rest :'+ pmr);
-      //   //  $('#rest').val=rest
-      // }
-
       let Prix=document.querySelectorAll('input[type="number"]')
       chargerPrix=()=>{Prix[2].value=Prix[0].value-Prix[1].value}
       Prix[0].addEventListener("keyup",()=>{chargerPrix()});

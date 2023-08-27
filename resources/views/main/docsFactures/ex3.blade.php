@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORFAC 3</title>
-    <link rel="icon" href="logo.png" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
 
     <style type="text/css" media="print"> 
@@ -26,15 +26,7 @@
         background-color: white;
         -webkit-print-color-adjust: exact;
     }
-    /* .footer {
-        position: fixed;
-        bottom: 0;
-        margin-top: 0;
-        width: 100%;
-        height: 6vh;
-        margin-top: 0;
-        z-index: -9999;
-    } */
+   
     .containerr{
   /* padding: 20px; */
   /* margin-bottom: 20px; */
@@ -54,13 +46,7 @@
          font-size:33px;
          border-bottom:  4px solid #137A5C;
         }
-        /* .footer{
-            background-color: rgb(72, 72, 72);
-            width: 100%;
-            height: 10vh;
-            color: white;
-            border-top: 7px solid #137A5C;
-              } */
+       
               tfoot{
     display: table-footer-group;
     bottom: 0;
@@ -276,35 +262,6 @@
   @endif
  </div>
 </div>
-{{-- <br><br> --}}
- {{-- <div class='footer' id="foot">
-   <div class='row'>
-     <div class='col-4 text-center'> <i class='fas fa-phone-square-alt'> {{Auth::user()->telephone}}</i>
-         <i class='fas fa-envelope'>{{Auth::user()->email}}</i>
-        <i class="fas fa-globe">{{Auth::user()->site_web}}</i>
-        </div>  
-     <div class='col-4 mt-1 text-center'><i class='fas fa-map-marker-alt'>{{Auth::user()->adresse}}</i></div>
-     <div class='col-4 mt-1 text-center'>
-       <i class='fas fa-sitemap'> Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} / IF {{Auth::user()->if}}   </i>
-     </div>
-   </div>
- </div> --}}
- {{-- <script>
-  // Obtenez la hauteur du conteneur
-  var containerHeight = document.getElementById("c1").offsetHeight;
-  // Sélectionnez le footer
-  var footer = document.getElementById("foot");
-  // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
-  if (containerHeight < 1120) {
-      footer.style.position = "fixed";
-      footer.style.bottom = "0";
-      footer.style.width = "100%";
-      footer.style.height = "80px";
-      footer.style.marginTop = "0";
-      footer.style.zIndex = "1";
-      console.log(containerHeight);
-  }
-  </script> --}}
 
 </body>
 </html>

@@ -73,13 +73,7 @@ padding: 10px 10px 10px 50px;
 
 <button type="submit" class="search"><i class="fas fa-search"></i>Chercher</button>
 
-     {{-- <button style='margin:20px;' class="btn btn-outline-secondary  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-sort"></i>Trier par</button>
-        <div class="dropdown-menu">
-          <button type="submit" name="fourA"><i class="fas fa-sort-alpha-up"></i> Code Fournisseur croissant</button>
-          <br><button type="submit" name="fourZ"><i class="fas fa-sort-alpha-up-alt"></i> Code Fournisseur décroissante</button>
-          <br><button type="submit" name="entA"><i class="fas fa-sort-alpha-up"></i > Entreprise  croissant</button>
-          <br><button type="submit" name="entZ"><i class="fas fa-sort-alpha-up-alt"></i> Entreprise décroissante</button>
-        </div> --}}
+
 </form>
 
     @foreach ($fournisseurs as $fournisseur)

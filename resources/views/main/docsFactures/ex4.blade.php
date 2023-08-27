@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORFAC 4</title>
     <script src="https://kit.fontawesome.com/f0841bede9.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="logo.jfif" />
+    <link rel="icon" href="{{asset('/imgs/logo.png')}}" />
     <style type="text/css" media="print"> 
     /* confirmed */
 
@@ -18,16 +18,7 @@
         -webkit-print-color-adjust: exact;
     }
     /* confirmed */
-    /* footer {
-        position: fixed;    
-        bottom: 0;
-        width: 100%;
-        height: 6vh;
-        margin-top: 0;
-        background-color: #D3D3D3;
-        text-align: center;
-        z-index: -99999;
-    } */
+    
     .containerr{
         /* background-color: #f0f5f5; */
     }
@@ -136,13 +127,7 @@
      .py{
          margin-left:50%;
      }
-     /* footer {
-         bottom: 0;
-         left: 0;
-         width: 100%;
-         height: 6.4vh;
-         background-color: #D3D3D3;
-      } */
+     
       tfoot{
     display: table-footer-group;
     bottom: 0;
@@ -286,25 +271,6 @@ footer{
       </div>
     </div>
 </div>
-    {{-- <footer>
-    <label for=''  class=''><i style='color:#4d79ff;' class='fas fa-sitemap'></i></label>
-    Forme juridique:{{Auth::user()->fj}} /ICE:{{Auth::user()->ice}} /IF: {{Auth::user()->if}}
-    </footer> --}}
-{{-- <script>
-        // Obtenez la hauteur du conteneur
-        var containerHeight = document.getElementById("c1").offsetHeight;
-        // Sélectionnez le footer
-        var footer = document.getElementById("foot");
-        // Vérifiez si la hauteur du conteneur est supérieure à 270 mm
-        if (containerHeight < 1120) {
-            footer.style.position = "fixed";
-            footer.style.bottom = "0";
-            footer.style.width = "100%";
-            footer.style.height = "40px";
-            footer.style.marginTop = "0";
-            footer.style.zIndex = "1";
-            console.log(containerHeight);
-        }
-</script>  --}}
+ 
 </body>
 </html>
